@@ -62,8 +62,8 @@ rule com.mojang.minecraft.e.k com.mojang.minecraft.gui.SaveLevelScreen
 rule com.mojang.minecraft.e.l com.mojang.minecraft.gui.FontRenderer
 rule com.mojang.minecraft.e.m com.mojang.minecraft.gui.HUDScreen
 rule com.mojang.minecraft.e.n com.mojang.minecraft.gui.PauseScreen
-rule com.mojang.minecraft.e.o com.mojang.minecraft.gui.PopUpScreen
-rule com.mojang.minecraft.e.p com.mojang.minecraft.gui.SaveLevelDialogThread
+rule com.mojang.minecraft.e.o com.mojang.minecraft.gui.GuiScreen
+rule com.mojang.minecraft.e.p com.mojang.minecraft.gui.LevelDialog
 rule com.mojang.minecraft.e.q com.mojang.minecraft.gui.LoadLevelScreen
 rule com.mojang.minecraft.e.r com.mojang.minecraft.gui.GameOverScreen
 rule com.mojang.minecraft.e.** com.mojang.minecraft.gui.@1
