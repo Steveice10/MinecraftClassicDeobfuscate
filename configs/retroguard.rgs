@@ -12,6 +12,22 @@
 .attribute EnclosingMethod
 .option Annotations 
 
+# SessionData
+!field com/mojang/minecraft/SessionData/a *
+.field_map com/mojang/minecraft/SessionData/a allowedBlocks
+
+!field com/mojang/minecraft/SessionData/b *
+.field_map com/mojang/minecraft/SessionData/b username
+
+!field com/mojang/minecraft/SessionData/c *
+.field_map com/mojang/minecraft/SessionData/c sessionId
+
+!field com/mojang/minecraft/SessionData/d *
+.field_map com/mojang/minecraft/SessionData/d mppass
+
+!field com/mojang/minecraft/SessionData/e *
+.field_map com/mojang/minecraft/SessionData/e haspaid
+
 # Block
 !field com/mojang/minecraft/level/tile/Block/ac *
 !field com/mojang/minecraft/level/tile/Block/ad *
@@ -107,30 +123,30 @@
 .field_map com/mojang/minecraft/level/tile/Block/v LEAVES
 .field_map com/mojang/minecraft/level/tile/Block/w SPONGE
 .field_map com/mojang/minecraft/level/tile/Block/x GLASS
-.field_map com/mojang/minecraft/level/tile/Block/y CLOTH_RED
-.field_map com/mojang/minecraft/level/tile/Block/z CLOTH_ORANGE
-.field_map com/mojang/minecraft/level/tile/Block/A CLOTH_YELLOW
-.field_map com/mojang/minecraft/level/tile/Block/B CLOTH_LIME
-.field_map com/mojang/minecraft/level/tile/Block/C CLOTH_GREEN
-.field_map com/mojang/minecraft/level/tile/Block/D CLOTH_AQUAGREEN
-.field_map com/mojang/minecraft/level/tile/Block/E CLOTH_CYAN
-.field_map com/mojang/minecraft/level/tile/Block/F CLOTH_BLUE
-.field_map com/mojang/minecraft/level/tile/Block/G CLOTH_PURPLE
-.field_map com/mojang/minecraft/level/tile/Block/H CLOTH_INDIGO
-.field_map com/mojang/minecraft/level/tile/Block/I CLOTH_VIOLET
-.field_map com/mojang/minecraft/level/tile/Block/J CLOTH_MAGENTA
-.field_map com/mojang/minecraft/level/tile/Block/K CLOTH_PINK
-.field_map com/mojang/minecraft/level/tile/Block/L CLOTH_BLACK
-.field_map com/mojang/minecraft/level/tile/Block/M CLOTH_GRAY
-.field_map com/mojang/minecraft/level/tile/Block/N GLOTH_WHITE
-.field_map com/mojang/minecraft/level/tile/Block/O YELLOW_FLOWER
-.field_map com/mojang/minecraft/level/tile/Block/P RED_ROSE
+.field_map com/mojang/minecraft/level/tile/Block/y RED_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/z ORANGE_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/A YELLOW_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/B LIME_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/C GREEN_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/D AQUA_GREEN_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/E CYAN_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/F BLUE_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/G PURPLE_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/H INDIGO_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/I VIOLET_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/J MAGENTA_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/K PINK_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/L BLACK_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/M GRAY_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/N WHITE_WOOL
+.field_map com/mojang/minecraft/level/tile/Block/O DANDELION
+.field_map com/mojang/minecraft/level/tile/Block/P ROSE
 .field_map com/mojang/minecraft/level/tile/Block/Q BROWN_MUSHROOM
 .field_map com/mojang/minecraft/level/tile/Block/R RED_MUSHROOM
 .field_map com/mojang/minecraft/level/tile/Block/S GOLD_BLOCK
 .field_map com/mojang/minecraft/level/tile/Block/T IRON_BLOCK
-.field_map com/mojang/minecraft/level/tile/Block/U DOUBLE_STEP
-.field_map com/mojang/minecraft/level/tile/Block/V STEP
+.field_map com/mojang/minecraft/level/tile/Block/U DOUBLE_SLAB
+.field_map com/mojang/minecraft/level/tile/Block/V SLAB
 .field_map com/mojang/minecraft/level/tile/Block/W BRICK
 .field_map com/mojang/minecraft/level/tile/Block/X TNT
 .field_map com/mojang/minecraft/level/tile/Block/Y BOOKSHELF
@@ -141,7 +157,7 @@
 # Minecraft.class
 
 !field com/mojang/minecraft/Minecraft/a *
-.field_map com/mojang/minecraft/Minecraft/a gameMode
+.field_map com/mojang/minecraft/Minecraft/a gamemode
 !field com/mojang/minecraft/Minecraft/d *
 .field_map com/mojang/minecraft/Minecraft/d level
 !field com/mojang/minecraft/Minecraft/f *
@@ -149,22 +165,22 @@
 !field com/mojang/minecraft/Minecraft/v *
 .field_map com/mojang/minecraft/Minecraft/v robot
 !field com/mojang/minecraft/Minecraft/A *
-.field_map com/mojang/minecraft/Minecraft/A objectMouseOver
+.field_map com/mojang/minecraft/Minecraft/A selected
 !field com/mojang/minecraft/Minecraft/C *
 .field_map com/mojang/minecraft/Minecraft/C serverName
 !field com/mojang/minecraft/Minecraft/D *
-.field_map com/mojang/minecraft/Minecraft/D serverPort
+.field_map com/mojang/minecraft/Minecraft/D port
 !field com/mojang/minecraft/Minecraft/w *
-.field_map com/mojang/minecraft/Minecraft/w ingameGUI
+.field_map com/mojang/minecraft/Minecraft/w currentScreen
 !field com/mojang/minecraft/Minecraft/y *
 .field_map com/mojang/minecraft/Minecraft/y networkManager
 !field com/mojang/minecraft/Minecraft/O *
-.field_map com/mojang/minecraft/Minecraft/O mcApplet
+.field_map com/mojang/minecraft/Minecraft/O applet
 !field com/mojang/minecraft/Minecraft/B *
-.field_map com/mojang/minecraft/Minecraft/B gameSettings
+.field_map com/mojang/minecraft/Minecraft/B settings
 
 !method com/mojang/minecraft/Minecraft/a (Ljava/lang/String;)V
-.method_map com/mojang/minecraft/Minecraft/a (Ljava/lang/String;)V renderDebugTrace
+.method_map com/mojang/minecraft/Minecraft/a (Ljava/lang/String;)V checkGLError
 
 # GameSettings.class
 !field com/mojang/minecraft/GameSettings/a *
@@ -172,22 +188,23 @@
 !field com/mojang/minecraft/GameSettings/b *
 .field_map com/mojang/minecraft/GameSettings/b sound
 !field com/mojang/minecraft/GameSettings/c *
-.field_map com/mojang/minecraft/GameSettings/c invertYMouse
+.field_map com/mojang/minecraft/GameSettings/c invertMouse
 !field com/mojang/minecraft/GameSettings/d *
 .field_map com/mojang/minecraft/GameSettings/d showFrameRate
 !field com/mojang/minecraft/GameSettings/e *
 .field_map com/mojang/minecraft/GameSettings/e viewDistance
 !field com/mojang/minecraft/GameSettings/f *
-.field_map com/mojang/minecraft/GameSettings/f bobView
+.field_map com/mojang/minecraft/GameSettings/f viewBobbing
 !field com/mojang/minecraft/GameSettings/g *
-.field_map com/mojang/minecraft/GameSettings/g anaglyph3d
+.field_map com/mojang/minecraft/GameSettings/g anaglyph
 !field com/mojang/minecraft/GameSettings/h *
 .field_map com/mojang/minecraft/GameSettings/h limitFramerate
 !field com/mojang/minecraft/GameSettings/s *
 .field_map com/mojang/minecraft/GameSettings/s keyBinding
 
-!field com/mojang/minecraft/render/d/a *
-.field_map com/mojang/minecraft/render/d/a minecraft
+# Renderer.class
+!field com/mojang/minecraft/render/Renderer/a *
+.field_map com/mojang/minecraft/render/Renderer/a minecraft
 
 # MathHelper
 !method com/mojang/util/MathHelper/a (F)F
