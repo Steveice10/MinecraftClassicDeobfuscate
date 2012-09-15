@@ -79,6 +79,7 @@ rule com.mojang.minecraft.level.a com.mojang.minecraft.level.LevelIO
 rule com.mojang.minecraft.level.b com.mojang.minecraft.level.MobSpawner
 rule com.mojang.minecraft.level.c com.mojang.minecraft.level.LevelObjectInputStream
 rule com.mojang.minecraft.level.d com.mojang.minecraft.level.NextTickListEntry
+rule com.mojang.minecraft.level.e com.mojang.minecraft.level.SyntheticClass
 rule com.mojang.minecraft.level.b.a com.mojang.minecraft.level.liquid.LiquidType
 rule com.mojang.minecraft.level.b.** com.mojang.minecraft.level.liquid.@1
 rule com.mojang.minecraft.level.tile.a com.mojang.minecraft.level.tile.Block
