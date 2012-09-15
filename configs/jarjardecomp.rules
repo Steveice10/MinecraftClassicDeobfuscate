@@ -9,9 +9,9 @@ rule com.mojang.minecraft.a.h com.mojang.minecraft.model.SkeletonModel
 rule com.mojang.minecraft.a.i com.mojang.minecraft.model.TexturedQuad
 rule com.mojang.minecraft.a.j com.mojang.minecraft.model.PigModel
 rule com.mojang.minecraft.a.k com.mojang.minecraft.model.HumanoidModel
-rule com.mojang.minecraft.a.l com.mojang.minecraft.model.PositionTextureVertex
+rule com.mojang.minecraft.a.l com.mojang.minecraft.model.Vertex
 rule com.mojang.minecraft.a.m com.mojang.minecraft.model.SpiderModel
-rule com.mojang.minecraft.a.n com.mojang.minecraft.model.ModelRenderer
+rule com.mojang.minecraft.a.n com.mojang.minecraft.model.ModelPart
 rule com.mojang.minecraft.a.o com.mojang.minecraft.model.AnimalModel
 rule com.mojang.minecraft.a.** com.mojang.minecraft.model.@1
 rule com.mojang.minecraft.b.a com.mojang.minecraft.render.TextureManager
@@ -69,10 +69,10 @@ rule com.mojang.minecraft.e.r com.mojang.minecraft.gui.GameOverScreen
 rule com.mojang.minecraft.e.** com.mojang.minecraft.gui.@1
 rule com.mojang.minecraft.item.a com.mojang.minecraft.item.ItemModel
 rule com.mojang.minecraft.level.a.a com.mojang.minecraft.level.generator.LevelGenerator
-rule com.mojang.minecraft.level.a.a.a com.mojang.minecraft.level.generator.noise.NoiseGenerator
-rule com.mojang.minecraft.level.a.a.b com.mojang.minecraft.level.generator.noise.NoiseGeneratorOctaves
-rule com.mojang.minecraft.level.a.a.c com.mojang.minecraft.level.generator.noise.CombinedNoiseGenerator
-rule com.mojang.minecraft.level.a.a.d com.mojang.minecraft.level.generator.noise.NoiseGeneratorPerlin
+rule com.mojang.minecraft.level.a.a.a com.mojang.minecraft.level.generator.noise.Noise
+rule com.mojang.minecraft.level.a.a.b com.mojang.minecraft.level.generator.noise.OctaveNoise
+rule com.mojang.minecraft.level.a.a.c com.mojang.minecraft.level.generator.noise.CombinedNoise
+rule com.mojang.minecraft.level.a.a.d com.mojang.minecraft.level.generator.noise.PerlinNoise
 rule com.mojang.minecraft.level.a.a.** com.mojang.minecraft.level.generator.noise.@1
 rule com.mojang.minecraft.level.a.** com.mojang.minecraft.level.generator.@1
 rule com.mojang.minecraft.level.a com.mojang.minecraft.level.LevelIO
