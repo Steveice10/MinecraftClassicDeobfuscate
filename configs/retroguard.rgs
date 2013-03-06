@@ -46,12 +46,12 @@
 !method com/mojang/minecraft/gui/GenerateLevelScreen/a (II)V
 .method_map com/mojang/minecraft/gui/GenerateLevelScreen/a (II)V render
 
-# com/mojang/minecraft/render/ChunkDirtyDistanceComparator
-!field com/mojang/minecraft/render/ChunkDirtyDistanceComparator/a *
-.field_map com/mojang/minecraft/render/ChunkDirtyDistanceComparator/a player
+# com/mojang/minecraft/render/ChunkVisibleDistanceComparator
+!field com/mojang/minecraft/render/ChunkVisibleDistanceComparator/a *
+.field_map com/mojang/minecraft/render/ChunkVisibleDistanceComparator/a player
 
-!method com/mojang/minecraft/render/ChunkDirtyDistanceComparator/compare (Ljava/lang/Object;Ljava/lang/Object;)I
-.method_map com/mojang/minecraft/render/ChunkDirtyDistanceComparator/compare (Ljava/lang/Object;Ljava/lang/Object;)I compare
+!method com/mojang/minecraft/render/ChunkVisibleDistanceComparator/compare (Ljava/lang/Object;Ljava/lang/Object;)I
+.method_map com/mojang/minecraft/render/ChunkVisibleDistanceComparator/compare (Ljava/lang/Object;Ljava/lang/Object;)I compare
 
 # com/mojang/minecraft/mob/Sheep
 !field com/mojang/minecraft/mob/Sheep/serialVersionUID *
@@ -770,7 +770,7 @@
 !field com/mojang/minecraft/ResourceDownloadThread/c *
 .field_map com/mojang/minecraft/ResourceDownloadThread/c minecraft
 !field com/mojang/minecraft/ResourceDownloadThread/a *
-.field_map com/mojang/minecraft/ResourceDownloadThread/a running
+.field_map com/mojang/minecraft/ResourceDownloadThread/a stopping
 
 !method com/mojang/minecraft/ResourceDownloadThread/run ()V
 .method_map com/mojang/minecraft/ResourceDownloadThread/run ()V run
@@ -1421,16 +1421,16 @@
 .field_map de/jarnbjo/vorbis/Look/d decodemap
 
 
-# com/mojang/minecraft/render/texture/TextureFX
-!field com/mojang/minecraft/render/texture/TextureFX/a *
-.field_map com/mojang/minecraft/render/texture/TextureFX/a textureData
-!field com/mojang/minecraft/render/texture/TextureFX/b *
-.field_map com/mojang/minecraft/render/texture/TextureFX/b textureId
-!field com/mojang/minecraft/render/texture/TextureFX/c *
-.field_map com/mojang/minecraft/render/texture/TextureFX/c anaglyph
+# com/mojang/minecraft/render/texture/AnimatedTexture
+!field com/mojang/minecraft/render/texture/AnimatedTexture/a *
+.field_map com/mojang/minecraft/render/texture/AnimatedTexture/a textureData
+!field com/mojang/minecraft/render/texture/AnimatedTexture/b *
+.field_map com/mojang/minecraft/render/texture/AnimatedTexture/b textureId
+!field com/mojang/minecraft/render/texture/AnimatedTexture/c *
+.field_map com/mojang/minecraft/render/texture/AnimatedTexture/c anaglyph
 
-!method com/mojang/minecraft/render/texture/TextureFX/a ()V
-.method_map com/mojang/minecraft/render/texture/TextureFX/a ()V animate
+!method com/mojang/minecraft/render/texture/AnimatedTexture/a ()V
+.method_map com/mojang/minecraft/render/texture/AnimatedTexture/a ()V animate
 
 # com/mojang/minecraft/gui/HUDScreen
 !field com/mojang/minecraft/gui/HUDScreen/a *
@@ -1619,18 +1619,18 @@
 !method com/mojang/minecraft/sound/EntitySoundPos/b ()F
 .method_map com/mojang/minecraft/sound/EntitySoundPos/b ()F getDistanceSq
 
-# com/mojang/minecraft/render/texture/TextureLavaFX
-!field com/mojang/minecraft/render/texture/TextureLavaFX/d *
-.field_map com/mojang/minecraft/render/texture/TextureLavaFX/d red
-!field com/mojang/minecraft/render/texture/TextureLavaFX/e *
-.field_map com/mojang/minecraft/render/texture/TextureLavaFX/e green
-!field com/mojang/minecraft/render/texture/TextureLavaFX/f *
-.field_map com/mojang/minecraft/render/texture/TextureLavaFX/f blue
-!field com/mojang/minecraft/render/texture/TextureLavaFX/g *
-.field_map com/mojang/minecraft/render/texture/TextureLavaFX/g alpha
+# com/mojang/minecraft/render/texture/LavaTexture
+!field com/mojang/minecraft/render/texture/LavaTexture/d *
+.field_map com/mojang/minecraft/render/texture/LavaTexture/d red
+!field com/mojang/minecraft/render/texture/LavaTexture/e *
+.field_map com/mojang/minecraft/render/texture/LavaTexture/e green
+!field com/mojang/minecraft/render/texture/LavaTexture/f *
+.field_map com/mojang/minecraft/render/texture/LavaTexture/f blue
+!field com/mojang/minecraft/render/texture/LavaTexture/g *
+.field_map com/mojang/minecraft/render/texture/LavaTexture/g alpha
 
-!method com/mojang/minecraft/render/texture/TextureLavaFX/a ()V
-.method_map com/mojang/minecraft/render/texture/TextureLavaFX/a ()V animate
+!method com/mojang/minecraft/render/texture/LavaTexture/a ()V
+.method_map com/mojang/minecraft/render/texture/LavaTexture/a ()V animate
 
 # de/jarnbjo/vorbis/Util
 !method de/jarnbjo/vorbis/Util/a (I)I
@@ -1762,7 +1762,7 @@
 !field com/mojang/minecraft/level/Level/rotSpawn *
 .field_map com/mojang/minecraft/level/Level/rotSpawn rotSpawn
 !field com/mojang/minecraft/level/Level/a *
-.field_map com/mojang/minecraft/level/Level/a listeners
+.field_map com/mojang/minecraft/level/Level/a renderers
 !field com/mojang/minecraft/level/Level/b *
 .field_map com/mojang/minecraft/level/Level/b blockers
 !field com/mojang/minecraft/level/Level/random *
@@ -1809,11 +1809,11 @@
 !method com/mojang/minecraft/level/Level/calcLightDepths (IIII)V
 .method_map com/mojang/minecraft/level/Level/calcLightDepths (IIII)V calcLightDepths
 !method com/mojang/minecraft/level/Level/addListener$74652038 (Lcom/mojang/minecraft/render/LevelRenderer;)V
-.method_map com/mojang/minecraft/level/Level/addListener$74652038 (Lcom/mojang/minecraft/render/LevelRenderer;)V addListener
+.method_map com/mojang/minecraft/level/Level/addListener$74652038 (Lcom/mojang/minecraft/render/LevelRenderer;)V addRenderer
 !method com/mojang/minecraft/level/Level/finalize ()V
 .method_map com/mojang/minecraft/level/Level/finalize ()V finalize
 !method com/mojang/minecraft/level/Level/removeListener$74652038 (Lcom/mojang/minecraft/render/LevelRenderer;)V
-.method_map com/mojang/minecraft/level/Level/removeListener$74652038 (Lcom/mojang/minecraft/render/LevelRenderer;)V removeListener
+.method_map com/mojang/minecraft/level/Level/removeListener$74652038 (Lcom/mojang/minecraft/render/LevelRenderer;)V removeRenderer
 !method com/mojang/minecraft/level/Level/isLightBlocker (III)Z
 .method_map com/mojang/minecraft/level/Level/isLightBlocker (III)Z isLightBlocker
 !method com/mojang/minecraft/level/Level/getCubes (Lcom/mojang/minecraft/phys/AABB;)Ljava/util/ArrayList;
@@ -2002,7 +2002,7 @@
 !field com/mojang/minecraft/net/NetworkPlayer/zp *
 .field_map com/mojang/minecraft/net/NetworkPlayer/zp zp
 !field com/mojang/minecraft/net/NetworkPlayer/a *
-.field_map com/mojang/minecraft/net/NetworkPlayer/a a
+.field_map com/mojang/minecraft/net/NetworkPlayer/a newTextureId
 !field com/mojang/minecraft/net/NetworkPlayer/newTexture *
 .field_map com/mojang/minecraft/net/NetworkPlayer/newTexture newTexture
 !field com/mojang/minecraft/net/NetworkPlayer/name *
@@ -2195,20 +2195,20 @@
 .field_map com/mojang/minecraft/mob/Spider/serialVersionUID serialVersionUID
 
 
-# com/mojang/minecraft/render/texture/TextureWaterFX
-!field com/mojang/minecraft/render/texture/TextureWaterFX/d *
-.field_map com/mojang/minecraft/render/texture/TextureWaterFX/d red
-!field com/mojang/minecraft/render/texture/TextureWaterFX/e *
-.field_map com/mojang/minecraft/render/texture/TextureWaterFX/e blue
-!field com/mojang/minecraft/render/texture/TextureWaterFX/f *
-.field_map com/mojang/minecraft/render/texture/TextureWaterFX/f green
-!field com/mojang/minecraft/render/texture/TextureWaterFX/g *
-.field_map com/mojang/minecraft/render/texture/TextureWaterFX/g alpha
-!field com/mojang/minecraft/render/texture/TextureWaterFX/h *
-.field_map com/mojang/minecraft/render/texture/TextureWaterFX/h updates
+# com/mojang/minecraft/render/texture/WaterTexture
+!field com/mojang/minecraft/render/texture/WaterTexture/d *
+.field_map com/mojang/minecraft/render/texture/WaterTexture/d red
+!field com/mojang/minecraft/render/texture/WaterTexture/e *
+.field_map com/mojang/minecraft/render/texture/WaterTexture/e blue
+!field com/mojang/minecraft/render/texture/WaterTexture/f *
+.field_map com/mojang/minecraft/render/texture/WaterTexture/f green
+!field com/mojang/minecraft/render/texture/WaterTexture/g *
+.field_map com/mojang/minecraft/render/texture/WaterTexture/g alpha
+!field com/mojang/minecraft/render/texture/WaterTexture/h *
+.field_map com/mojang/minecraft/render/texture/WaterTexture/h updates
 
-!method com/mojang/minecraft/render/texture/TextureWaterFX/a ()V
-.method_map com/mojang/minecraft/render/texture/TextureWaterFX/a ()V animate
+!method com/mojang/minecraft/render/texture/WaterTexture/a ()V
+.method_map com/mojang/minecraft/render/texture/WaterTexture/a ()V animate
 
 # com/mojang/minecraft/level/tile/SlabBlock
 !field com/mojang/minecraft/level/tile/SlabBlock/al *
@@ -3662,11 +3662,11 @@
 !method com/mojang/minecraft/render/TextureManager/a (Ljava/lang/String;)I
 .method_map com/mojang/minecraft/render/TextureManager/a (Ljava/lang/String;)I load
 !method com/mojang/minecraft/render/TextureManager/a (Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage;
-.method_map com/mojang/minecraft/render/TextureManager/a (Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage; load
+.method_map com/mojang/minecraft/render/TextureManager/a (Ljava/awt/image/BufferedImage;)Ljava/awt/image/BufferedImage; loadSub
 !method com/mojang/minecraft/render/TextureManager/b (Ljava/awt/image/BufferedImage;)I
 .method_map com/mojang/minecraft/render/TextureManager/b (Ljava/awt/image/BufferedImage;)I load
 !method com/mojang/minecraft/render/TextureManager/a (Ljava/awt/image/BufferedImage;I)V
 .method_map com/mojang/minecraft/render/TextureManager/a (Ljava/awt/image/BufferedImage;I)V load
-!method com/mojang/minecraft/render/TextureManager/a (Lcom/mojang/minecraft/render/texture/TextureFX;)V
-.method_map com/mojang/minecraft/render/TextureManager/a (Lcom/mojang/minecraft/render/texture/TextureFX;)V registerAnimation
+!method com/mojang/minecraft/render/TextureManager/a (Lcom/mojang/minecraft/render/texture/AnimatedTexture;)V
+.method_map com/mojang/minecraft/render/TextureManager/a (Lcom/mojang/minecraft/render/texture/AnimatedTexture;)V registerAnimation
 

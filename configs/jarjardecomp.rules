@@ -15,7 +15,7 @@ rule com.mojang.minecraft.a.n com.mojang.minecraft.model.ModelPart
 rule com.mojang.minecraft.a.o com.mojang.minecraft.model.AnimalModel
 rule com.mojang.minecraft.a.** com.mojang.minecraft.model.@1
 rule com.mojang.minecraft.b.a com.mojang.minecraft.render.TextureManager
-rule com.mojang.minecraft.b.b com.mojang.minecraft.render.ChunkDirtyDistanceComparator
+rule com.mojang.minecraft.b.b com.mojang.minecraft.render.ChunkVisibleDistanceComparator
 rule com.mojang.minecraft.b.c com.mojang.minecraft.render.ShapeRenderer
 rule com.mojang.minecraft.b.d com.mojang.minecraft.render.Renderer
 rule com.mojang.minecraft.b.e com.mojang.minecraft.render.FrustrumImpl
@@ -24,9 +24,9 @@ rule com.mojang.minecraft.b.g com.mojang.minecraft.render.LevelRenderer
 rule com.mojang.minecraft.b.h com.mojang.minecraft.render.HeldBlock
 rule com.mojang.minecraft.b.i com.mojang.minecraft.render.Frustrum
 rule com.mojang.minecraft.b.j com.mojang.minecraft.render.Chunk
-rule com.mojang.minecraft.b.a.a com.mojang.minecraft.render.texture.TextureLavaFX
-rule com.mojang.minecraft.b.a.b com.mojang.minecraft.render.texture.TextureWaterFX
-rule com.mojang.minecraft.b.a.c com.mojang.minecraft.render.texture.TextureFX
+rule com.mojang.minecraft.b.a.a com.mojang.minecraft.render.texture.LavaTexture
+rule com.mojang.minecraft.b.a.b com.mojang.minecraft.render.texture.WaterTexture
+rule com.mojang.minecraft.b.a.c com.mojang.minecraft.render.texture.AnimatedTexture
 rule com.mojang.minecraft.b.a.** com.mojang.minecraft.render.texture.@1
 rule com.mojang.minecraft.b.** com.mojang.minecraft.render.@1
 rule com.mojang.minecraft.c.a com.mojang.minecraft.sound.Audio
