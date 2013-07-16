@@ -1,9 +1,7 @@
-This project renames the class names of Minecraft Classic to something that makes sense.
-In the future, this project will also rename function and variable names.
+This project renames Minecraft Classic source to something that makes sense.
 To use:
-Currently this project is built for Linux; Mac users may also be able to use it. Windows Batch files are also available, but have not been tested.
-place a copy of JarJar in the bin folder and name it jarjar-1.1.jar, then place a copy of FernFlower in the bin folder and name it fernflower.jar.
-Place your minecraft.jar (must be version 0.30) and, if you want, the wom.jar from the WOM Client into the input folder.
-Then, run jarjar.sh in the bin folder to rename the class names. The modified .jar files should be saved in the output folder.
-Finally, if you want, run decompile.sh in the bin folder to decompile the modified minecraft.jar. Note that the source does not recompile yet.
+Currently this project is built for Linux; Mac users may also be able to use it.
+Place a copy of JarJar in the bin folder and name it jarjar-1.1.jar, then place a copy of FernFlower in the bin folder and name it fernflower.jar.
+Place your minecraft.jar and/or the minecraft_server.jar (must be version 0.30) into the input folder.
+Run decompile.sh to decompile everything, decompile-client.sh to decompile the client, or decompile-server.sh to decompile the server.
 

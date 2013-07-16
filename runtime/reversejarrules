@@ -1,2 +1,0 @@
-#!/bin/sh
-java -jar reversejarrules.jar <../configs/jarjardecomp.rules >../output/reversejarjar.rules

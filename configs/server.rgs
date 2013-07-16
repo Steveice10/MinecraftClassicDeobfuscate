@@ -1,0 +1,1293 @@
+# Created with Steveice10's Retroguard Config Builder.
+
+.class ** protected
+.method;private ** *
+.field;private ** *
+.attribute SourceFile
+.attribute LocalVariableTable
+.attribute LineNumberTable
+.attribute Deprecated
+.attribute Signature
+.attribute LocalVariableTypeTable
+.attribute EnclosingMethod
+.attribute EnclosingMethod
+.option Annotations
+
+# com/mojang/minecraft/level/tile/WoodBlock
+!method com/mojang/minecraft/level/tile/WoodBlock/f ()I
+.method_map com/mojang/minecraft/level/tile/WoodBlock/f ()I getDropCount
+
+# com/mojang/minecraft/level/tile/MushroomBlock
+!method com/mojang/minecraft/level/tile/MushroomBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V
+.method_map com/mojang/minecraft/level/tile/MushroomBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V update
+
+# com/mojang/util/MathHelper
+!field com/mojang/util/MathHelper/a *
+.field_map com/mojang/util/MathHelper/a SIN_TABLE
+
+!method com/mojang/util/MathHelper/a (F)F
+.method_map com/mojang/util/MathHelper/a (F)F sin
+!method com/mojang/util/MathHelper/b (F)F
+.method_map com/mojang/util/MathHelper/b (F)F cos
+!method com/mojang/util/MathHelper/c (F)F
+.method_map com/mojang/util/MathHelper/c (F)F sqrt
+
+# com/mojang/minecraft/render/FrustumImpl
+!field com/mojang/minecraft/render/FrustumImpl/a *
+.field_map com/mojang/minecraft/render/FrustumImpl/a frustum
+
+!method com/mojang/minecraft/render/FrustumImpl/a (FFFFFF)Z
+.method_map com/mojang/minecraft/render/FrustumImpl/a (FFFFFF)Z isBoxInFrustum
+
+# com/mojang/minecraft/level/LevelIO
+!field com/mojang/minecraft/level/LevelIO/a *
+.field_map com/mojang/minecraft/level/LevelIO/a server
+
+!method com/mojang/minecraft/level/LevelIO/a (Ljava/io/InputStream;)Lcom/mojang/minecraft/level/Level;
+.method_map com/mojang/minecraft/level/LevelIO/a (Ljava/io/InputStream;)Lcom/mojang/minecraft/level/Level; read
+!method com/mojang/minecraft/level/LevelIO/a (Lcom/mojang/minecraft/level/Level;Ljava/io/OutputStream;)V
+.method_map com/mojang/minecraft/level/LevelIO/a (Lcom/mojang/minecraft/level/Level;Ljava/io/OutputStream;)V write
+
+# com/mojang/minecraft/level/tile/DirtBlock
+
+# com/mojang/minecraft/net/NetworkHandler
+!field com/mojang/minecraft/net/NetworkHandler/a *
+.field_map com/mojang/minecraft/net/NetworkHandler/a connected
+!field com/mojang/minecraft/net/NetworkHandler/b *
+.field_map com/mojang/minecraft/net/NetworkHandler/b channel
+!field com/mojang/minecraft/net/NetworkHandler/c *
+.field_map com/mojang/minecraft/net/NetworkHandler/c in
+!field com/mojang/minecraft/net/NetworkHandler/d *
+.field_map com/mojang/minecraft/net/NetworkHandler/d out
+!field com/mojang/minecraft/net/NetworkHandler/e *
+.field_map com/mojang/minecraft/net/NetworkHandler/e connection
+!field com/mojang/minecraft/net/NetworkHandler/g *
+.field_map com/mojang/minecraft/net/NetworkHandler/g sock
+!field com/mojang/minecraft/net/NetworkHandler/h *
+.field_map com/mojang/minecraft/net/NetworkHandler/h unused
+!field com/mojang/minecraft/net/NetworkHandler/f *
+.field_map com/mojang/minecraft/net/NetworkHandler/f ip
+!field com/mojang/minecraft/net/NetworkHandler/i *
+.field_map com/mojang/minecraft/net/NetworkHandler/i stringBytes
+
+!method com/mojang/minecraft/net/NetworkHandler/a ()V
+.method_map com/mojang/minecraft/net/NetworkHandler/a ()V close
+!method com/mojang/minecraft/net/NetworkHandler/a (Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V
+.method_map com/mojang/minecraft/net/NetworkHandler/a (Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V send
+!method com/mojang/minecraft/net/NetworkHandler/a (Ljava/lang/Class;)Ljava/lang/Object;
+.method_map com/mojang/minecraft/net/NetworkHandler/a (Ljava/lang/Class;)Ljava/lang/Object; read
+
+# com/mojang/minecraft/level/BlockMap$Slot
+!field com/mojang/minecraft/level/BlockMap$Slot/serialVersionUID *
+.field_map com/mojang/minecraft/level/BlockMap$Slot/serialVersionUID serialVersionUID
+!field com/mojang/minecraft/level/BlockMap$Slot/xSlot *
+.field_map com/mojang/minecraft/level/BlockMap$Slot/xSlot xSlot
+!field com/mojang/minecraft/level/BlockMap$Slot/ySlot *
+.field_map com/mojang/minecraft/level/BlockMap$Slot/ySlot ySlot
+!field com/mojang/minecraft/level/BlockMap$Slot/zSlot *
+.field_map com/mojang/minecraft/level/BlockMap$Slot/zSlot zSlot
+!field com/mojang/minecraft/level/BlockMap$Slot/this$0 *
+.field_map com/mojang/minecraft/level/BlockMap$Slot/this$0 map
+
+!method com/mojang/minecraft/level/BlockMap$Slot/init (FFF)Lcom/mojang/minecraft/level/BlockMap$Slot;
+.method_map com/mojang/minecraft/level/BlockMap$Slot/init (FFF)Lcom/mojang/minecraft/level/BlockMap$Slot; init
+!method com/mojang/minecraft/level/BlockMap$Slot/add (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/level/BlockMap$Slot/add (Lcom/mojang/minecraft/Entity;)V add
+!method com/mojang/minecraft/level/BlockMap$Slot/remove (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/level/BlockMap$Slot/remove (Lcom/mojang/minecraft/Entity;)V remove
+!method com/mojang/minecraft/level/BlockMap$Slot/access$400 (Lcom/mojang/minecraft/level/BlockMap$Slot;)I
+.method_map com/mojang/minecraft/level/BlockMap$Slot/access$400 (Lcom/mojang/minecraft/level/BlockMap$Slot;)I access$400
+!method com/mojang/minecraft/level/BlockMap$Slot/access$500 (Lcom/mojang/minecraft/level/BlockMap$Slot;)I
+.method_map com/mojang/minecraft/level/BlockMap$Slot/access$500 (Lcom/mojang/minecraft/level/BlockMap$Slot;)I access$500
+!method com/mojang/minecraft/level/BlockMap$Slot/access$600 (Lcom/mojang/minecraft/level/BlockMap$Slot;)I
+.method_map com/mojang/minecraft/level/BlockMap$Slot/access$600 (Lcom/mojang/minecraft/level/BlockMap$Slot;)I access$600
+
+# com/mojang/minecraft/level/tile/Tile$SoundType
+!field com/mojang/minecraft/level/tile/Tile$SoundType/none *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/none none
+!field com/mojang/minecraft/level/tile/Tile$SoundType/grass *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/grass grass
+!field com/mojang/minecraft/level/tile/Tile$SoundType/cloth *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/cloth cloth
+!field com/mojang/minecraft/level/tile/Tile$SoundType/gravel *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/gravel gravel
+!field com/mojang/minecraft/level/tile/Tile$SoundType/stone *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/stone stone
+!field com/mojang/minecraft/level/tile/Tile$SoundType/metal *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/metal metal
+!field com/mojang/minecraft/level/tile/Tile$SoundType/wood *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/wood wood
+!field com/mojang/minecraft/level/tile/Tile$SoundType/name *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/name name
+!field com/mojang/minecraft/level/tile/Tile$SoundType/volume *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/volume volume
+!field com/mojang/minecraft/level/tile/Tile$SoundType/pitch *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/pitch pitch
+!field com/mojang/minecraft/level/tile/Tile$SoundType/a *
+.field_map com/mojang/minecraft/level/tile/Tile$SoundType/a values
+
+!method com/mojang/minecraft/level/tile/Tile$SoundType/values ()[Lcom/mojang/minecraft/level/tile/Tile$SoundType;
+.method_map com/mojang/minecraft/level/tile/Tile$SoundType/values ()[Lcom/mojang/minecraft/level/tile/Tile$SoundType; values
+!method com/mojang/minecraft/level/tile/Tile$SoundType/valueOf (Ljava/lang/String;)Lcom/mojang/minecraft/level/tile/Tile$SoundType;
+.method_map com/mojang/minecraft/level/tile/Tile$SoundType/valueOf (Ljava/lang/String;)Lcom/mojang/minecraft/level/tile/Tile$SoundType; valueOf
+!method com/mojang/minecraft/level/tile/Tile$SoundType/getVolume ()F
+.method_map com/mojang/minecraft/level/tile/Tile$SoundType/getVolume ()F getVolume
+!method com/mojang/minecraft/level/tile/Tile$SoundType/getPitch ()F
+.method_map com/mojang/minecraft/level/tile/Tile$SoundType/getPitch ()F getPitch
+
+# com/mojang/minecraft/server/HeartbeatThread
+!field com/mojang/minecraft/server/HeartbeatThread/a *
+.field_map com/mojang/minecraft/server/HeartbeatThread/a data
+!field com/mojang/minecraft/server/HeartbeatThread/b *
+.field_map com/mojang/minecraft/server/HeartbeatThread/b server
+
+!method com/mojang/minecraft/server/HeartbeatThread/run ()V
+.method_map com/mojang/minecraft/server/HeartbeatThread/run ()V run
+
+# com/mojang/minecraft/level/tile/SandBlock
+!method com/mojang/minecraft/level/tile/SandBlock/a (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/SandBlock/a (Lcom/mojang/minecraft/level/Level;III)V onPlace
+!method com/mojang/minecraft/level/tile/SandBlock/a (Lcom/mojang/minecraft/level/Level;IIII)V
+.method_map com/mojang/minecraft/level/tile/SandBlock/a (Lcom/mojang/minecraft/level/Level;IIII)V onNeighborChange
+!method com/mojang/minecraft/level/tile/SandBlock/d (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/SandBlock/d (Lcom/mojang/minecraft/level/Level;III)V fall
+
+# com/mojang/minecraft/level/tile/GrassBlock
+!method com/mojang/minecraft/level/tile/GrassBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V
+.method_map com/mojang/minecraft/level/tile/GrassBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V update
+
+# com/mojang/minecraft/level/tile/FlowerBlock
+!method com/mojang/minecraft/level/tile/FlowerBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V
+.method_map com/mojang/minecraft/level/tile/FlowerBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V update
+!method com/mojang/minecraft/level/tile/FlowerBlock/a (III)Lcom/mojang/minecraft/phys/AABB;
+.method_map com/mojang/minecraft/level/tile/FlowerBlock/a (III)Lcom/mojang/minecraft/phys/AABB; getCollisionBox
+!method com/mojang/minecraft/level/tile/FlowerBlock/b ()Z
+.method_map com/mojang/minecraft/level/tile/FlowerBlock/b ()Z isOpaque
+!method com/mojang/minecraft/level/tile/FlowerBlock/c ()Z
+.method_map com/mojang/minecraft/level/tile/FlowerBlock/c ()Z isSolid
+!method com/mojang/minecraft/level/tile/FlowerBlock/a ()Z
+.method_map com/mojang/minecraft/level/tile/FlowerBlock/a ()Z isCube
+
+# com/mojang/minecraft/level/tile/SlabBlock
+!field com/mojang/minecraft/level/tile/SlabBlock/ad *
+.field_map com/mojang/minecraft/level/tile/SlabBlock/ad ad
+
+!method com/mojang/minecraft/level/tile/SlabBlock/c ()Z
+.method_map com/mojang/minecraft/level/tile/SlabBlock/c ()Z isSolid
+!method com/mojang/minecraft/level/tile/SlabBlock/a (Lcom/mojang/minecraft/level/Level;IIII)V
+.method_map com/mojang/minecraft/level/tile/SlabBlock/a (Lcom/mojang/minecraft/level/Level;IIII)V onNeighborChange
+!method com/mojang/minecraft/level/tile/SlabBlock/b (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/SlabBlock/b (Lcom/mojang/minecraft/level/Level;III)V onAdded
+!method com/mojang/minecraft/level/tile/SlabBlock/a ()Z
+.method_map com/mojang/minecraft/level/tile/SlabBlock/a ()Z isCube
+
+# com/mojang/minecraft/render/Frustum
+
+# com/mojang/minecraft/level/tile/SpongeBlock
+!method com/mojang/minecraft/level/tile/SpongeBlock/b (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/SpongeBlock/b (Lcom/mojang/minecraft/level/Level;III)V onAdded
+!method com/mojang/minecraft/level/tile/SpongeBlock/c (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/SpongeBlock/c (Lcom/mojang/minecraft/level/Level;III)V onRemoved
+
+# com/mojang/minecraft/SessionData
+!field com/mojang/minecraft/SessionData/a *
+.field_map com/mojang/minecraft/SessionData/a allowedBlocks
+
+
+# com/mojang/minecraft/level/tile/StillLiquidBlock
+!method com/mojang/minecraft/level/tile/StillLiquidBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V
+.method_map com/mojang/minecraft/level/tile/StillLiquidBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V update
+!method com/mojang/minecraft/level/tile/StillLiquidBlock/a (Lcom/mojang/minecraft/level/Level;IIII)V
+.method_map com/mojang/minecraft/level/tile/StillLiquidBlock/a (Lcom/mojang/minecraft/level/Level;IIII)V onNeighborChange
+
+# com/mojang/minecraft/level/generator/noise/CombinedNoise
+!field com/mojang/minecraft/level/generator/noise/CombinedNoise/a *
+.field_map com/mojang/minecraft/level/generator/noise/CombinedNoise/a noise1
+!field com/mojang/minecraft/level/generator/noise/CombinedNoise/b *
+.field_map com/mojang/minecraft/level/generator/noise/CombinedNoise/b noise2
+
+!method com/mojang/minecraft/level/generator/noise/CombinedNoise/a (DD)D
+.method_map com/mojang/minecraft/level/generator/noise/CombinedNoise/a (DD)D compute
+
+# com/mojang/minecraft/net/PlayerConnection
+!field com/mojang/minecraft/net/PlayerConnection/j *
+.field_map com/mojang/minecraft/net/PlayerConnection/j serverLogger
+!field com/mojang/minecraft/net/PlayerConnection/a *
+.field_map com/mojang/minecraft/net/PlayerConnection/a netHandler
+!field com/mojang/minecraft/net/PlayerConnection/k *
+.field_map com/mojang/minecraft/net/PlayerConnection/k server
+!field com/mojang/minecraft/net/PlayerConnection/l *
+.field_map com/mojang/minecraft/net/PlayerConnection/l loggedIn
+!field com/mojang/minecraft/net/PlayerConnection/m *
+.field_map com/mojang/minecraft/net/PlayerConnection/m connected
+!field com/mojang/minecraft/net/PlayerConnection/b *
+.field_map com/mojang/minecraft/net/PlayerConnection/b name
+!field com/mojang/minecraft/net/PlayerConnection/c *
+.field_map com/mojang/minecraft/net/PlayerConnection/c playerId
+!field com/mojang/minecraft/net/PlayerConnection/n *
+.field_map com/mojang/minecraft/net/PlayerConnection/n packetQueue
+!field com/mojang/minecraft/net/PlayerConnection/o *
+.field_map com/mojang/minecraft/net/PlayerConnection/o creationTime
+!field com/mojang/minecraft/net/PlayerConnection/p *
+.field_map com/mojang/minecraft/net/PlayerConnection/p readQueue
+!field com/mojang/minecraft/net/PlayerConnection/q *
+.field_map com/mojang/minecraft/net/PlayerConnection/q chatLength
+!field com/mojang/minecraft/net/PlayerConnection/d *
+.field_map com/mojang/minecraft/net/PlayerConnection/d x
+!field com/mojang/minecraft/net/PlayerConnection/e *
+.field_map com/mojang/minecraft/net/PlayerConnection/e y
+!field com/mojang/minecraft/net/PlayerConnection/f *
+.field_map com/mojang/minecraft/net/PlayerConnection/f z
+!field com/mojang/minecraft/net/PlayerConnection/g *
+.field_map com/mojang/minecraft/net/PlayerConnection/g pitch
+!field com/mojang/minecraft/net/PlayerConnection/h *
+.field_map com/mojang/minecraft/net/PlayerConnection/h yaw
+!field com/mojang/minecraft/net/PlayerConnection/r *
+.field_map com/mojang/minecraft/net/PlayerConnection/r kicked
+!field com/mojang/minecraft/net/PlayerConnection/s *
+.field_map com/mojang/minecraft/net/PlayerConnection/s clicks
+!field com/mojang/minecraft/net/PlayerConnection/t *
+.field_map com/mojang/minecraft/net/PlayerConnection/t updateCounter
+!field com/mojang/minecraft/net/PlayerConnection/u *
+.field_map com/mojang/minecraft/net/PlayerConnection/u queuedLevelData
+!field com/mojang/minecraft/net/PlayerConnection/i *
+.field_map com/mojang/minecraft/net/PlayerConnection/i placeBedrock
+
+!method com/mojang/minecraft/net/PlayerConnection/toString ()Ljava/lang/String;
+.method_map com/mojang/minecraft/net/PlayerConnection/toString ()Ljava/lang/String; toString
+!method com/mojang/minecraft/net/PlayerConnection/a (Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V
+.method_map com/mojang/minecraft/net/PlayerConnection/a (Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V receivePacket
+!method com/mojang/minecraft/net/PlayerConnection/c (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/net/PlayerConnection/c (Ljava/lang/String;)V chat
+!method com/mojang/minecraft/net/PlayerConnection/a (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/net/PlayerConnection/a (Ljava/lang/String;)V kick
+!method com/mojang/minecraft/net/PlayerConnection/d (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/net/PlayerConnection/d (Ljava/lang/String;)V hackKick
+!method com/mojang/minecraft/net/PlayerConnection/b (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/net/PlayerConnection/b (Ljava/lang/String;)V sendServerMessage
+!method com/mojang/minecraft/net/PlayerConnection/a ([B)V
+.method_map com/mojang/minecraft/net/PlayerConnection/a ([B)V queueLevelData
+!method com/mojang/minecraft/net/PlayerConnection/a ()V
+.method_map com/mojang/minecraft/net/PlayerConnection/a ()V update
+!method com/mojang/minecraft/net/PlayerConnection/b (Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V
+.method_map com/mojang/minecraft/net/PlayerConnection/b (Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V send
+!method com/mojang/minecraft/net/PlayerConnection/a (Ljava/lang/Exception;)V
+.method_map com/mojang/minecraft/net/PlayerConnection/a (Ljava/lang/Exception;)V errorKick
+
+# com/mojang/minecraft/particle/ParticleManager
+
+# com/mojang/minecraft/level/liquid/LiquidType
+!field com/mojang/minecraft/level/liquid/LiquidType/d *
+.field_map com/mojang/minecraft/level/liquid/LiquidType/d values
+!field com/mojang/minecraft/level/liquid/LiquidType/a *
+.field_map com/mojang/minecraft/level/liquid/LiquidType/a NOT_LIQUID
+!field com/mojang/minecraft/level/liquid/LiquidType/b *
+.field_map com/mojang/minecraft/level/liquid/LiquidType/b WATER
+!field com/mojang/minecraft/level/liquid/LiquidType/c *
+.field_map com/mojang/minecraft/level/liquid/LiquidType/c LAVA
+
+
+# com/mojang/minecraft/server/LogStreamHandler
+!method com/mojang/minecraft/server/LogStreamHandler/publish (Ljava/util/logging/LogRecord;)V
+.method_map com/mojang/minecraft/server/LogStreamHandler/publish (Ljava/util/logging/LogRecord;)V publish
+
+# com/mojang/minecraft/net/NetworkListener
+!field com/mojang/minecraft/net/NetworkListener/a *
+.field_map com/mojang/minecraft/net/NetworkListener/a channel
+!field com/mojang/minecraft/net/NetworkListener/b *
+.field_map com/mojang/minecraft/net/NetworkListener/b server
+!field com/mojang/minecraft/net/NetworkListener/c *
+.field_map com/mojang/minecraft/net/NetworkListener/c connected
+
+
+# com/mojang/minecraft/net/LevelZipThread
+!field com/mojang/minecraft/net/LevelZipThread/a *
+.field_map com/mojang/minecraft/net/LevelZipThread/a data
+!field com/mojang/minecraft/net/LevelZipThread/b *
+.field_map com/mojang/minecraft/net/LevelZipThread/b connection
+
+!method com/mojang/minecraft/net/LevelZipThread/run ()V
+.method_map com/mojang/minecraft/net/LevelZipThread/run ()V run
+
+# com/mojang/minecraft/level/SyntheticClass
+
+# com/mojang/minecraft/level/generator/LevelGenerator
+!field com/mojang/minecraft/level/generator/LevelGenerator/a *
+.field_map com/mojang/minecraft/level/generator/LevelGenerator/a server
+!field com/mojang/minecraft/level/generator/LevelGenerator/b *
+.field_map com/mojang/minecraft/level/generator/LevelGenerator/b width
+!field com/mojang/minecraft/level/generator/LevelGenerator/c *
+.field_map com/mojang/minecraft/level/generator/LevelGenerator/c depth
+!field com/mojang/minecraft/level/generator/LevelGenerator/d *
+.field_map com/mojang/minecraft/level/generator/LevelGenerator/d height
+!field com/mojang/minecraft/level/generator/LevelGenerator/e *
+.field_map com/mojang/minecraft/level/generator/LevelGenerator/e random
+!field com/mojang/minecraft/level/generator/LevelGenerator/f *
+.field_map com/mojang/minecraft/level/generator/LevelGenerator/f blocks
+!field com/mojang/minecraft/level/generator/LevelGenerator/g *
+.field_map com/mojang/minecraft/level/generator/LevelGenerator/g waterLevel
+!field com/mojang/minecraft/level/generator/LevelGenerator/h *
+.field_map com/mojang/minecraft/level/generator/LevelGenerator/h floodData
+
+!method com/mojang/minecraft/level/generator/LevelGenerator/a (Ljava/lang/String;III)Lcom/mojang/minecraft/level/Level;
+.method_map com/mojang/minecraft/level/generator/LevelGenerator/a (Ljava/lang/String;III)Lcom/mojang/minecraft/level/Level; generate
+!method com/mojang/minecraft/level/generator/LevelGenerator/a (IIII)V
+.method_map com/mojang/minecraft/level/generator/LevelGenerator/a (IIII)V populateOre
+!method com/mojang/minecraft/level/generator/LevelGenerator/a (IIIII)J
+.method_map com/mojang/minecraft/level/generator/LevelGenerator/a (IIIII)J flood
+
+# com/mojang/minecraft/level/tile/LeavesBaseBlock
+!method com/mojang/minecraft/level/tile/LeavesBaseBlock/c ()Z
+.method_map com/mojang/minecraft/level/tile/LeavesBaseBlock/c ()Z isSolid
+!method com/mojang/minecraft/level/tile/LeavesBaseBlock/b ()Z
+.method_map com/mojang/minecraft/level/tile/LeavesBaseBlock/b ()Z isOpaque
+
+# com/mojang/minecraft/phys/AABB
+!field com/mojang/minecraft/phys/AABB/serialVersionUID *
+.field_map com/mojang/minecraft/phys/AABB/serialVersionUID serialVersionUID
+!field com/mojang/minecraft/phys/AABB/epsilon *
+.field_map com/mojang/minecraft/phys/AABB/epsilon epsilon
+!field com/mojang/minecraft/phys/AABB/x0 *
+.field_map com/mojang/minecraft/phys/AABB/x0 x0
+!field com/mojang/minecraft/phys/AABB/y0 *
+.field_map com/mojang/minecraft/phys/AABB/y0 y0
+!field com/mojang/minecraft/phys/AABB/z0 *
+.field_map com/mojang/minecraft/phys/AABB/z0 z0
+!field com/mojang/minecraft/phys/AABB/x1 *
+.field_map com/mojang/minecraft/phys/AABB/x1 x1
+!field com/mojang/minecraft/phys/AABB/y1 *
+.field_map com/mojang/minecraft/phys/AABB/y1 y1
+!field com/mojang/minecraft/phys/AABB/z1 *
+.field_map com/mojang/minecraft/phys/AABB/z1 z1
+
+!method com/mojang/minecraft/phys/AABB/expand (FFF)Lcom/mojang/minecraft/phys/AABB;
+.method_map com/mojang/minecraft/phys/AABB/expand (FFF)Lcom/mojang/minecraft/phys/AABB; expand
+!method com/mojang/minecraft/phys/AABB/grow (FFF)Lcom/mojang/minecraft/phys/AABB;
+.method_map com/mojang/minecraft/phys/AABB/grow (FFF)Lcom/mojang/minecraft/phys/AABB; grow
+!method com/mojang/minecraft/phys/AABB/cloneMove (FFF)Lcom/mojang/minecraft/phys/AABB;
+.method_map com/mojang/minecraft/phys/AABB/cloneMove (FFF)Lcom/mojang/minecraft/phys/AABB; cloneMove
+!method com/mojang/minecraft/phys/AABB/clipXCollide (Lcom/mojang/minecraft/phys/AABB;F)F
+.method_map com/mojang/minecraft/phys/AABB/clipXCollide (Lcom/mojang/minecraft/phys/AABB;F)F clipXCollide
+!method com/mojang/minecraft/phys/AABB/clipYCollide (Lcom/mojang/minecraft/phys/AABB;F)F
+.method_map com/mojang/minecraft/phys/AABB/clipYCollide (Lcom/mojang/minecraft/phys/AABB;F)F clipYCollide
+!method com/mojang/minecraft/phys/AABB/clipZCollide (Lcom/mojang/minecraft/phys/AABB;F)F
+.method_map com/mojang/minecraft/phys/AABB/clipZCollide (Lcom/mojang/minecraft/phys/AABB;F)F clipZCollide
+!method com/mojang/minecraft/phys/AABB/intersects (Lcom/mojang/minecraft/phys/AABB;)Z
+.method_map com/mojang/minecraft/phys/AABB/intersects (Lcom/mojang/minecraft/phys/AABB;)Z intersects
+!method com/mojang/minecraft/phys/AABB/intersectsInner (Lcom/mojang/minecraft/phys/AABB;)Z
+.method_map com/mojang/minecraft/phys/AABB/intersectsInner (Lcom/mojang/minecraft/phys/AABB;)Z intersectsInner
+!method com/mojang/minecraft/phys/AABB/move (FFF)V
+.method_map com/mojang/minecraft/phys/AABB/move (FFF)V move
+!method com/mojang/minecraft/phys/AABB/intersects (FFFFFF)Z
+.method_map com/mojang/minecraft/phys/AABB/intersects (FFFFFF)Z intersects
+!method com/mojang/minecraft/phys/AABB/contains (Lcom/mojang/minecraft/math/Vec3D;)Z
+.method_map com/mojang/minecraft/phys/AABB/contains (Lcom/mojang/minecraft/math/Vec3D;)Z contains
+!method com/mojang/minecraft/phys/AABB/getSize ()F
+.method_map com/mojang/minecraft/phys/AABB/getSize ()F getSize
+!method com/mojang/minecraft/phys/AABB/shrink (FFF)Lcom/mojang/minecraft/phys/AABB;
+.method_map com/mojang/minecraft/phys/AABB/shrink (FFF)Lcom/mojang/minecraft/phys/AABB; shrink
+!method com/mojang/minecraft/phys/AABB/copy ()Lcom/mojang/minecraft/phys/AABB;
+.method_map com/mojang/minecraft/phys/AABB/copy ()Lcom/mojang/minecraft/phys/AABB; copy
+!method com/mojang/minecraft/phys/AABB/clip (Lcom/mojang/minecraft/math/Vec3D;Lcom/mojang/minecraft/math/Vec3D;)Lcom/mojang/minecraft/Vec3DCreator;
+.method_map com/mojang/minecraft/phys/AABB/clip (Lcom/mojang/minecraft/math/Vec3D;Lcom/mojang/minecraft/math/Vec3D;)Lcom/mojang/minecraft/Vec3DCreator; clip
+!method com/mojang/minecraft/phys/AABB/a (Lcom/mojang/minecraft/math/Vec3D;)Z
+.method_map com/mojang/minecraft/phys/AABB/a (Lcom/mojang/minecraft/math/Vec3D;)Z xIntersects
+!method com/mojang/minecraft/phys/AABB/b (Lcom/mojang/minecraft/math/Vec3D;)Z
+.method_map com/mojang/minecraft/phys/AABB/b (Lcom/mojang/minecraft/math/Vec3D;)Z yIntersects
+!method com/mojang/minecraft/phys/AABB/c (Lcom/mojang/minecraft/math/Vec3D;)Z
+.method_map com/mojang/minecraft/phys/AABB/c (Lcom/mojang/minecraft/math/Vec3D;)Z zIntersects
+
+# com/mojang/minecraft/level/tile/StoneBlock
+
+# com/mojang/minecraft/level/generator/noise/OctaveNoise
+!field com/mojang/minecraft/level/generator/noise/OctaveNoise/a *
+.field_map com/mojang/minecraft/level/generator/noise/OctaveNoise/a perlin
+!field com/mojang/minecraft/level/generator/noise/OctaveNoise/b *
+.field_map com/mojang/minecraft/level/generator/noise/OctaveNoise/b octaves
+
+!method com/mojang/minecraft/level/generator/noise/OctaveNoise/a (DD)D
+.method_map com/mojang/minecraft/level/generator/noise/OctaveNoise/a (DD)D compute
+
+# com/mojang/minecraft/level/tile/Block
+!field com/mojang/minecraft/level/tile/Block/a *
+.field_map com/mojang/minecraft/level/tile/Block/a random
+!field com/mojang/minecraft/level/tile/Block/b *
+.field_map com/mojang/minecraft/level/tile/Block/b blocks
+!field com/mojang/minecraft/level/tile/Block/c *
+.field_map com/mojang/minecraft/level/tile/Block/c physics
+!field com/mojang/minecraft/level/tile/Block/ad *
+.field_map com/mojang/minecraft/level/tile/Block/ad solid
+!field com/mojang/minecraft/level/tile/Block/ae *
+.field_map com/mojang/minecraft/level/tile/Block/ae cube
+!field com/mojang/minecraft/level/tile/Block/d *
+.field_map com/mojang/minecraft/level/tile/Block/d liquid
+!field com/mojang/minecraft/level/tile/Block/af *
+.field_map com/mojang/minecraft/level/tile/Block/af tickDelay
+!field com/mojang/minecraft/level/tile/Block/e *
+.field_map com/mojang/minecraft/level/tile/Block/e STONE
+!field com/mojang/minecraft/level/tile/Block/f *
+.field_map com/mojang/minecraft/level/tile/Block/f GRASS
+!field com/mojang/minecraft/level/tile/Block/g *
+.field_map com/mojang/minecraft/level/tile/Block/g DIRT
+!field com/mojang/minecraft/level/tile/Block/h *
+.field_map com/mojang/minecraft/level/tile/Block/h COBBLESTONE
+!field com/mojang/minecraft/level/tile/Block/i *
+.field_map com/mojang/minecraft/level/tile/Block/i WOOD
+!field com/mojang/minecraft/level/tile/Block/j *
+.field_map com/mojang/minecraft/level/tile/Block/j SAPLING
+!field com/mojang/minecraft/level/tile/Block/k *
+.field_map com/mojang/minecraft/level/tile/Block/k BEDROCK
+!field com/mojang/minecraft/level/tile/Block/l *
+.field_map com/mojang/minecraft/level/tile/Block/l WATER
+!field com/mojang/minecraft/level/tile/Block/m *
+.field_map com/mojang/minecraft/level/tile/Block/m STATIONARY_WATER
+!field com/mojang/minecraft/level/tile/Block/n *
+.field_map com/mojang/minecraft/level/tile/Block/n LAVA
+!field com/mojang/minecraft/level/tile/Block/o *
+.field_map com/mojang/minecraft/level/tile/Block/o STATIONARY_LAVA
+!field com/mojang/minecraft/level/tile/Block/p *
+.field_map com/mojang/minecraft/level/tile/Block/p SAND
+!field com/mojang/minecraft/level/tile/Block/q *
+.field_map com/mojang/minecraft/level/tile/Block/q GRAVEL
+!field com/mojang/minecraft/level/tile/Block/r *
+.field_map com/mojang/minecraft/level/tile/Block/r GOLD_ORE
+!field com/mojang/minecraft/level/tile/Block/s *
+.field_map com/mojang/minecraft/level/tile/Block/s IRON_ORE
+!field com/mojang/minecraft/level/tile/Block/t *
+.field_map com/mojang/minecraft/level/tile/Block/t COAL_ORE
+!field com/mojang/minecraft/level/tile/Block/u *
+.field_map com/mojang/minecraft/level/tile/Block/u LOG
+!field com/mojang/minecraft/level/tile/Block/v *
+.field_map com/mojang/minecraft/level/tile/Block/v LEAVES
+!field com/mojang/minecraft/level/tile/Block/w *
+.field_map com/mojang/minecraft/level/tile/Block/w SPONGE
+!field com/mojang/minecraft/level/tile/Block/x *
+.field_map com/mojang/minecraft/level/tile/Block/x GLASS
+!field com/mojang/minecraft/level/tile/Block/y *
+.field_map com/mojang/minecraft/level/tile/Block/y RED_WOOL
+!field com/mojang/minecraft/level/tile/Block/z *
+.field_map com/mojang/minecraft/level/tile/Block/z ORANGE_WOOL
+!field com/mojang/minecraft/level/tile/Block/A *
+.field_map com/mojang/minecraft/level/tile/Block/A YELLOW_WOOL
+!field com/mojang/minecraft/level/tile/Block/B *
+.field_map com/mojang/minecraft/level/tile/Block/B LIME_WOOL
+!field com/mojang/minecraft/level/tile/Block/C *
+.field_map com/mojang/minecraft/level/tile/Block/C GREEN_WOOL
+!field com/mojang/minecraft/level/tile/Block/D *
+.field_map com/mojang/minecraft/level/tile/Block/D AQUA_GREEN_WOOL
+!field com/mojang/minecraft/level/tile/Block/E *
+.field_map com/mojang/minecraft/level/tile/Block/E CYAN_WOOL
+!field com/mojang/minecraft/level/tile/Block/F *
+.field_map com/mojang/minecraft/level/tile/Block/F BLUE_WOOL
+!field com/mojang/minecraft/level/tile/Block/G *
+.field_map com/mojang/minecraft/level/tile/Block/G PURPLE_WOOL
+!field com/mojang/minecraft/level/tile/Block/H *
+.field_map com/mojang/minecraft/level/tile/Block/H INDIGO_WOOL
+!field com/mojang/minecraft/level/tile/Block/I *
+.field_map com/mojang/minecraft/level/tile/Block/I VIOLET_WOOL
+!field com/mojang/minecraft/level/tile/Block/J *
+.field_map com/mojang/minecraft/level/tile/Block/J MAGENTA_WOOL
+!field com/mojang/minecraft/level/tile/Block/K *
+.field_map com/mojang/minecraft/level/tile/Block/K PINK_WOOL
+!field com/mojang/minecraft/level/tile/Block/L *
+.field_map com/mojang/minecraft/level/tile/Block/L BLACK_WOOL
+!field com/mojang/minecraft/level/tile/Block/M *
+.field_map com/mojang/minecraft/level/tile/Block/M GRAY_WOOL
+!field com/mojang/minecraft/level/tile/Block/N *
+.field_map com/mojang/minecraft/level/tile/Block/N WHITE_WOOL
+!field com/mojang/minecraft/level/tile/Block/O *
+.field_map com/mojang/minecraft/level/tile/Block/O DANDELION
+!field com/mojang/minecraft/level/tile/Block/P *
+.field_map com/mojang/minecraft/level/tile/Block/P ROSE
+!field com/mojang/minecraft/level/tile/Block/Q *
+.field_map com/mojang/minecraft/level/tile/Block/Q BROWN_MUSHROOM
+!field com/mojang/minecraft/level/tile/Block/R *
+.field_map com/mojang/minecraft/level/tile/Block/R RED_MUSHROOM
+!field com/mojang/minecraft/level/tile/Block/S *
+.field_map com/mojang/minecraft/level/tile/Block/S GOLD_BLOCK
+!field com/mojang/minecraft/level/tile/Block/T *
+.field_map com/mojang/minecraft/level/tile/Block/T IRON_BLOCK
+!field com/mojang/minecraft/level/tile/Block/U *
+.field_map com/mojang/minecraft/level/tile/Block/U DOUBLE_SLAB
+!field com/mojang/minecraft/level/tile/Block/V *
+.field_map com/mojang/minecraft/level/tile/Block/V SLAB
+!field com/mojang/minecraft/level/tile/Block/W *
+.field_map com/mojang/minecraft/level/tile/Block/W BRICK
+!field com/mojang/minecraft/level/tile/Block/X *
+.field_map com/mojang/minecraft/level/tile/Block/X TNT
+!field com/mojang/minecraft/level/tile/Block/Y *
+.field_map com/mojang/minecraft/level/tile/Block/Y BOOKSHELF
+!field com/mojang/minecraft/level/tile/Block/Z *
+.field_map com/mojang/minecraft/level/tile/Block/Z MOSSY_COBBLESTONE
+!field com/mojang/minecraft/level/tile/Block/aa *
+.field_map com/mojang/minecraft/level/tile/Block/aa OBSIDIAN
+!field com/mojang/minecraft/level/tile/Block/ab *
+.field_map com/mojang/minecraft/level/tile/Block/ab id
+!field com/mojang/minecraft/level/tile/Block/ac *
+.field_map com/mojang/minecraft/level/tile/Block/ac sound
+!field com/mojang/minecraft/level/tile/Block/ag *
+.field_map com/mojang/minecraft/level/tile/Block/ag explodes
+!field com/mojang/minecraft/level/tile/Block/ah *
+.field_map com/mojang/minecraft/level/tile/Block/ah x1
+!field com/mojang/minecraft/level/tile/Block/ai *
+.field_map com/mojang/minecraft/level/tile/Block/ai y1
+!field com/mojang/minecraft/level/tile/Block/aj *
+.field_map com/mojang/minecraft/level/tile/Block/aj z1
+!field com/mojang/minecraft/level/tile/Block/ak *
+.field_map com/mojang/minecraft/level/tile/Block/ak x2
+!field com/mojang/minecraft/level/tile/Block/al *
+.field_map com/mojang/minecraft/level/tile/Block/al y2
+!field com/mojang/minecraft/level/tile/Block/am *
+.field_map com/mojang/minecraft/level/tile/Block/am z2
+
+!method com/mojang/minecraft/level/tile/Block/a ()Z
+.method_map com/mojang/minecraft/level/tile/Block/a ()Z isCube
+!method com/mojang/minecraft/level/tile/Block/a (Z)V
+.method_map com/mojang/minecraft/level/tile/Block/a (Z)V setPhysics
+!method com/mojang/minecraft/level/tile/Block/a (FFFFFF)V
+.method_map com/mojang/minecraft/level/tile/Block/a (FFFFFF)V setBounds
+!method com/mojang/minecraft/level/tile/Block/a (I)V
+.method_map com/mojang/minecraft/level/tile/Block/a (I)V setTickDelay
+!method com/mojang/minecraft/level/tile/Block/a (III)Lcom/mojang/minecraft/phys/AABB;
+.method_map com/mojang/minecraft/level/tile/Block/a (III)Lcom/mojang/minecraft/phys/AABB; getCollisionBox
+!method com/mojang/minecraft/level/tile/Block/b ()Z
+.method_map com/mojang/minecraft/level/tile/Block/b ()Z isOpaque
+!method com/mojang/minecraft/level/tile/Block/c ()Z
+.method_map com/mojang/minecraft/level/tile/Block/c ()Z isSolid
+!method com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V
+.method_map com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V update
+!method com/mojang/minecraft/level/tile/Block/d ()Lcom/mojang/minecraft/level/liquid/LiquidType;
+.method_map com/mojang/minecraft/level/tile/Block/d ()Lcom/mojang/minecraft/level/liquid/LiquidType; getLiquidType
+!method com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/level/Level;IIII)V
+.method_map com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/level/Level;IIII)V onNeighborChange
+!method com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/level/Level;III)V onPlace
+!method com/mojang/minecraft/level/tile/Block/e ()I
+.method_map com/mojang/minecraft/level/tile/Block/e ()I getTickDelay
+!method com/mojang/minecraft/level/tile/Block/b (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/Block/b (Lcom/mojang/minecraft/level/Level;III)V onAdded
+!method com/mojang/minecraft/level/tile/Block/c (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/Block/c (Lcom/mojang/minecraft/level/Level;III)V onRemoved
+!method com/mojang/minecraft/level/tile/Block/f ()I
+.method_map com/mojang/minecraft/level/tile/Block/f ()I getDropCount
+!method com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/level/Level;F)V
+.method_map com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/level/Level;F)V dropItem
+!method com/mojang/minecraft/level/tile/Block/g ()Z
+.method_map com/mojang/minecraft/level/tile/Block/g ()Z canExplode
+!method com/mojang/minecraft/level/tile/Block/a (IIILcom/mojang/minecraft/math/Vec3D;Lcom/mojang/minecraft/math/Vec3D;)Lcom/mojang/minecraft/Vec3DCreator;
+.method_map com/mojang/minecraft/level/tile/Block/a (IIILcom/mojang/minecraft/math/Vec3D;Lcom/mojang/minecraft/math/Vec3D;)Lcom/mojang/minecraft/Vec3DCreator; clip
+!method com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/math/Vec3D;)Z
+.method_map com/mojang/minecraft/level/tile/Block/a (Lcom/mojang/minecraft/math/Vec3D;)Z xIntersects
+!method com/mojang/minecraft/level/tile/Block/b (Lcom/mojang/minecraft/math/Vec3D;)Z
+.method_map com/mojang/minecraft/level/tile/Block/b (Lcom/mojang/minecraft/math/Vec3D;)Z yIntersects
+!method com/mojang/minecraft/level/tile/Block/c (Lcom/mojang/minecraft/math/Vec3D;)Z
+.method_map com/mojang/minecraft/level/tile/Block/c (Lcom/mojang/minecraft/math/Vec3D;)Z zIntersects
+
+# com/mojang/minecraft/math/Vec3D
+!field com/mojang/minecraft/math/Vec3D/a *
+.field_map com/mojang/minecraft/math/Vec3D/a x
+!field com/mojang/minecraft/math/Vec3D/b *
+.field_map com/mojang/minecraft/math/Vec3D/b y
+!field com/mojang/minecraft/math/Vec3D/c *
+.field_map com/mojang/minecraft/math/Vec3D/c z
+
+!method com/mojang/minecraft/math/Vec3D/a (FFF)Lcom/mojang/minecraft/math/Vec3D;
+.method_map com/mojang/minecraft/math/Vec3D/a (FFF)Lcom/mojang/minecraft/math/Vec3D; add
+!method com/mojang/minecraft/math/Vec3D/a (Lcom/mojang/minecraft/math/Vec3D;)F
+.method_map com/mojang/minecraft/math/Vec3D/a (Lcom/mojang/minecraft/math/Vec3D;)F distance
+!method com/mojang/minecraft/math/Vec3D/b (Lcom/mojang/minecraft/math/Vec3D;)F
+.method_map com/mojang/minecraft/math/Vec3D/b (Lcom/mojang/minecraft/math/Vec3D;)F distanceSquared
+!method com/mojang/minecraft/math/Vec3D/a (Lcom/mojang/minecraft/math/Vec3D;F)Lcom/mojang/minecraft/math/Vec3D;
+.method_map com/mojang/minecraft/math/Vec3D/a (Lcom/mojang/minecraft/math/Vec3D;F)Lcom/mojang/minecraft/math/Vec3D; getXIntersection
+!method com/mojang/minecraft/math/Vec3D/b (Lcom/mojang/minecraft/math/Vec3D;F)Lcom/mojang/minecraft/math/Vec3D;
+.method_map com/mojang/minecraft/math/Vec3D/b (Lcom/mojang/minecraft/math/Vec3D;F)Lcom/mojang/minecraft/math/Vec3D; getYIntersection
+!method com/mojang/minecraft/math/Vec3D/c (Lcom/mojang/minecraft/math/Vec3D;F)Lcom/mojang/minecraft/math/Vec3D;
+.method_map com/mojang/minecraft/math/Vec3D/c (Lcom/mojang/minecraft/math/Vec3D;F)Lcom/mojang/minecraft/math/Vec3D; getZIntersection
+!method com/mojang/minecraft/math/Vec3D/toString ()Ljava/lang/String;
+.method_map com/mojang/minecraft/math/Vec3D/toString ()Ljava/lang/String; toString
+
+# com/mojang/minecraft/net/b
+
+# com/mojang/minecraft/level/tile/MetalBlock
+
+# com/mojang/minecraft/level/tile/LiquidBlock
+!field com/mojang/minecraft/level/tile/LiquidBlock/ad *
+.field_map com/mojang/minecraft/level/tile/LiquidBlock/ad liquidType
+!field com/mojang/minecraft/level/tile/LiquidBlock/ae *
+.field_map com/mojang/minecraft/level/tile/LiquidBlock/ae stillId
+!field com/mojang/minecraft/level/tile/LiquidBlock/af *
+.field_map com/mojang/minecraft/level/tile/LiquidBlock/af flowId
+
+!method com/mojang/minecraft/level/tile/LiquidBlock/a ()Z
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/a ()Z isCube
+!method com/mojang/minecraft/level/tile/LiquidBlock/a (Lcom/mojang/minecraft/level/Level;III)V
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/a (Lcom/mojang/minecraft/level/Level;III)V onPlace
+!method com/mojang/minecraft/level/tile/LiquidBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V update
+!method com/mojang/minecraft/level/tile/LiquidBlock/d (Lcom/mojang/minecraft/level/Level;III)Z
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/d (Lcom/mojang/minecraft/level/Level;III)Z canFlow
+!method com/mojang/minecraft/level/tile/LiquidBlock/e (Lcom/mojang/minecraft/level/Level;III)Z
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/e (Lcom/mojang/minecraft/level/Level;III)Z flow
+!method com/mojang/minecraft/level/tile/LiquidBlock/a (III)Lcom/mojang/minecraft/phys/AABB;
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/a (III)Lcom/mojang/minecraft/phys/AABB; getCollisionBox
+!method com/mojang/minecraft/level/tile/LiquidBlock/b ()Z
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/b ()Z isOpaque
+!method com/mojang/minecraft/level/tile/LiquidBlock/c ()Z
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/c ()Z isSolid
+!method com/mojang/minecraft/level/tile/LiquidBlock/d ()Lcom/mojang/minecraft/level/liquid/LiquidType;
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/d ()Lcom/mojang/minecraft/level/liquid/LiquidType; getLiquidType
+!method com/mojang/minecraft/level/tile/LiquidBlock/a (Lcom/mojang/minecraft/level/Level;IIII)V
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/a (Lcom/mojang/minecraft/level/Level;IIII)V onNeighborChange
+!method com/mojang/minecraft/level/tile/LiquidBlock/e ()I
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/e ()I getTickDelay
+!method com/mojang/minecraft/level/tile/LiquidBlock/a (Lcom/mojang/minecraft/level/Level;F)V
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/a (Lcom/mojang/minecraft/level/Level;F)V dropItem
+!method com/mojang/minecraft/level/tile/LiquidBlock/f ()I
+.method_map com/mojang/minecraft/level/tile/LiquidBlock/f ()I getDropCount
+
+# com/mojang/minecraft/net/PacketType
+!field com/mojang/minecraft/net/PacketType/a *
+.field_map com/mojang/minecraft/net/PacketType/a packets
+!field com/mojang/minecraft/net/PacketType/b *
+.field_map com/mojang/minecraft/net/PacketType/b IDENTIFICATION
+!field com/mojang/minecraft/net/PacketType/c *
+.field_map com/mojang/minecraft/net/PacketType/c PING
+!field com/mojang/minecraft/net/PacketType/d *
+.field_map com/mojang/minecraft/net/PacketType/d LEVEL_INIT
+!field com/mojang/minecraft/net/PacketType/e *
+.field_map com/mojang/minecraft/net/PacketType/e LEVEL_DATA
+!field com/mojang/minecraft/net/PacketType/f *
+.field_map com/mojang/minecraft/net/PacketType/f LEVEL_FINALIZE
+!field com/mojang/minecraft/net/PacketType/g *
+.field_map com/mojang/minecraft/net/PacketType/g PLAYER_SET_BLOCK
+!field com/mojang/minecraft/net/PacketType/h *
+.field_map com/mojang/minecraft/net/PacketType/h BLOCK_CHANGE
+!field com/mojang/minecraft/net/PacketType/i *
+.field_map com/mojang/minecraft/net/PacketType/i SPAWN_PLAYER
+!field com/mojang/minecraft/net/PacketType/j *
+.field_map com/mojang/minecraft/net/PacketType/j POSITION_ROTATION
+!field com/mojang/minecraft/net/PacketType/k *
+.field_map com/mojang/minecraft/net/PacketType/k POSITION_ROTATION_UPDATE
+!field com/mojang/minecraft/net/PacketType/l *
+.field_map com/mojang/minecraft/net/PacketType/l POSITION_UPDATE
+!field com/mojang/minecraft/net/PacketType/m *
+.field_map com/mojang/minecraft/net/PacketType/m ROTATION_UPDATE
+!field com/mojang/minecraft/net/PacketType/n *
+.field_map com/mojang/minecraft/net/PacketType/n DESPAWN_PLAYER
+!field com/mojang/minecraft/net/PacketType/o *
+.field_map com/mojang/minecraft/net/PacketType/o CHAT_MESSAGE
+!field com/mojang/minecraft/net/PacketType/p *
+.field_map com/mojang/minecraft/net/PacketType/p DISCONNECT
+!field com/mojang/minecraft/net/PacketType/q *
+.field_map com/mojang/minecraft/net/PacketType/q UPDATE_PLAYER_TYPE
+!field com/mojang/minecraft/net/PacketType/r *
+.field_map com/mojang/minecraft/net/PacketType/r length
+!field com/mojang/minecraft/net/PacketType/u *
+.field_map com/mojang/minecraft/net/PacketType/u nextOpcode
+!field com/mojang/minecraft/net/PacketType/s *
+.field_map com/mojang/minecraft/net/PacketType/s opcode
+!field com/mojang/minecraft/net/PacketType/t *
+.field_map com/mojang/minecraft/net/PacketType/t params
+
+
+# com/mojang/minecraft/level/tile/GlassBlock
+!method com/mojang/minecraft/level/tile/GlassBlock/c ()Z
+.method_map com/mojang/minecraft/level/tile/GlassBlock/c ()Z isSolid
+!method com/mojang/minecraft/level/tile/GlassBlock/b ()Z
+.method_map com/mojang/minecraft/level/tile/GlassBlock/b ()Z isOpaque
+
+# com/mojang/minecraft/level/tile/OreBlock
+!method com/mojang/minecraft/level/tile/OreBlock/f ()I
+.method_map com/mojang/minecraft/level/tile/OreBlock/f ()I getDropCount
+
+# com/mojang/minecraft/level/LevelObjectInputStream
+!field com/mojang/minecraft/level/LevelObjectInputStream/a *
+.field_map com/mojang/minecraft/level/LevelObjectInputStream/a classes
+
+!method com/mojang/minecraft/level/LevelObjectInputStream/readClassDescriptor ()Ljava/io/ObjectStreamClass;
+.method_map com/mojang/minecraft/level/LevelObjectInputStream/readClassDescriptor ()Ljava/io/ObjectStreamClass; readClassDescriptor
+
+# com/mojang/minecraft/level/tile/SaplingBlock
+!method com/mojang/minecraft/level/tile/SaplingBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V
+.method_map com/mojang/minecraft/level/tile/SaplingBlock/a (Lcom/mojang/minecraft/level/Level;IIILjava/util/Random;)V update
+
+# com/mojang/minecraft/level/tile/BookshelfBlock
+!method com/mojang/minecraft/level/tile/BookshelfBlock/f ()I
+.method_map com/mojang/minecraft/level/tile/BookshelfBlock/f ()I getDropCount
+
+# com/mojang/minecraft/server/PlayerListFile
+!field com/mojang/minecraft/server/PlayerListFile/a *
+.field_map com/mojang/minecraft/server/PlayerListFile/a logger
+!field com/mojang/minecraft/server/PlayerListFile/b *
+.field_map com/mojang/minecraft/server/PlayerListFile/b name
+!field com/mojang/minecraft/server/PlayerListFile/c *
+.field_map com/mojang/minecraft/server/PlayerListFile/c file
+!field com/mojang/minecraft/server/PlayerListFile/d *
+.field_map com/mojang/minecraft/server/PlayerListFile/d players
+
+!method com/mojang/minecraft/server/PlayerListFile/a (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/PlayerListFile/a (Ljava/lang/String;)V add
+!method com/mojang/minecraft/server/PlayerListFile/b (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/PlayerListFile/b (Ljava/lang/String;)V remove
+!method com/mojang/minecraft/server/PlayerListFile/c (Ljava/lang/String;)Z
+.method_map com/mojang/minecraft/server/PlayerListFile/c (Ljava/lang/String;)Z contains
+!method com/mojang/minecraft/server/PlayerListFile/a ()V
+.method_map com/mojang/minecraft/server/PlayerListFile/a ()V load
+!method com/mojang/minecraft/server/PlayerListFile/b ()V
+.method_map com/mojang/minecraft/server/PlayerListFile/b ()V save
+
+# com/mojang/minecraft/level/tile/TNTBlock
+!method com/mojang/minecraft/level/tile/TNTBlock/f ()I
+.method_map com/mojang/minecraft/level/tile/TNTBlock/f ()I getDropCount
+
+# com/mojang/minecraft/server/MD5Encryption
+!field com/mojang/minecraft/server/MD5Encryption/a *
+.field_map com/mojang/minecraft/server/MD5Encryption/a salt
+
+!method com/mojang/minecraft/server/MD5Encryption/a (Ljava/lang/String;)Ljava/lang/String;
+.method_map com/mojang/minecraft/server/MD5Encryption/a (Ljava/lang/String;)Ljava/lang/String; encrypt
+
+# com/mojang/minecraft/server/LogFormatter
+!method com/mojang/minecraft/server/LogFormatter/format (Ljava/util/logging/LogRecord;)Ljava/lang/String;
+.method_map com/mojang/minecraft/server/LogFormatter/format (Ljava/util/logging/LogRecord;)Ljava/lang/String; format
+
+# com/mojang/minecraft/level/NextTickListEntry
+!field com/mojang/minecraft/level/NextTickListEntry/a *
+.field_map com/mojang/minecraft/level/NextTickListEntry/a x
+!field com/mojang/minecraft/level/NextTickListEntry/b *
+.field_map com/mojang/minecraft/level/NextTickListEntry/b y
+!field com/mojang/minecraft/level/NextTickListEntry/c *
+.field_map com/mojang/minecraft/level/NextTickListEntry/c z
+!field com/mojang/minecraft/level/NextTickListEntry/d *
+.field_map com/mojang/minecraft/level/NextTickListEntry/d block
+!field com/mojang/minecraft/level/NextTickListEntry/e *
+.field_map com/mojang/minecraft/level/NextTickListEntry/e ticks
+
+
+# com/mojang/minecraft/server/MinecraftServer
+!field com/mojang/minecraft/server/MinecraftServer/a *
+.field_map com/mojang/minecraft/server/MinecraftServer/a logger
+!field com/mojang/minecraft/server/MinecraftServer/b *
+.field_map com/mojang/minecraft/server/MinecraftServer/b dateFormat
+!field com/mojang/minecraft/server/MinecraftServer/l *
+.field_map com/mojang/minecraft/server/MinecraftServer/l netListener
+!field com/mojang/minecraft/server/MinecraftServer/m *
+.field_map com/mojang/minecraft/server/MinecraftServer/m connectionMap
+!field com/mojang/minecraft/server/MinecraftServer/n *
+.field_map com/mojang/minecraft/server/MinecraftServer/n connections
+!field com/mojang/minecraft/server/MinecraftServer/o *
+.field_map com/mojang/minecraft/server/MinecraftServer/o queuedCloses
+!field com/mojang/minecraft/server/MinecraftServer/p *
+.field_map com/mojang/minecraft/server/MinecraftServer/p maxPlayers
+!field com/mojang/minecraft/server/MinecraftServer/q *
+.field_map com/mojang/minecraft/server/MinecraftServer/q properties
+!field com/mojang/minecraft/server/MinecraftServer/c *
+.field_map com/mojang/minecraft/server/MinecraftServer/c level
+!field com/mojang/minecraft/server/MinecraftServer/r *
+.field_map com/mojang/minecraft/server/MinecraftServer/r publicServer
+!field com/mojang/minecraft/server/MinecraftServer/d *
+.field_map com/mojang/minecraft/server/MinecraftServer/d name
+!field com/mojang/minecraft/server/MinecraftServer/e *
+.field_map com/mojang/minecraft/server/MinecraftServer/e motd
+!field com/mojang/minecraft/server/MinecraftServer/s *
+.field_map com/mojang/minecraft/server/MinecraftServer/s port
+!field com/mojang/minecraft/server/MinecraftServer/f *
+.field_map com/mojang/minecraft/server/MinecraftServer/f adminSlot
+!field com/mojang/minecraft/server/MinecraftServer/t *
+.field_map com/mojang/minecraft/server/MinecraftServer/t connectionArray
+!field com/mojang/minecraft/server/MinecraftServer/g *
+.field_map com/mojang/minecraft/server/MinecraftServer/g admins
+!field com/mojang/minecraft/server/MinecraftServer/h *
+.field_map com/mojang/minecraft/server/MinecraftServer/h banned
+!field com/mojang/minecraft/server/MinecraftServer/u *
+.field_map com/mojang/minecraft/server/MinecraftServer/u ipBanned
+!field com/mojang/minecraft/server/MinecraftServer/i *
+.field_map com/mojang/minecraft/server/MinecraftServer/i players
+!field com/mojang/minecraft/server/MinecraftServer/v *
+.field_map com/mojang/minecraft/server/MinecraftServer/v consoleQueue
+!field com/mojang/minecraft/server/MinecraftServer/w *
+.field_map com/mojang/minecraft/server/MinecraftServer/w salt
+!field com/mojang/minecraft/server/MinecraftServer/x *
+.field_map com/mojang/minecraft/server/MinecraftServer/x url
+!field com/mojang/minecraft/server/MinecraftServer/j *
+.field_map com/mojang/minecraft/server/MinecraftServer/j encryption
+!field com/mojang/minecraft/server/MinecraftServer/k *
+.field_map com/mojang/minecraft/server/MinecraftServer/k verifyNames
+!field com/mojang/minecraft/server/MinecraftServer/y *
+.field_map com/mojang/minecraft/server/MinecraftServer/y growTrees
+!field com/mojang/minecraft/server/MinecraftServer/z *
+.field_map com/mojang/minecraft/server/MinecraftServer/z maxConnections
+
+!method com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/NetworkHandler;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/NetworkHandler;)V disconnect
+!method com/mojang/minecraft/server/MinecraftServer/b (Lcom/mojang/minecraft/net/NetworkHandler;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/b (Lcom/mojang/minecraft/net/NetworkHandler;)V queueClose
+!method com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/PlayerConnection;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/PlayerConnection;)V queueClose
+!method com/mojang/minecraft/server/MinecraftServer/b (Lcom/mojang/minecraft/net/PlayerConnection;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/b (Lcom/mojang/minecraft/net/PlayerConnection;)V close
+!method com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V sendToAll
+!method com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/PlayerConnection;Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/PlayerConnection;Lcom/mojang/minecraft/net/PacketType;[Ljava/lang/Object;)V send
+!method com/mojang/minecraft/server/MinecraftServer/run ()V
+.method_map com/mojang/minecraft/server/MinecraftServer/run ()V run
+!method com/mojang/minecraft/server/MinecraftServer/a (Ljava/util/Map;)Ljava/lang/String;
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Ljava/util/Map;)Ljava/lang/String; assembleHeartbeat
+!method com/mojang/minecraft/server/MinecraftServer/c ()V
+.method_map com/mojang/minecraft/server/MinecraftServer/c ()V tick
+!method com/mojang/minecraft/server/MinecraftServer/a (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Ljava/lang/String;)V logInfo
+!method com/mojang/minecraft/server/MinecraftServer/b (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/b (Ljava/lang/String;)V logFine
+!method com/mojang/minecraft/server/MinecraftServer/d ()V
+.method_map com/mojang/minecraft/server/MinecraftServer/d ()V updateNetwork
+!method com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/PlayerConnection;Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/net/PlayerConnection;Ljava/lang/String;)V processCommand
+!method com/mojang/minecraft/server/MinecraftServer/a (III)V
+.method_map com/mojang/minecraft/server/MinecraftServer/a (III)V sendBlockChange
+!method com/mojang/minecraft/server/MinecraftServer/a ()I
+.method_map com/mojang/minecraft/server/MinecraftServer/a ()I getOpenSlots
+!method com/mojang/minecraft/server/MinecraftServer/e ()I
+.method_map com/mojang/minecraft/server/MinecraftServer/e ()I getNextSlot
+!method com/mojang/minecraft/server/MinecraftServer/b ()Ljava/util/List;
+.method_map com/mojang/minecraft/server/MinecraftServer/b ()Ljava/util/List; getConnections
+!method com/mojang/minecraft/server/MinecraftServer/d (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/d (Ljava/lang/String;)V kick
+!method com/mojang/minecraft/server/MinecraftServer/e (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/e (Ljava/lang/String;)V ban
+!method com/mojang/minecraft/server/MinecraftServer/f (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/f (Ljava/lang/String;)V op
+!method com/mojang/minecraft/server/MinecraftServer/g (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/g (Ljava/lang/String;)V deop
+!method com/mojang/minecraft/server/MinecraftServer/h (Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/h (Ljava/lang/String;)V ipban
+!method com/mojang/minecraft/server/MinecraftServer/c (Ljava/lang/String;)Lcom/mojang/minecraft/net/PlayerConnection;
+.method_map com/mojang/minecraft/server/MinecraftServer/c (Ljava/lang/String;)Lcom/mojang/minecraft/net/PlayerConnection; getConnection
+!method com/mojang/minecraft/server/MinecraftServer/main ([Ljava/lang/String;)V
+.method_map com/mojang/minecraft/server/MinecraftServer/main ([Ljava/lang/String;)V main
+!method com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/server/MinecraftServer;)Ljava/util/List;
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/server/MinecraftServer;)Ljava/util/List; getConsoleQueue
+!method com/mojang/minecraft/server/MinecraftServer/b (Lcom/mojang/minecraft/server/MinecraftServer;)Ljava/lang/String;
+.method_map com/mojang/minecraft/server/MinecraftServer/b (Lcom/mojang/minecraft/server/MinecraftServer;)Ljava/lang/String; getUrl
+!method com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/server/MinecraftServer;Ljava/lang/String;)Ljava/lang/String;
+.method_map com/mojang/minecraft/server/MinecraftServer/a (Lcom/mojang/minecraft/server/MinecraftServer;Ljava/lang/String;)Ljava/lang/String; setUrl
+
+# com/mojang/minecraft/level/LevelRenderer
+
+# com/mojang/minecraft/Vec3DCreator
+
+# com/mojang/minecraft/level/BlockMap
+!field com/mojang/minecraft/level/BlockMap/serialVersionUID *
+.field_map com/mojang/minecraft/level/BlockMap/serialVersionUID serialVersionUID
+!field com/mojang/minecraft/level/BlockMap/width *
+.field_map com/mojang/minecraft/level/BlockMap/width width
+!field com/mojang/minecraft/level/BlockMap/depth *
+.field_map com/mojang/minecraft/level/BlockMap/depth depth
+!field com/mojang/minecraft/level/BlockMap/height *
+.field_map com/mojang/minecraft/level/BlockMap/height height
+!field com/mojang/minecraft/level/BlockMap/slot *
+.field_map com/mojang/minecraft/level/BlockMap/slot slot
+!field com/mojang/minecraft/level/BlockMap/slot2 *
+.field_map com/mojang/minecraft/level/BlockMap/slot2 slot2
+!field com/mojang/minecraft/level/BlockMap/entityGrid *
+.field_map com/mojang/minecraft/level/BlockMap/entityGrid entityGrid
+!field com/mojang/minecraft/level/BlockMap/all *
+.field_map com/mojang/minecraft/level/BlockMap/all all
+!field com/mojang/minecraft/level/BlockMap/tmp *
+.field_map com/mojang/minecraft/level/BlockMap/tmp tmp
+
+!method com/mojang/minecraft/level/BlockMap/insert (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/level/BlockMap/insert (Lcom/mojang/minecraft/Entity;)V insert
+!method com/mojang/minecraft/level/BlockMap/remove (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/level/BlockMap/remove (Lcom/mojang/minecraft/Entity;)V remove
+!method com/mojang/minecraft/level/BlockMap/moved (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/level/BlockMap/moved (Lcom/mojang/minecraft/Entity;)V moved
+!method com/mojang/minecraft/level/BlockMap/getEntities (Lcom/mojang/minecraft/Entity;FFFFFF)Ljava/util/List;
+.method_map com/mojang/minecraft/level/BlockMap/getEntities (Lcom/mojang/minecraft/Entity;FFFFFF)Ljava/util/List; getEntities
+!method com/mojang/minecraft/level/BlockMap/getEntities (Lcom/mojang/minecraft/Entity;FFFFFFLjava/util/List;)Ljava/util/List;
+.method_map com/mojang/minecraft/level/BlockMap/getEntities (Lcom/mojang/minecraft/Entity;FFFFFFLjava/util/List;)Ljava/util/List; getEntities
+!method com/mojang/minecraft/level/BlockMap/removeAllNonCreativeModeEntities ()V
+.method_map com/mojang/minecraft/level/BlockMap/removeAllNonCreativeModeEntities ()V removeAllNonCreativeModeEntities
+!method com/mojang/minecraft/level/BlockMap/clear ()V
+.method_map com/mojang/minecraft/level/BlockMap/clear ()V clear
+!method com/mojang/minecraft/level/BlockMap/getEntities (Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;)Ljava/util/List;
+.method_map com/mojang/minecraft/level/BlockMap/getEntities (Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;)Ljava/util/List; getEntities
+!method com/mojang/minecraft/level/BlockMap/getEntities (Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;Ljava/util/List;)Ljava/util/List;
+.method_map com/mojang/minecraft/level/BlockMap/getEntities (Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;Ljava/util/List;)Ljava/util/List; getEntities
+!method com/mojang/minecraft/level/BlockMap/tickAll ()V
+.method_map com/mojang/minecraft/level/BlockMap/tickAll ()V tickAll
+!method com/mojang/minecraft/level/BlockMap/render (Lcom/mojang/minecraft/math/Vec3D;Lcom/mojang/minecraft/render/FrustumImpl;Lcom/mojang/minecraft/render/Frustum;F)V
+.method_map com/mojang/minecraft/level/BlockMap/render (Lcom/mojang/minecraft/math/Vec3D;Lcom/mojang/minecraft/render/FrustumImpl;Lcom/mojang/minecraft/render/Frustum;F)V render
+!method com/mojang/minecraft/level/BlockMap/access$000 (Lcom/mojang/minecraft/level/BlockMap;)I
+.method_map com/mojang/minecraft/level/BlockMap/access$000 (Lcom/mojang/minecraft/level/BlockMap;)I access$000
+!method com/mojang/minecraft/level/BlockMap/access$100 (Lcom/mojang/minecraft/level/BlockMap;)I
+.method_map com/mojang/minecraft/level/BlockMap/access$100 (Lcom/mojang/minecraft/level/BlockMap;)I access$100
+!method com/mojang/minecraft/level/BlockMap/access$200 (Lcom/mojang/minecraft/level/BlockMap;)I
+.method_map com/mojang/minecraft/level/BlockMap/access$200 (Lcom/mojang/minecraft/level/BlockMap;)I access$200
+
+# com/mojang/minecraft/level/generator/noise/Noise
+!method com/mojang/minecraft/level/generator/noise/Noise/a (DD)D
+.method_map com/mojang/minecraft/level/generator/noise/Noise/a (DD)D compute
+
+# com/mojang/minecraft/Entity
+!field com/mojang/minecraft/Entity/serialVersionUID *
+.field_map com/mojang/minecraft/Entity/serialVersionUID serialVersionUID
+!field com/mojang/minecraft/Entity/level *
+.field_map com/mojang/minecraft/Entity/level level
+!field com/mojang/minecraft/Entity/xo *
+.field_map com/mojang/minecraft/Entity/xo xo
+!field com/mojang/minecraft/Entity/yo *
+.field_map com/mojang/minecraft/Entity/yo yo
+!field com/mojang/minecraft/Entity/zo *
+.field_map com/mojang/minecraft/Entity/zo zo
+!field com/mojang/minecraft/Entity/x *
+.field_map com/mojang/minecraft/Entity/x x
+!field com/mojang/minecraft/Entity/y *
+.field_map com/mojang/minecraft/Entity/y y
+!field com/mojang/minecraft/Entity/z *
+.field_map com/mojang/minecraft/Entity/z z
+!field com/mojang/minecraft/Entity/xd *
+.field_map com/mojang/minecraft/Entity/xd xd
+!field com/mojang/minecraft/Entity/yd *
+.field_map com/mojang/minecraft/Entity/yd yd
+!field com/mojang/minecraft/Entity/zd *
+.field_map com/mojang/minecraft/Entity/zd zd
+!field com/mojang/minecraft/Entity/yRot *
+.field_map com/mojang/minecraft/Entity/yRot yRot
+!field com/mojang/minecraft/Entity/xRot *
+.field_map com/mojang/minecraft/Entity/xRot xRot
+!field com/mojang/minecraft/Entity/yRotO *
+.field_map com/mojang/minecraft/Entity/yRotO yRotO
+!field com/mojang/minecraft/Entity/xRotO *
+.field_map com/mojang/minecraft/Entity/xRotO xRotO
+!field com/mojang/minecraft/Entity/bb *
+.field_map com/mojang/minecraft/Entity/bb bb
+!field com/mojang/minecraft/Entity/onGround *
+.field_map com/mojang/minecraft/Entity/onGround onGround
+!field com/mojang/minecraft/Entity/horizontalCollision *
+.field_map com/mojang/minecraft/Entity/horizontalCollision horizontalCollision
+!field com/mojang/minecraft/Entity/collision *
+.field_map com/mojang/minecraft/Entity/collision collision
+!field com/mojang/minecraft/Entity/slide *
+.field_map com/mojang/minecraft/Entity/slide slide
+!field com/mojang/minecraft/Entity/removed *
+.field_map com/mojang/minecraft/Entity/removed removed
+!field com/mojang/minecraft/Entity/heightOffset *
+.field_map com/mojang/minecraft/Entity/heightOffset heightOffset
+!field com/mojang/minecraft/Entity/bbWidth *
+.field_map com/mojang/minecraft/Entity/bbWidth bbWidth
+!field com/mojang/minecraft/Entity/bbHeight *
+.field_map com/mojang/minecraft/Entity/bbHeight bbHeight
+!field com/mojang/minecraft/Entity/walkDistO *
+.field_map com/mojang/minecraft/Entity/walkDistO walkDistO
+!field com/mojang/minecraft/Entity/walkDist *
+.field_map com/mojang/minecraft/Entity/walkDist walkDist
+!field com/mojang/minecraft/Entity/makeStepSound *
+.field_map com/mojang/minecraft/Entity/makeStepSound makeStepSound
+!field com/mojang/minecraft/Entity/fallDistance *
+.field_map com/mojang/minecraft/Entity/fallDistance fallDistance
+!field com/mojang/minecraft/Entity/nextStep *
+.field_map com/mojang/minecraft/Entity/nextStep nextStep
+!field com/mojang/minecraft/Entity/blockMap *
+.field_map com/mojang/minecraft/Entity/blockMap blockMap
+!field com/mojang/minecraft/Entity/xOld *
+.field_map com/mojang/minecraft/Entity/xOld xOld
+!field com/mojang/minecraft/Entity/yOld *
+.field_map com/mojang/minecraft/Entity/yOld yOld
+!field com/mojang/minecraft/Entity/zOld *
+.field_map com/mojang/minecraft/Entity/zOld zOld
+!field com/mojang/minecraft/Entity/textureId *
+.field_map com/mojang/minecraft/Entity/textureId textureId
+!field com/mojang/minecraft/Entity/ySlideOffset *
+.field_map com/mojang/minecraft/Entity/ySlideOffset ySlideOffset
+!field com/mojang/minecraft/Entity/footSize *
+.field_map com/mojang/minecraft/Entity/footSize footSize
+!field com/mojang/minecraft/Entity/noPhysics *
+.field_map com/mojang/minecraft/Entity/noPhysics noPhysics
+!field com/mojang/minecraft/Entity/pushthrough *
+.field_map com/mojang/minecraft/Entity/pushthrough pushthrough
+!field com/mojang/minecraft/Entity/hovered *
+.field_map com/mojang/minecraft/Entity/hovered hovered
+
+!method com/mojang/minecraft/Entity/resetPos ()V
+.method_map com/mojang/minecraft/Entity/resetPos ()V resetPos
+!method com/mojang/minecraft/Entity/remove ()V
+.method_map com/mojang/minecraft/Entity/remove ()V remove
+!method com/mojang/minecraft/Entity/setSize (FF)V
+.method_map com/mojang/minecraft/Entity/setSize (FF)V setSize
+!method com/mojang/minecraft/Entity/setPos (Lcom/mojang/minecraft/net/b;)V
+.method_map com/mojang/minecraft/Entity/setPos (Lcom/mojang/minecraft/net/b;)V setPos
+!method com/mojang/minecraft/Entity/setRot (FF)V
+.method_map com/mojang/minecraft/Entity/setRot (FF)V setRot
+!method com/mojang/minecraft/Entity/setPos (FFF)V
+.method_map com/mojang/minecraft/Entity/setPos (FFF)V setPos
+!method com/mojang/minecraft/Entity/turn (FF)V
+.method_map com/mojang/minecraft/Entity/turn (FF)V turn
+!method com/mojang/minecraft/Entity/interpolateTurn (FF)V
+.method_map com/mojang/minecraft/Entity/interpolateTurn (FF)V interpolateTurn
+!method com/mojang/minecraft/Entity/tick ()V
+.method_map com/mojang/minecraft/Entity/tick ()V tick
+!method com/mojang/minecraft/Entity/isFree (FFFF)Z
+.method_map com/mojang/minecraft/Entity/isFree (FFFF)Z isFree
+!method com/mojang/minecraft/Entity/isFree (FFF)Z
+.method_map com/mojang/minecraft/Entity/isFree (FFF)Z isFree
+!method com/mojang/minecraft/Entity/move (FFF)V
+.method_map com/mojang/minecraft/Entity/move (FFF)V move
+!method com/mojang/minecraft/Entity/causeFallDamage (F)V
+.method_map com/mojang/minecraft/Entity/causeFallDamage (F)V causeFallDamage
+!method com/mojang/minecraft/Entity/isInWater ()Z
+.method_map com/mojang/minecraft/Entity/isInWater ()Z isInWater
+!method com/mojang/minecraft/Entity/isUnderWater ()Z
+.method_map com/mojang/minecraft/Entity/isUnderWater ()Z isUnderWater
+!method com/mojang/minecraft/Entity/isInLava ()Z
+.method_map com/mojang/minecraft/Entity/isInLava ()Z isInLava
+!method com/mojang/minecraft/Entity/moveRelative (FFF)V
+.method_map com/mojang/minecraft/Entity/moveRelative (FFF)V moveRelative
+!method com/mojang/minecraft/Entity/isLit ()Z
+.method_map com/mojang/minecraft/Entity/isLit ()Z isLit
+!method com/mojang/minecraft/Entity/getBrightness (F)F
+.method_map com/mojang/minecraft/Entity/getBrightness (F)F getBrightness
+!method com/mojang/minecraft/Entity/render (Lcom/mojang/minecraft/render/Frustum;F)V
+.method_map com/mojang/minecraft/Entity/render (Lcom/mojang/minecraft/render/Frustum;F)V render
+!method com/mojang/minecraft/Entity/setLevel (Lcom/mojang/minecraft/level/Level;)V
+.method_map com/mojang/minecraft/Entity/setLevel (Lcom/mojang/minecraft/level/Level;)V setLevel
+!method com/mojang/minecraft/Entity/playSound (Ljava/lang/String;FF)V
+.method_map com/mojang/minecraft/Entity/playSound (Ljava/lang/String;FF)V playSound
+!method com/mojang/minecraft/Entity/moveTo (FFFFF)V
+.method_map com/mojang/minecraft/Entity/moveTo (FFFFF)V moveTo
+!method com/mojang/minecraft/Entity/distanceTo (Lcom/mojang/minecraft/Entity;)F
+.method_map com/mojang/minecraft/Entity/distanceTo (Lcom/mojang/minecraft/Entity;)F distanceTo
+!method com/mojang/minecraft/Entity/distanceTo (FFF)F
+.method_map com/mojang/minecraft/Entity/distanceTo (FFF)F distanceTo
+!method com/mojang/minecraft/Entity/distanceToSqr (Lcom/mojang/minecraft/Entity;)F
+.method_map com/mojang/minecraft/Entity/distanceToSqr (Lcom/mojang/minecraft/Entity;)F distanceToSqr
+!method com/mojang/minecraft/Entity/playerTouch (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/Entity/playerTouch (Lcom/mojang/minecraft/Entity;)V playerTouch
+!method com/mojang/minecraft/Entity/push (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/Entity/push (Lcom/mojang/minecraft/Entity;)V push
+!method com/mojang/minecraft/Entity/push (FFF)V
+.method_map com/mojang/minecraft/Entity/push (FFF)V push
+!method com/mojang/minecraft/Entity/hurt (Lcom/mojang/minecraft/Entity;I)V
+.method_map com/mojang/minecraft/Entity/hurt (Lcom/mojang/minecraft/Entity;I)V hurt
+!method com/mojang/minecraft/Entity/intersects (FFFFFF)Z
+.method_map com/mojang/minecraft/Entity/intersects (FFFFFF)Z intersects
+!method com/mojang/minecraft/Entity/isPickable ()Z
+.method_map com/mojang/minecraft/Entity/isPickable ()Z isPickable
+!method com/mojang/minecraft/Entity/isPushable ()Z
+.method_map com/mojang/minecraft/Entity/isPushable ()Z isPushable
+!method com/mojang/minecraft/Entity/isShootable ()Z
+.method_map com/mojang/minecraft/Entity/isShootable ()Z isShootable
+!method com/mojang/minecraft/Entity/awardKillScore (Lcom/mojang/minecraft/Entity;I)V
+.method_map com/mojang/minecraft/Entity/awardKillScore (Lcom/mojang/minecraft/Entity;I)V awardKillScore
+!method com/mojang/minecraft/Entity/shouldRender (Lcom/mojang/minecraft/math/Vec3D;)Z
+.method_map com/mojang/minecraft/Entity/shouldRender (Lcom/mojang/minecraft/math/Vec3D;)Z shouldRender
+!method com/mojang/minecraft/Entity/shouldRenderAtSqrDistance (F)Z
+.method_map com/mojang/minecraft/Entity/shouldRenderAtSqrDistance (F)Z shouldRenderAtSqrDistance
+!method com/mojang/minecraft/Entity/getTexture ()I
+.method_map com/mojang/minecraft/Entity/getTexture ()I getTexture
+!method com/mojang/minecraft/Entity/isCreativeModeAllowed ()Z
+.method_map com/mojang/minecraft/Entity/isCreativeModeAllowed ()Z isCreativeModeAllowed
+!method com/mojang/minecraft/Entity/renderHover (Lcom/mojang/minecraft/render/Frustum;F)V
+.method_map com/mojang/minecraft/Entity/renderHover (Lcom/mojang/minecraft/render/Frustum;F)V renderHover
+
+# com/mojang/minecraft/net/QueuedConnectionClose
+!field com/mojang/minecraft/net/QueuedConnectionClose/a *
+.field_map com/mojang/minecraft/net/QueuedConnectionClose/a handler
+!field com/mojang/minecraft/net/QueuedConnectionClose/b *
+.field_map com/mojang/minecraft/net/QueuedConnectionClose/b ticks
+
+
+# com/mojang/minecraft/server/ConsoleReadThread
+!field com/mojang/minecraft/server/ConsoleReadThread/a *
+.field_map com/mojang/minecraft/server/ConsoleReadThread/a server
+
+!method com/mojang/minecraft/server/ConsoleReadThread/run ()V
+.method_map com/mojang/minecraft/server/ConsoleReadThread/run ()V run
+
+# com/mojang/minecraft/level/Level
+!field com/mojang/minecraft/level/Level/serialVersionUID *
+.field_map com/mojang/minecraft/level/Level/serialVersionUID serialVersionUID
+!field com/mojang/minecraft/level/Level/width *
+.field_map com/mojang/minecraft/level/Level/width width
+!field com/mojang/minecraft/level/Level/height *
+.field_map com/mojang/minecraft/level/Level/height height
+!field com/mojang/minecraft/level/Level/depth *
+.field_map com/mojang/minecraft/level/Level/depth depth
+!field com/mojang/minecraft/level/Level/blocks *
+.field_map com/mojang/minecraft/level/Level/blocks blocks
+!field com/mojang/minecraft/level/Level/name *
+.field_map com/mojang/minecraft/level/Level/name name
+!field com/mojang/minecraft/level/Level/creator *
+.field_map com/mojang/minecraft/level/Level/creator creator
+!field com/mojang/minecraft/level/Level/createTime *
+.field_map com/mojang/minecraft/level/Level/createTime createTime
+!field com/mojang/minecraft/level/Level/xSpawn *
+.field_map com/mojang/minecraft/level/Level/xSpawn xSpawn
+!field com/mojang/minecraft/level/Level/ySpawn *
+.field_map com/mojang/minecraft/level/Level/ySpawn ySpawn
+!field com/mojang/minecraft/level/Level/zSpawn *
+.field_map com/mojang/minecraft/level/Level/zSpawn zSpawn
+!field com/mojang/minecraft/level/Level/rotSpawn *
+.field_map com/mojang/minecraft/level/Level/rotSpawn rotSpawn
+!field com/mojang/minecraft/level/Level/a *
+.field_map com/mojang/minecraft/level/Level/a listeners
+!field com/mojang/minecraft/level/Level/b *
+.field_map com/mojang/minecraft/level/Level/b highest
+!field com/mojang/minecraft/level/Level/random *
+.field_map com/mojang/minecraft/level/Level/random random
+!field com/mojang/minecraft/level/Level/c *
+.field_map com/mojang/minecraft/level/Level/c id
+!field com/mojang/minecraft/level/Level/d *
+.field_map com/mojang/minecraft/level/Level/d tickList
+!field com/mojang/minecraft/level/Level/blockMap *
+.field_map com/mojang/minecraft/level/Level/blockMap blockMap
+!field com/mojang/minecraft/level/Level/networkMode *
+.field_map com/mojang/minecraft/level/Level/networkMode networkMode
+!field com/mojang/minecraft/level/Level/rendererContext *
+.field_map com/mojang/minecraft/level/Level/rendererContext rendererContext
+!field com/mojang/minecraft/level/Level/creativeMode *
+.field_map com/mojang/minecraft/level/Level/creativeMode creativeMode
+!field com/mojang/minecraft/level/Level/waterLevel *
+.field_map com/mojang/minecraft/level/Level/waterLevel waterLevel
+!field com/mojang/minecraft/level/Level/skyColor *
+.field_map com/mojang/minecraft/level/Level/skyColor skyColor
+!field com/mojang/minecraft/level/Level/fogColor *
+.field_map com/mojang/minecraft/level/Level/fogColor fogColor
+!field com/mojang/minecraft/level/Level/cloudColor *
+.field_map com/mojang/minecraft/level/Level/cloudColor cloudColor
+!field com/mojang/minecraft/level/Level/unprocessed *
+.field_map com/mojang/minecraft/level/Level/unprocessed unprocessed
+!field com/mojang/minecraft/level/Level/tickCount *
+.field_map com/mojang/minecraft/level/Level/tickCount tickCount
+!field com/mojang/minecraft/level/Level/player *
+.field_map com/mojang/minecraft/level/Level/player player
+!field com/mojang/minecraft/level/Level/particleEngine *
+.field_map com/mojang/minecraft/level/Level/particleEngine particleEngine
+!field com/mojang/minecraft/level/Level/font *
+.field_map com/mojang/minecraft/level/Level/font font
+!field com/mojang/minecraft/level/Level/growTrees *
+.field_map com/mojang/minecraft/level/Level/growTrees growTrees
+
+!method com/mojang/minecraft/level/Level/initTransient ()V
+.method_map com/mojang/minecraft/level/Level/initTransient ()V initTransient
+!method com/mojang/minecraft/level/Level/setData (III[B)V
+.method_map com/mojang/minecraft/level/Level/setData (III[B)V setData
+!method com/mojang/minecraft/level/Level/findSpawn ()V
+.method_map com/mojang/minecraft/level/Level/findSpawn ()V findSpawn
+!method com/mojang/minecraft/level/Level/calcLightDepths (IIII)V
+.method_map com/mojang/minecraft/level/Level/calcLightDepths (IIII)V calcLightDepths
+!method com/mojang/minecraft/level/Level/addListener$74652038 (Lcom/mojang/minecraft/server/MinecraftServer;)V
+.method_map com/mojang/minecraft/level/Level/addListener$74652038 (Lcom/mojang/minecraft/server/MinecraftServer;)V addListener
+!method com/mojang/minecraft/level/Level/finalize ()V
+.method_map com/mojang/minecraft/level/Level/finalize ()V finalize
+!method com/mojang/minecraft/level/Level/removeListener$74652038 (Lcom/mojang/minecraft/server/MinecraftServer;)V
+.method_map com/mojang/minecraft/level/Level/removeListener$74652038 (Lcom/mojang/minecraft/server/MinecraftServer;)V removeListener
+!method com/mojang/minecraft/level/Level/isLightBlocker (III)Z
+.method_map com/mojang/minecraft/level/Level/isLightBlocker (III)Z isLightBlocker
+!method com/mojang/minecraft/level/Level/getCubes (Lcom/mojang/minecraft/phys/AABB;)Ljava/util/ArrayList;
+.method_map com/mojang/minecraft/level/Level/getCubes (Lcom/mojang/minecraft/phys/AABB;)Ljava/util/ArrayList; getCubes
+!method com/mojang/minecraft/level/Level/swap (IIIIII)V
+.method_map com/mojang/minecraft/level/Level/swap (IIIIII)V swap
+!method com/mojang/minecraft/level/Level/setTileNoNeighborChange (IIII)Z
+.method_map com/mojang/minecraft/level/Level/setTileNoNeighborChange (IIII)Z setTileNoNeighborChange
+!method com/mojang/minecraft/level/Level/netSetTileNoNeighborChange (IIII)Z
+.method_map com/mojang/minecraft/level/Level/netSetTileNoNeighborChange (IIII)Z netSetTileNoNeighborChange
+!method com/mojang/minecraft/level/Level/setTile (IIII)Z
+.method_map com/mojang/minecraft/level/Level/setTile (IIII)Z setTile
+!method com/mojang/minecraft/level/Level/netSetTile (IIII)Z
+.method_map com/mojang/minecraft/level/Level/netSetTile (IIII)Z netSetTile
+!method com/mojang/minecraft/level/Level/updateNeighborsAt (IIII)V
+.method_map com/mojang/minecraft/level/Level/updateNeighborsAt (IIII)V updateNeighborsAt
+!method com/mojang/minecraft/level/Level/setTileNoUpdate (IIII)Z
+.method_map com/mojang/minecraft/level/Level/setTileNoUpdate (IIII)Z setTileNoUpdate
+!method com/mojang/minecraft/level/Level/a (IIII)V
+.method_map com/mojang/minecraft/level/Level/a (IIII)V updateBlock
+!method com/mojang/minecraft/level/Level/isLit (III)Z
+.method_map com/mojang/minecraft/level/Level/isLit (III)Z isLit
+!method com/mojang/minecraft/level/Level/getTile (III)I
+.method_map com/mojang/minecraft/level/Level/getTile (III)I getTile
+!method com/mojang/minecraft/level/Level/isSolidTile (III)Z
+.method_map com/mojang/minecraft/level/Level/isSolidTile (III)Z isSolidTile
+!method com/mojang/minecraft/level/Level/tickEntities ()V
+.method_map com/mojang/minecraft/level/Level/tickEntities ()V tickEntities
+!method com/mojang/minecraft/level/Level/tick ()V
+.method_map com/mojang/minecraft/level/Level/tick ()V tick
+!method com/mojang/minecraft/level/Level/countInstanceOf (Ljava/lang/Class;)I
+.method_map com/mojang/minecraft/level/Level/countInstanceOf (Ljava/lang/Class;)I countInstanceOf
+!method com/mojang/minecraft/level/Level/a (III)Z
+.method_map com/mojang/minecraft/level/Level/a (III)Z isInBounds
+!method com/mojang/minecraft/level/Level/getGroundLevel ()F
+.method_map com/mojang/minecraft/level/Level/getGroundLevel ()F getGroundLevel
+!method com/mojang/minecraft/level/Level/getWaterLevel ()F
+.method_map com/mojang/minecraft/level/Level/getWaterLevel ()F getWaterLevel
+!method com/mojang/minecraft/level/Level/containsAnyLiquid (Lcom/mojang/minecraft/phys/AABB;)Z
+.method_map com/mojang/minecraft/level/Level/containsAnyLiquid (Lcom/mojang/minecraft/phys/AABB;)Z containsAnyLiquid
+!method com/mojang/minecraft/level/Level/containsLiquid (Lcom/mojang/minecraft/phys/AABB;Lcom/mojang/minecraft/level/liquid/LiquidType;)Z
+.method_map com/mojang/minecraft/level/Level/containsLiquid (Lcom/mojang/minecraft/phys/AABB;Lcom/mojang/minecraft/level/liquid/LiquidType;)Z containsLiquid
+!method com/mojang/minecraft/level/Level/addToTickNextTick (IIII)V
+.method_map com/mojang/minecraft/level/Level/addToTickNextTick (IIII)V addToTickNextTick
+!method com/mojang/minecraft/level/Level/isFree (Lcom/mojang/minecraft/phys/AABB;)Z
+.method_map com/mojang/minecraft/level/Level/isFree (Lcom/mojang/minecraft/phys/AABB;)Z isFree
+!method com/mojang/minecraft/level/Level/findEntities (Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;)Ljava/util/List;
+.method_map com/mojang/minecraft/level/Level/findEntities (Lcom/mojang/minecraft/Entity;Lcom/mojang/minecraft/phys/AABB;)Ljava/util/List; findEntities
+!method com/mojang/minecraft/level/Level/isSolid (FFFF)Z
+.method_map com/mojang/minecraft/level/Level/isSolid (FFFF)Z isSolid
+!method com/mojang/minecraft/level/Level/a (FFF)Z
+.method_map com/mojang/minecraft/level/Level/a (FFF)Z isSolid
+!method com/mojang/minecraft/level/Level/getHighestTile (II)I
+.method_map com/mojang/minecraft/level/Level/getHighestTile (II)I getHighestTile
+!method com/mojang/minecraft/level/Level/setSpawnPos (IIIF)V
+.method_map com/mojang/minecraft/level/Level/setSpawnPos (IIIF)V setSpawnPos
+!method com/mojang/minecraft/level/Level/getBrightness (III)F
+.method_map com/mojang/minecraft/level/Level/getBrightness (III)F getBrightness
+!method com/mojang/minecraft/level/Level/getCaveness (FFFF)F
+.method_map com/mojang/minecraft/level/Level/getCaveness (FFFF)F getCaveness
+!method com/mojang/minecraft/level/Level/getCaveness (Lcom/mojang/minecraft/Entity;)F
+.method_map com/mojang/minecraft/level/Level/getCaveness (Lcom/mojang/minecraft/Entity;)F getCaveness
+!method com/mojang/minecraft/level/Level/copyBlocks ()[B
+.method_map com/mojang/minecraft/level/Level/copyBlocks ()[B copyBlocks
+!method com/mojang/minecraft/level/Level/getLiquid (III)Lcom/mojang/minecraft/level/liquid/LiquidType;
+.method_map com/mojang/minecraft/level/Level/getLiquid (III)Lcom/mojang/minecraft/level/liquid/LiquidType; getLiquid
+!method com/mojang/minecraft/level/Level/isWater (III)Z
+.method_map com/mojang/minecraft/level/Level/isWater (III)Z isWater
+!method com/mojang/minecraft/level/Level/setNetworkMode (Z)V
+.method_map com/mojang/minecraft/level/Level/setNetworkMode (Z)V setNetworkMode
+!method com/mojang/minecraft/level/Level/clip (Lcom/mojang/minecraft/math/Vec3D;Lcom/mojang/minecraft/math/Vec3D;)Lcom/mojang/minecraft/Vec3DCreator;
+.method_map com/mojang/minecraft/level/Level/clip (Lcom/mojang/minecraft/math/Vec3D;Lcom/mojang/minecraft/math/Vec3D;)Lcom/mojang/minecraft/Vec3DCreator; clip
+!method com/mojang/minecraft/level/Level/playSound (Ljava/lang/String;Lcom/mojang/minecraft/Entity;FF)V
+.method_map com/mojang/minecraft/level/Level/playSound (Ljava/lang/String;Lcom/mojang/minecraft/Entity;FF)V playSound
+!method com/mojang/minecraft/level/Level/playSound (Ljava/lang/String;FFFFF)V
+.method_map com/mojang/minecraft/level/Level/playSound (Ljava/lang/String;FFFFF)V playSound
+!method com/mojang/minecraft/level/Level/maybeGrowTree (III)Z
+.method_map com/mojang/minecraft/level/Level/maybeGrowTree (III)Z maybeGrowTree
+!method com/mojang/minecraft/level/Level/getPlayer ()Lcom/mojang/minecraft/Entity;
+.method_map com/mojang/minecraft/level/Level/getPlayer ()Lcom/mojang/minecraft/Entity; getPlayer
+!method com/mojang/minecraft/level/Level/addEntity (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/level/Level/addEntity (Lcom/mojang/minecraft/Entity;)V addEntity
+!method com/mojang/minecraft/level/Level/removeEntity (Lcom/mojang/minecraft/Entity;)V
+.method_map com/mojang/minecraft/level/Level/removeEntity (Lcom/mojang/minecraft/Entity;)V removeEntity
+!method com/mojang/minecraft/level/Level/explode (Lcom/mojang/minecraft/Entity;FFFF)V
+.method_map com/mojang/minecraft/level/Level/explode (Lcom/mojang/minecraft/Entity;FFFF)V explode
+!method com/mojang/minecraft/level/Level/findSubclassOf (Ljava/lang/Class;)Lcom/mojang/minecraft/Entity;
+.method_map com/mojang/minecraft/level/Level/findSubclassOf (Ljava/lang/Class;)Lcom/mojang/minecraft/Entity; findSubclassOf
+!method com/mojang/minecraft/level/Level/removeAllNonCreativeModeEntities ()V
+.method_map com/mojang/minecraft/level/Level/removeAllNonCreativeModeEntities ()V removeAllNonCreativeModeEntities
+
+# com/mojang/minecraft/level/generator/noise/PerlinNoise
+!field com/mojang/minecraft/level/generator/noise/PerlinNoise/a *
+.field_map com/mojang/minecraft/level/generator/noise/PerlinNoise/a noise
+
+!method com/mojang/minecraft/level/generator/noise/PerlinNoise/a (D)D
+.method_map com/mojang/minecraft/level/generator/noise/PerlinNoise/a (D)D a
+!method com/mojang/minecraft/level/generator/noise/PerlinNoise/a (DDD)D
+.method_map com/mojang/minecraft/level/generator/noise/PerlinNoise/a (DDD)D lerp
+!method com/mojang/minecraft/level/generator/noise/PerlinNoise/a (IDDD)D
+.method_map com/mojang/minecraft/level/generator/noise/PerlinNoise/a (IDDD)D grad
+!method com/mojang/minecraft/level/generator/noise/PerlinNoise/a (DD)D
+.method_map com/mojang/minecraft/level/generator/noise/PerlinNoise/a (DD)D compute
+
+# com/mojang/minecraft/level/tile/LeavesBlock
+!method com/mojang/minecraft/level/tile/LeavesBlock/f ()I
+.method_map com/mojang/minecraft/level/tile/LeavesBlock/f ()I getDropCount
+

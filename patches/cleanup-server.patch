@@ -1,0 +1,3729 @@
+diff -crB src/com/mojang/minecraft/Entity.java src2/com/mojang/minecraft/Entity.java
+*** src/com/mojang/minecraft/Entity.java	2013-07-15 20:01:22.000000000 -0700
+--- src2/com/mojang/minecraft/Entity.java	2013-07-15 20:13:48.848451000 -0700
+***************
+*** 63,72 ****
+  
+     protected void resetPos() {
+        if(this.level != null) {
+!          float var1 = (float)this.level.xSpawn + 0.5F;
+!          float var2 = (float)this.level.ySpawn;
+  
+!          for(float var3 = (float)this.level.zSpawn + 0.5F; var2 > 0.0F; ++var2) {
+              this.setPos(var1, var2, var3);
+              if(this.level.getCubes(this.bb).size() == 0) {
+                 break;
+--- 63,72 ----
+  
+     protected void resetPos() {
+        if(this.level != null) {
+!          float var1 = this.level.xSpawn + 0.5F;
+!          float var2 = this.level.ySpawn;
+  
+!          for(float var3 = this.level.zSpawn + 0.5F; var2 > 0.0F; ++var2) {
+              this.setPos(var1, var2, var3);
+              if(this.level.getCubes(this.bb).size() == 0) {
+                 break;
+***************
+*** 110,117 ****
+     public void turn(float var1, float var2) {
+        float var3 = this.xRot;
+        float var4 = this.yRot;
+!       this.yRot = (float)((double)this.yRot + (double)var1 * 0.15D);
+!       this.xRot = (float)((double)this.xRot - (double)var2 * 0.15D);
+        if(this.xRot < -90.0F) {
+           this.xRot = -90.0F;
+        }
+--- 110,117 ----
+     public void turn(float var1, float var2) {
+        float var3 = this.xRot;
+        float var4 = this.yRot;
+!       this.yRot = (float)(this.yRot + var1 * 0.15D);
+!       this.xRot = (float)(this.xRot - var2 * 0.15D);
+        if(this.xRot < -90.0F) {
+           this.xRot = -90.0F;
+        }
+***************
+*** 125,132 ****
+     }
+  
+     public void interpolateTurn(float var1, float var2) {
+!       this.yRot = (float)((double)this.yRot + (double)var1 * 0.15D);
+!       this.xRot = (float)((double)this.xRot - (double)var2 * 0.15D);
+        if(this.xRot < -90.0F) {
+           this.xRot = -90.0F;
+        }
+--- 125,132 ----
+     }
+  
+     public void interpolateTurn(float var1, float var2) {
+!       this.yRot = (float)(this.yRot + var1 * 0.15D);
+!       this.xRot = (float)(this.xRot - var2 * 0.15D);
+        if(this.xRot < -90.0F) {
+           this.xRot = -90.0F;
+        }
+***************
+*** 169,178 ****
+           float var7 = var2;
+           float var8 = var3;
+           AABB var9 = this.bb.copy();
+!          ArrayList var10 = this.level.getCubes(this.bb.expand(var1, var2, var3));
+  
+           for(int var11 = 0; var11 < var10.size(); ++var11) {
+!             var2 = ((AABB)var10.get(var11)).clipYCollide(this.bb, var2);
+           }
+  
+           this.bb.move(0.0F, var2, 0.0F);
+--- 169,178 ----
+           float var7 = var2;
+           float var8 = var3;
+           AABB var9 = this.bb.copy();
+!          ArrayList<AABB> var10 = this.level.getCubes(this.bb.expand(var1, var2, var3));
+  
+           for(int var11 = 0; var11 < var10.size(); ++var11) {
+!             var2 = var10.get(var11).clipYCollide(this.bb, var2);
+           }
+  
+           this.bb.move(0.0F, var2, 0.0F);
+***************
+*** 186,192 ****
+  
+           int var12;
+           for(var12 = 0; var12 < var10.size(); ++var12) {
+!             var1 = ((AABB)var10.get(var12)).clipXCollide(this.bb, var1);
+           }
+  
+           this.bb.move(var1, 0.0F, 0.0F);
+--- 186,192 ----
+  
+           int var12;
+           for(var12 = 0; var12 < var10.size(); ++var12) {
+!             var1 = var10.get(var12).clipXCollide(this.bb, var1);
+           }
+  
+           this.bb.move(var1, 0.0F, 0.0F);
+***************
+*** 197,203 ****
+           }
+  
+           for(var12 = 0; var12 < var10.size(); ++var12) {
+!             var3 = ((AABB)var10.get(var12)).clipZCollide(this.bb, var3);
+           }
+  
+           this.bb.move(0.0F, 0.0F, var3);
+--- 197,203 ----
+           }
+  
+           for(var12 = 0; var12 < var10.size(); ++var12) {
+!             var3 = var10.get(var12).clipZCollide(this.bb, var3);
+           }
+  
+           this.bb.move(0.0F, 0.0F, var3);
+***************
+*** 222,228 ****
+  
+              int var15;
+              for(var15 = 0; var15 < var10.size(); ++var15) {
+!                var2 = ((AABB)var10.get(var15)).clipYCollide(this.bb, var2);
+              }
+  
+              this.bb.move(0.0F, var2, 0.0F);
+--- 222,228 ----
+  
+              int var15;
+              for(var15 = 0; var15 < var10.size(); ++var15) {
+!                var2 = var10.get(var15).clipYCollide(this.bb, var2);
+              }
+  
+              this.bb.move(0.0F, var2, 0.0F);
+***************
+*** 233,239 ****
+              }
+  
+              for(var15 = 0; var15 < var10.size(); ++var15) {
+!                var1 = ((AABB)var10.get(var15)).clipXCollide(this.bb, var1);
+              }
+  
+              this.bb.move(var1, 0.0F, 0.0F);
+--- 233,239 ----
+              }
+  
+              for(var15 = 0; var15 < var10.size(); ++var15) {
+!                var1 = var10.get(var15).clipXCollide(this.bb, var1);
+              }
+  
+              this.bb.move(var1, 0.0F, 0.0F);
+***************
+*** 244,250 ****
+              }
+  
+              for(var15 = 0; var15 < var10.size(); ++var15) {
+!                var3 = ((AABB)var10.get(var15)).clipZCollide(this.bb, var3);
+              }
+  
+              this.bb.move(0.0F, 0.0F, var3);
+--- 244,250 ----
+              }
+  
+              for(var15 = 0; var15 < var10.size(); ++var15) {
+!                var3 = var10.get(var15).clipZCollide(this.bb, var3);
+              }
+  
+              this.bb.move(0.0F, 0.0F, var3);
+***************
+*** 260,266 ****
+                 var3 = var13;
+                 this.bb = var14.copy();
+              } else {
+!                this.ySlideOffset = (float)((double)this.ySlideOffset + 0.5D);
+              }
+           }
+  
+--- 260,266 ----
+                 var3 = var13;
+                 this.bb = var14.copy();
+              } else {
+!                this.ySlideOffset = (float)(this.ySlideOffset + 0.5D);
+              }
+           }
+  
+***************
+*** 293,302 ****
+           this.z = (this.bb.z0 + this.bb.z1) / 2.0F;
+           var18 = this.x - var4;
+           var17 = this.z - var5;
+!          this.walkDist = (float)((double)this.walkDist + (double)MathHelper.sqrt(var18 * var18 + var17 * var17) * 0.6D);
+           if(this.makeStepSound) {
+              int var19 = this.level.getTile((int)this.x, (int)(this.y - 0.2F - this.heightOffset), (int)this.z);
+!             if(this.walkDist > (float)this.nextStep && var19 > 0) {
+                 ++this.nextStep;
+                 Tile$SoundType var20;
+                 if((var20 = Block.blocks[var19].sound) != Tile$SoundType.none) {
+--- 293,302 ----
+           this.z = (this.bb.z0 + this.bb.z1) / 2.0F;
+           var18 = this.x - var4;
+           var17 = this.z - var5;
+!          this.walkDist = (float)(this.walkDist + MathHelper.sqrt(var18 * var18 + var17 * var17) * 0.6D);
+           if(this.makeStepSound) {
+              int var19 = this.level.getTile((int)this.x, (int)(this.y - 0.2F - this.heightOffset), (int)this.z);
+!             if(this.walkDist > this.nextStep && var19 > 0) {
+                 ++this.nextStep;
+                 Tile$SoundType var20;
+                 if((var20 = Block.blocks[var19].sound) != Tile$SoundType.none) {
+diff -crB src/com/mojang/minecraft/level/BlockMap.java src2/com/mojang/minecraft/level/BlockMap.java
+*** src/com/mojang/minecraft/level/BlockMap.java	2013-07-15 20:01:24.000000000 -0700
+--- src2/com/mojang/minecraft/level/BlockMap.java	2013-07-15 20:11:22.084452000 -0700
+***************
+*** 19,27 ****
+     private int height;
+     private BlockMap$Slot slot = new BlockMap$Slot(this, (SyntheticClass)null);
+     private BlockMap$Slot slot2 = new BlockMap$Slot(this, (SyntheticClass)null);
+!    public List[] entityGrid;
+!    public List all = new ArrayList();
+!    private List tmp = new ArrayList();
+  
+  
+     public BlockMap(int var1, int var2, int var3) {
+--- 19,27 ----
+     private int height;
+     private BlockMap$Slot slot = new BlockMap$Slot(this, (SyntheticClass)null);
+     private BlockMap$Slot slot2 = new BlockMap$Slot(this, (SyntheticClass)null);
+!    public List<Entity>[] entityGrid;
+!    public List<Entity> all = new ArrayList<Entity>();
+!    private List<Entity> tmp = new ArrayList<Entity>();
+  
+  
+     public BlockMap(int var1, int var2, int var3) {
+***************
+*** 45,51 ****
+        for(var1 = 0; var1 < this.width; ++var1) {
+           for(var2 = 0; var2 < this.depth; ++var2) {
+              for(var3 = 0; var3 < this.height; ++var3) {
+!                this.entityGrid[(var3 * this.depth + var2) * this.width + var1] = new ArrayList();
+              }
+           }
+        }
+--- 45,51 ----
+        for(var1 = 0; var1 < this.width; ++var1) {
+           for(var2 = 0; var2 < this.depth; ++var2) {
+              for(var3 = 0; var3 < this.height; ++var3) {
+!                this.entityGrid[(var3 * this.depth + var2) * this.width + var1] = new ArrayList<Entity>();
+              }
+           }
+        }
+***************
+*** 78,89 ****
+        }
+     }
+  
+!    public List getEntities(Entity var1, float var2, float var3, float var4, float var5, float var6, float var7) {
+        this.tmp.clear();
+        return this.getEntities(var1, var2, var3, var4, var5, var6, var7, this.tmp);
+     }
+  
+!    public List getEntities(Entity var1, float var2, float var3, float var4, float var5, float var6, float var7, List var8) {
+        BlockMap$Slot var9 = this.slot.init(var2, var3, var4);
+        BlockMap$Slot var10 = this.slot2.init(var5, var6, var7);
+  
+--- 78,89 ----
+        }
+     }
+  
+!    public List<Entity> getEntities(Entity var1, float var2, float var3, float var4, float var5, float var6, float var7) {
+        this.tmp.clear();
+        return this.getEntities(var1, var2, var3, var4, var5, var6, var7, this.tmp);
+     }
+  
+!    public List<Entity> getEntities(Entity var1, float var2, float var3, float var4, float var5, float var6, float var7, List<Entity> var8) {
+        BlockMap$Slot var9 = this.slot.init(var2, var3, var4);
+        BlockMap$Slot var10 = this.slot2.init(var5, var6, var7);
+  
+***************
+*** 91,101 ****
+           for(int var12 = BlockMap$Slot.access$500(var9) - 1; var12 <= BlockMap$Slot.access$500(var10) + 1; ++var12) {
+              for(int var13 = BlockMap$Slot.access$600(var9) - 1; var13 <= BlockMap$Slot.access$600(var10) + 1; ++var13) {
+                 if(var11 >= 0 && var12 >= 0 && var13 >= 0 && var11 < this.width && var12 < this.depth && var13 < this.height) {
+!                   List var14 = this.entityGrid[(var13 * this.depth + var12) * this.width + var11];
+  
+                    for(int var15 = 0; var15 < var14.size(); ++var15) {
+                       Entity var16;
+!                      if((var16 = (Entity)var14.get(var15)) != var1 && var16.intersects(var2, var3, var4, var5, var6, var7)) {
+                          var8.add(var16);
+                       }
+                    }
+--- 91,101 ----
+           for(int var12 = BlockMap$Slot.access$500(var9) - 1; var12 <= BlockMap$Slot.access$500(var10) + 1; ++var12) {
+              for(int var13 = BlockMap$Slot.access$600(var9) - 1; var13 <= BlockMap$Slot.access$600(var10) + 1; ++var13) {
+                 if(var11 >= 0 && var12 >= 0 && var13 >= 0 && var11 < this.width && var12 < this.depth && var13 < this.height) {
+!                   List<Entity> var14 = this.entityGrid[(var13 * this.depth + var12) * this.width + var11];
+  
+                    for(int var15 = 0; var15 < var14.size(); ++var15) {
+                       Entity var16;
+!                      if((var16 = var14.get(var15)) != var1 && var16.intersects(var2, var3, var4, var5, var6, var7)) {
+                          var8.add(var16);
+                       }
+                    }
+***************
+*** 111,120 ****
+        for(int var1 = 0; var1 < this.width; ++var1) {
+           for(int var2 = 0; var2 < this.depth; ++var2) {
+              for(int var3 = 0; var3 < this.height; ++var3) {
+!                List var4 = this.entityGrid[(var3 * this.depth + var2) * this.width + var1];
+  
+                 for(int var5 = 0; var5 < var4.size(); ++var5) {
+!                   if(!((Entity)var4.get(var5)).isCreativeModeAllowed()) {
+                       var4.remove(var5--);
+                    }
+                 }
+--- 111,120 ----
+        for(int var1 = 0; var1 < this.width; ++var1) {
+           for(int var2 = 0; var2 < this.depth; ++var2) {
+              for(int var3 = 0; var3 < this.height; ++var3) {
+!                List<Entity> var4 = this.entityGrid[(var3 * this.depth + var2) * this.width + var1];
+  
+                 for(int var5 = 0; var5 < var4.size(); ++var5) {
+!                   if(!var4.get(var5).isCreativeModeAllowed()) {
+                       var4.remove(var5--);
+                    }
+                 }
+***************
+*** 135,153 ****
+  
+     }
+  
+!    public List getEntities(Entity var1, AABB var2) {
+        this.tmp.clear();
+        return this.getEntities(var1, var2.x0, var2.y0, var2.z0, var2.x1, var2.y1, var2.z1, this.tmp);
+     }
+  
+!    public List getEntities(Entity var1, AABB var2, List var3) {
+        return this.getEntities(var1, var2.x0, var2.y0, var2.z0, var2.x1, var2.y1, var2.z1, var3);
+     }
+  
+     public void tickAll() {
+        for(int var1 = 0; var1 < this.all.size(); ++var1) {
+!          Entity var2;
+!          (var2 = (Entity)this.all.get(var1)).tick();
+           if(var2.removed) {
+              this.all.remove(var1--);
+              this.slot.init(var2.xOld, var2.yOld, var2.zOld).remove(var2);
+--- 135,153 ----
+  
+     }
+  
+!    public List<Entity> getEntities(Entity var1, AABB var2) {
+        this.tmp.clear();
+        return this.getEntities(var1, var2.x0, var2.y0, var2.z0, var2.x1, var2.y1, var2.z1, this.tmp);
+     }
+  
+!    public List<Entity> getEntities(Entity var1, AABB var2, List<Entity> var3) {
+        return this.getEntities(var1, var2.x0, var2.y0, var2.z0, var2.x1, var2.y1, var2.z1, var3);
+     }
+  
+     public void tickAll() {
+        for(int var1 = 0; var1 < this.all.size(); ++var1) {
+!          Entity var2 = this.all.get(var1);
+!          var2.tick();
+           if(var2.removed) {
+              this.all.remove(var1--);
+              this.slot.init(var2.xOld, var2.yOld, var2.zOld).remove(var2);
+***************
+*** 168,185 ****
+  
+     public void render(Vec3D var1, FrustumImpl var2, Frustum var3, float var4) {
+        for(int var5 = 0; var5 < this.width; ++var5) {
+!          float var6 = (float)((var5 << 4) - 2);
+!          float var7 = (float)((var5 + 1 << 4) + 2);
+  
+           for(int var8 = 0; var8 < this.depth; ++var8) {
+!             float var9 = (float)((var8 << 4) - 2);
+!             float var10 = (float)((var8 + 1 << 4) + 2);
+  
+              for(int var11 = 0; var11 < this.height; ++var11) {
+!                List var12;
+                 if((var12 = this.entityGrid[(var11 * this.depth + var8) * this.width + var5]).size() != 0) {
+!                   float var13 = (float)((var11 << 4) - 2);
+!                   float var14 = (float)((var11 + 1 << 4) + 2);
+                    if(var2.isBoxInFrustum(var6, var9, var13, var7, var10, var14)) {
+                       float var16 = var14;
+                       float var17 = var10;
+--- 168,185 ----
+  
+     public void render(Vec3D var1, FrustumImpl var2, Frustum var3, float var4) {
+        for(int var5 = 0; var5 < this.width; ++var5) {
+!          float var6 = (var5 << 4) - 2;
+!          float var7 = (var5 + 1 << 4) + 2;
+  
+           for(int var8 = 0; var8 < this.depth; ++var8) {
+!             float var9 = (var8 << 4) - 2;
+!             float var10 = (var8 + 1 << 4) + 2;
+  
+              for(int var11 = 0; var11 < this.height; ++var11) {
+!                List<Entity> var12;
+                 if((var12 = this.entityGrid[(var11 * this.depth + var8) * this.width + var5]).size() != 0) {
+!                   float var13 = (var11 << 4) - 2;
+!                   float var14 = (var11 + 1 << 4) + 2;
+                    if(var2.isBoxInFrustum(var6, var9, var13, var7, var10, var14)) {
+                       float var16 = var14;
+                       float var17 = var10;
+***************
+*** 243,250 ****
+                       boolean var21 = var10000;
+  
+                       for(int var23 = 0; var23 < var12.size(); ++var23) {
+!                         Entity var22;
+!                         if((var22 = (Entity)var12.get(var23)).shouldRender(var1)) {
+                             if(!var21) {
+                                AABB var24 = var22.bb;
+                                if(!var2.isBoxInFrustum(var24.x0, var24.y0, var24.z0, var24.x1, var24.y1, var24.z1)) {
+--- 243,250 ----
+                       boolean var21 = var10000;
+  
+                       for(int var23 = 0; var23 < var12.size(); ++var23) {
+!                         Entity var22 = var12.get(var23);
+!                         if(var22.shouldRender(var1)) {
+                             if(!var21) {
+                                AABB var24 = var22.bb;
+                                if(!var2.isBoxInFrustum(var24.x0, var24.y0, var24.z0, var24.x1, var24.y1, var24.z1)) {
+diff -crB src/com/mojang/minecraft/level/generator/LevelGenerator.java src2/com/mojang/minecraft/level/generator/LevelGenerator.java
+*** src/com/mojang/minecraft/level/generator/LevelGenerator.java	2013-07-15 20:01:30.000000000 -0700
+--- src2/com/mojang/minecraft/level/generator/LevelGenerator.java	2013-07-15 20:18:00.296449000 -0700
+***************
+*** 44,52 ****
+        int var11;
+        for(var10 = 0; var10 < var41.width; ++var10) {
+           for(var11 = 0; var11 < var41.depth; ++var11) {
+!             double var12 = var5.compute((double)((float)var10 * var9), (double)((float)var11 * var9)) / 6.0D + (double)-4;
+!             double var14 = var6.compute((double)((float)var10 * var9), (double)((float)var11 * var9)) / 5.0D + 10.0D + (double)-4;
+!             if(var7.compute((double)var10, (double)var11) / 8.0D > 0.0D) {
+                 var14 = var12;
+              }
+  
+--- 44,52 ----
+        int var11;
+        for(var10 = 0; var10 < var41.width; ++var10) {
+           for(var11 = 0; var11 < var41.depth; ++var11) {
+!             double var12 = var5.compute(var10 * var9, var11 * var9) / 6.0D + -4;
+!             double var14 = var6.compute(var10 * var9, var11 * var9) / 5.0D + 10.0D + -4;
+!             if(var7.compute(var10, var11) / 8.0D > 0.0D) {
+                 var14 = var12;
+              }
+  
+***************
+*** 70,77 ****
+        int var52;
+        for(var51 = 0; var51 < var41.width; ++var51) {
+           for(var52 = 0; var52 < var41.depth; ++var52) {
+!             double var20 = var6.compute((double)(var51 << 1), (double)(var52 << 1)) / 8.0D;
+!             var11 = var47.compute((double)(var51 << 1), (double)(var52 << 1)) > 0.0D?1:0;
+              if(var20 > 2.0D) {
+                 var22 = ((var42[var51 + var52 * var41.width] - var11) / 2 << 1) + var11;
+                 var42[var51 + var52 * var41.width] = var22;
+--- 70,77 ----
+        int var52;
+        for(var51 = 0; var51 < var41.width; ++var51) {
+           for(var52 = 0; var52 < var41.depth; ++var52) {
+!             double var20 = var6.compute(var51 << 1, var52 << 1) / 8.0D;
+!             var11 = var47.compute(var51 << 1, var52 << 1) > 0.0D?1:0;
+              if(var20 > 2.0D) {
+                 var22 = ((var42[var51 + var52 * var41.width] - var11) / 2 << 1) + var11;
+                 var42[var51 + var52 * var41.width] = var22;
+***************
+*** 94,100 ****
+        int var26;
+        for(var23 = 0; var23 < var44; ++var23) {
+           for(var10 = 0; var10 < var49; ++var10) {
+!             var11 = (int)(var54.compute((double)var23, (double)var10) / 24.0D) - 4;
+              var24 = (var22 = var42[var23 + var10 * var44] + var41.waterLevel) + var11;
+              var42[var23 + var10 * var44] = Math.max(var22, var24);
+              if(var42[var23 + var10 * var44] > var51 - 2) {
+--- 94,100 ----
+        int var26;
+        for(var23 = 0; var23 < var44; ++var23) {
+           for(var10 = 0; var10 < var49; ++var10) {
+!             var11 = (int)(var54.compute(var23, var10) / 24.0D) - 4;
+              var24 = (var22 = var42[var23 + var10 * var44] + var41.waterLevel) + var11;
+              var42[var23 + var10 * var44] = Math.max(var22, var24);
+              if(var42[var23 + var10 * var44] > var51 - 2) {
+***************
+*** 126,133 ****
+        }
+  
+        this.server.logFine("Carving..");
+-       boolean var48 = true;
+-       boolean var43 = false;
+        var41 = this;
+        var49 = this.width;
+        var51 = this.depth;
+--- 126,131 ----
+***************
+*** 135,143 ****
+        var23 = var49 * var51 * var52 / 256 / 64 << 1;
+  
+        for(var10 = 0; var10 < var23; ++var10) {
+!          float var55 = var41.random.nextFloat() * (float)var49;
+!          float var56 = var41.random.nextFloat() * (float)var52;
+!          float var60 = var41.random.nextFloat() * (float)var51;
+           var25 = (int)((var41.random.nextFloat() + var41.random.nextFloat()) * 200.0F);
+           float var63 = var41.random.nextFloat() * 3.1415927F * 2.0F;
+           float var61 = 0.0F;
+--- 133,141 ----
+        var23 = var49 * var51 * var52 / 256 / 64 << 1;
+  
+        for(var10 = 0; var10 < var23; ++var10) {
+!          float var55 = var41.random.nextFloat() * var49;
+!          float var56 = var41.random.nextFloat() * var52;
+!          float var60 = var41.random.nextFloat() * var51;
+           var25 = (int)((var41.random.nextFloat() + var41.random.nextFloat()) * 200.0F);
+           float var63 = var41.random.nextFloat() * 3.1415927F * 2.0F;
+           float var61 = 0.0F;
+***************
+*** 157,172 ****
+                 float var45 = var55 + (var41.random.nextFloat() * 4.0F - 2.0F) * 0.2F;
+                 float var46 = var56 + (var41.random.nextFloat() * 4.0F - 2.0F) * 0.2F;
+                 float var31 = var60 + (var41.random.nextFloat() * 4.0F - 2.0F) * 0.2F;
+!                float var32 = ((float)var41.height - var46) / (float)var41.height;
+                 var32 = 1.2F + (var32 * 3.5F + 1.0F) * var30;
+!                var32 = MathHelper.sin((float)var3 * 3.1415927F / (float)var25) * var32;
+  
+                 for(int var33 = (int)(var45 - var32); var33 <= (int)(var45 + var32); ++var33) {
+                    for(int var34 = (int)(var46 - var32); var34 <= (int)(var46 + var32); ++var34) {
+                       for(int var35 = (int)(var31 - var32); var35 <= (int)(var31 + var32); ++var35) {
+!                         float var36 = (float)var33 - var45;
+!                         float var37 = (float)var34 - var46;
+!                         float var38 = (float)var35 - var31;
+                          if(var36 * var36 + var37 * var37 * 2.0F + var38 * var38 < var32 * var32 && var33 >= 1 && var34 >= 1 && var35 >= 1 && var33 < var41.width - 1 && var34 < var41.height - 1 && var35 < var41.depth - 1) {
+                             int var65 = (var34 * var41.depth + var35) * var41.width + var33;
+                             if(var41.blocks[var65] == Block.STONE.id) {
+--- 155,170 ----
+                 float var45 = var55 + (var41.random.nextFloat() * 4.0F - 2.0F) * 0.2F;
+                 float var46 = var56 + (var41.random.nextFloat() * 4.0F - 2.0F) * 0.2F;
+                 float var31 = var60 + (var41.random.nextFloat() * 4.0F - 2.0F) * 0.2F;
+!                float var32 = (var41.height - var46) / var41.height;
+                 var32 = 1.2F + (var32 * 3.5F + 1.0F) * var30;
+!                var32 = MathHelper.sin(var3 * 3.1415927F / var25) * var32;
+  
+                 for(int var33 = (int)(var45 - var32); var33 <= (int)(var45 + var32); ++var33) {
+                    for(int var34 = (int)(var46 - var32); var34 <= (int)(var46 + var32); ++var34) {
+                       for(int var35 = (int)(var31 - var32); var35 <= (int)(var31 + var32); ++var35) {
+!                         float var36 = var33 - var45;
+!                         float var37 = var34 - var46;
+!                         float var38 = var35 - var31;
+                          if(var36 * var36 + var37 * var37 * 2.0F + var38 * var38 < var32 * var32 && var33 >= 1 && var34 >= 1 && var35 >= 1 && var33 < var41.width - 1 && var34 < var41.height - 1 && var35 < var41.depth - 1) {
+                             int var65 = (var34 * var41.depth + var35) * var41.width + var33;
+                             if(var41.blocks[var65] == Block.STONE.id) {
+***************
+*** 214,220 ****
+  
+        for(var49 = 0; var49 < var44; ++var49) {
+           var51 = var41.random.nextInt(var41.width);
+!          var52 = (int)(var41.random.nextFloat() * var41.random.nextFloat() * (float)(var41.waterLevel - 3));
+           var23 = var41.random.nextInt(var41.depth);
+           if(var41.blocks[(var52 * var41.depth + var23) * var41.width + var51] == 0) {
+              var41.flood(var51, var52, var23, 0, Block.STATIONARY_LAVA.id);
+--- 212,218 ----
+  
+        for(var49 = 0; var49 < var44; ++var49) {
+           var51 = var41.random.nextInt(var41.width);
+!          var52 = (int)(var41.random.nextFloat() * var41.random.nextFloat() * (var41.waterLevel - 3));
+           var23 = var41.random.nextInt(var41.depth);
+           if(var41.blocks[(var52 * var41.depth + var23) * var41.width + var51] == 0) {
+              var41.flood(var51, var52, var23, 0, Block.STATIONARY_LAVA.id);
+***************
+*** 233,240 ****
+        int var62;
+        for(var10 = 0; var10 < var44; ++var10) {
+           for(var11 = 0; var11 < var49; ++var11) {
+!             boolean var59 = var54.compute((double)var10, (double)var11) > 8.0D;
+!             boolean var58 = var57.compute((double)var10, (double)var11) > 12.0D;
+              var26 = ((var25 = var42[var10 + var11 * var44]) * var41.depth + var11) * var41.width + var10;
+              if(((var27 = var41.blocks[((var25 + 1) * var41.depth + var11) * var41.width + var10] & 255) == Block.WATER.id || var27 == Block.STATIONARY_WATER.id) && var25 <= var51 / 2 - 1 && var58) {
+                 var41.blocks[var26] = (byte)Block.GRAVEL.id;
+--- 231,238 ----
+        int var62;
+        for(var10 = 0; var10 < var44; ++var10) {
+           for(var11 = 0; var11 < var49; ++var11) {
+!             boolean var59 = var54.compute(var10, var11) > 8.0D;
+!             boolean var58 = var57.compute(var10, var11) > 12.0D;
+              var26 = ((var25 = var42[var10 + var11 * var44]) * var41.depth + var11) * var41.width + var10;
+              if(((var27 = var41.blocks[((var25 + 1) * var41.depth + var11) * var41.width + var10] & 255) == Block.WATER.id || var27 == Block.STATIONARY_WATER.id) && var25 <= var51 / 2 - 1 && var58) {
+                 var41.blocks[var26] = (byte)Block.GRAVEL.id;
+***************
+*** 364,373 ****
+        int var6 = var3 * var4 * var5 / 256 / 64 * var2 / 100;
+  
+        for(int var7 = 0; var7 < var6; ++var7) {
+!          float var8 = this.random.nextFloat() * (float)var3;
+!          float var9 = this.random.nextFloat() * (float)var5;
+!          float var10 = this.random.nextFloat() * (float)var4;
+!          int var11 = (int)((this.random.nextFloat() + this.random.nextFloat()) * 75.0F * (float)var2 / 100.0F);
+           float var12 = this.random.nextFloat() * 3.1415927F * 2.0F;
+           float var13 = 0.0F;
+           float var14 = this.random.nextFloat() * 3.1415927F * 2.0F;
+--- 362,371 ----
+        int var6 = var3 * var4 * var5 / 256 / 64 * var2 / 100;
+  
+        for(int var7 = 0; var7 < var6; ++var7) {
+!          float var8 = this.random.nextFloat() * var3;
+!          float var9 = this.random.nextFloat() * var5;
+!          float var10 = this.random.nextFloat() * var4;
+!          int var11 = (int)((this.random.nextFloat() + this.random.nextFloat()) * 75.0F * var2 / 100.0F);
+           float var12 = this.random.nextFloat() * 3.1415927F * 2.0F;
+           float var13 = 0.0F;
+           float var14 = this.random.nextFloat() * 3.1415927F * 2.0F;
+***************
+*** 381,394 ****
+              var13 = (var13 *= 0.9F) + (this.random.nextFloat() - this.random.nextFloat());
+              var14 = (var14 + var15 * 0.5F) * 0.5F;
+              var15 = (var15 *= 0.9F) + (this.random.nextFloat() - this.random.nextFloat());
+!             float var17 = MathHelper.sin((float)var16 * 3.1415927F / (float)var11) * (float)var2 / 100.0F + 1.0F;
+  
+              for(int var18 = (int)(var8 - var17); var18 <= (int)(var8 + var17); ++var18) {
+                 for(int var19 = (int)(var9 - var17); var19 <= (int)(var9 + var17); ++var19) {
+                    for(int var20 = (int)(var10 - var17); var20 <= (int)(var10 + var17); ++var20) {
+!                      float var21 = (float)var18 - var8;
+!                      float var22 = (float)var19 - var9;
+!                      float var23 = (float)var20 - var10;
+                       if(var21 * var21 + var22 * var22 * 2.0F + var23 * var23 < var17 * var17 && var18 >= 1 && var19 >= 1 && var20 >= 1 && var18 < this.width - 1 && var19 < this.height - 1 && var20 < this.depth - 1) {
+                          int var25 = (var19 * this.depth + var20) * this.width + var18;
+                          if(this.blocks[var25] == Block.STONE.id) {
+--- 379,392 ----
+              var13 = (var13 *= 0.9F) + (this.random.nextFloat() - this.random.nextFloat());
+              var14 = (var14 + var15 * 0.5F) * 0.5F;
+              var15 = (var15 *= 0.9F) + (this.random.nextFloat() - this.random.nextFloat());
+!             float var17 = MathHelper.sin(var16 * 3.1415927F / var11) * var2 / 100.0F + 1.0F;
+  
+              for(int var18 = (int)(var8 - var17); var18 <= (int)(var8 + var17); ++var18) {
+                 for(int var19 = (int)(var9 - var17); var19 <= (int)(var9 + var17); ++var19) {
+                    for(int var20 = (int)(var10 - var17); var20 <= (int)(var10 + var17); ++var20) {
+!                      float var21 = var18 - var8;
+!                      float var22 = var19 - var9;
+!                      float var23 = var20 - var10;
+                       if(var21 * var21 + var22 * var22 * 2.0F + var23 * var23 < var17 * var17 && var18 >= 1 && var19 >= 1 && var20 >= 1 && var18 < this.width - 1 && var19 < this.height - 1 && var20 < this.depth - 1) {
+                          int var25 = (var19 * this.depth + var20) * this.width + var18;
+                          if(this.blocks[var25] == Block.STONE.id) {
+***************
+*** 405,417 ****
+  
+     private long flood(int var1, int var2, int var3, int var4, int var5) {
+        byte var20 = (byte)var5;
+!       ArrayList var21 = new ArrayList();
+        byte var6 = 0;
+        int var7 = 1;
+  
+!       int var8;
+!       for(var8 = 1; 1 << var7 < this.width; ++var7) {
+!          ;
+        }
+  
+        while(1 << var8 < this.depth) {
+--- 403,415 ----
+  
+     private long flood(int var1, int var2, int var3, int var4, int var5) {
+        byte var20 = (byte)var5;
+!       ArrayList<int[]> var21 = new ArrayList<int[]>();
+        byte var6 = 0;
+        int var7 = 1;
+  
+!       int var8 = 1;
+!       while(1 << var7 < this.width) {
+!     	  ++var7;
+        }
+  
+        while(1 << var8 < this.depth) {
+***************
+*** 429,435 ****
+           --var22;
+           var2 = this.floodData[var22];
+           if(var22 == 0 && var21.size() > 0) {
+!             this.floodData = (int[])var21.remove(var21.size() - 1);
+              var22 = this.floodData.length;
+           }
+  
+--- 427,433 ----
+           --var22;
+           var2 = this.floodData[var22];
+           if(var22 == 0 && var21.size() > 0) {
+!             this.floodData = var21.remove(var21.size() - 1);
+              var22 = this.floodData.length;
+           }
+  
+***************
+*** 455,463 ****
+           boolean var23 = false;
+           boolean var24 = false;
+           boolean var18 = false;
+!          var11 += (long)(var15 - var14);
+  
+!          for(var14 = var14; var14 < var15; ++var14) {
+              this.blocks[var2] = var20;
+              boolean var19;
+              if(var3 > 0) {
+--- 453,461 ----
+           boolean var23 = false;
+           boolean var24 = false;
+           boolean var18 = false;
+!          var11 += var15 - var14;
+  
+!          for(int var26 = var14; var26 < var15; ++var26) {
+              this.blocks[var2] = var20;
+              boolean var19;
+              if(var3 > 0) {
+diff -crB src/com/mojang/minecraft/level/generator/noise/PerlinNoise.java src2/com/mojang/minecraft/level/generator/noise/PerlinNoise.java
+*** src/com/mojang/minecraft/level/generator/noise/PerlinNoise.java	2013-07-15 20:01:30.000000000 -0700
+--- src2/com/mojang/minecraft/level/generator/noise/PerlinNoise.java	2013-07-15 20:18:25.860448000 -0700
+***************
+*** 15,23 ****
+     public PerlinNoise(Random var1) {
+        this.noise = new int[512];
+  
+!       int var2;
+!       for(var2 = 0; var2 < 256; this.noise[var2] = var2++) {
+!          ;
+        }
+  
+        for(var2 = 0; var2 < 256; ++var2) {
+--- 15,23 ----
+     public PerlinNoise(Random var1) {
+        this.noise = new int[512];
+  
+!       int var2 = 0;
+!       while(var2 < 256) {
+!     	 this.noise[var2] = var2++;
+        }
+  
+        for(var2 = 0; var2 < 256; ++var2) {
+diff -crB src/com/mojang/minecraft/level/LevelIO.java src2/com/mojang/minecraft/level/LevelIO.java
+*** src/com/mojang/minecraft/level/LevelIO.java	2013-07-15 20:01:22.000000000 -0700
+--- src2/com/mojang/minecraft/level/LevelIO.java	2013-07-15 20:45:05.552436000 -0700
+***************
+*** 61,69 ****
+                 return var2;
+              }
+           }
+!       } catch (Exception var9) {
+           var9.printStackTrace();
+-          "Failed to load level: " + var9.toString();
+           return null;
+        }
+     }
+--- 60,68 ----
+                 return var2;
+              }
+           }
+!       } catch (Exception var9) {
+!          System.err.println("Failed to load level: " + var9.toString());
+           var9.printStackTrace();
+           return null;
+        }
+     }
+diff -crB src/com/mojang/minecraft/level/Level.java src2/com/mojang/minecraft/level/Level.java
+*** src/com/mojang/minecraft/level/Level.java	2013-07-15 20:01:24.000000000 -0700
+--- src2/com/mojang/minecraft/level/Level.java	2013-07-15 20:16:41.400449000 -0700
+***************
+*** 1,13 ****
+  package com.mojang.minecraft.level;
+  
+  import com.mojang.minecraft.Entity;
+- import com.mojang.minecraft.Vec3DCreator;
+  import com.mojang.minecraft.level.BlockMap;
+  import com.mojang.minecraft.level.LevelRenderer;
+  import com.mojang.minecraft.level.NextTickListEntry;
+  import com.mojang.minecraft.level.liquid.LiquidType;
+  import com.mojang.minecraft.level.tile.Block;
+- import com.mojang.minecraft.math.Vec3D;
+  import com.mojang.minecraft.particle.ParticleManager;
+  import com.mojang.minecraft.phys.AABB;
+  import com.mojang.minecraft.server.MinecraftServer;
+--- 1,11 ----
+***************
+*** 32,42 ****
+     public int ySpawn;
+     public int zSpawn;
+     public float rotSpawn;
+!    private transient ArrayList listeners = new ArrayList();
+     private transient int[] highest;
+     transient Random random = new Random();
+     private transient int id;
+!    private transient ArrayList tickList;
+     public BlockMap blockMap;
+     private boolean networkMode;
+     public transient LevelRenderer rendererContext;
+--- 30,40 ----
+     public int ySpawn;
+     public int zSpawn;
+     public float rotSpawn;
+!    private transient ArrayList<MinecraftServer> listeners = new ArrayList<MinecraftServer>();
+     private transient int[] highest;
+     transient Random random = new Random();
+     private transient int id;
+!    private transient ArrayList<NextTickListEntry> tickList;
+     public BlockMap blockMap;
+     private boolean networkMode;
+     public transient LevelRenderer rendererContext;
+***************
+*** 55,61 ****
+  
+     public Level() {
+        this.id = this.random.nextInt();
+!       this.tickList = new ArrayList();
+        this.networkMode = false;
+        this.unprocessed = 0;
+        this.tickCount = 0;
+--- 53,59 ----
+  
+     public Level() {
+        this.id = this.random.nextInt();
+!       this.tickList = new ArrayList<NextTickListEntry>();
+        this.networkMode = false;
+        this.unprocessed = 0;
+        this.tickCount = 0;
+***************
+*** 66,78 ****
+        if(this.blocks == null) {
+           throw new RuntimeException("The level is corrupt!");
+        } else {
+!          this.listeners = new ArrayList();
+           this.highest = new int[this.width * this.height];
+           Arrays.fill(this.highest, this.depth);
+           this.calcLightDepths(0, 0, this.width, this.height);
+           this.random = new Random();
+           this.id = this.random.nextInt();
+!          this.tickList = new ArrayList();
+           if(this.waterLevel == 0) {
+              this.waterLevel = this.depth / 2;
+           }
+--- 64,76 ----
+        if(this.blocks == null) {
+           throw new RuntimeException("The level is corrupt!");
+        } else {
+!          this.listeners = new ArrayList<MinecraftServer>();
+           this.highest = new int[this.width * this.height];
+           Arrays.fill(this.highest, this.depth);
+           this.calcLightDepths(0, 0, this.width, this.height);
+           this.random = new Random();
+           this.id = this.random.nextInt();
+!          this.tickList = new ArrayList<NextTickListEntry>();
+           if(this.waterLevel == 0) {
+              this.waterLevel = this.depth / 2;
+           }
+***************
+*** 123,135 ****
+        Random var1 = new Random();
+        int var2 = 0;
+  
+!       int var3;
+!       int var4;
+!       int var5;
+!       do {
+!          ++var2;
+!          var3 = var1.nextInt(this.width / 2) + this.width / 4;
+!          var4 = var1.nextInt(this.height / 2) + this.height / 4;
+           var5 = this.getHighestTile(var3, var4) + 1;
+           if(var2 == 10000) {
+              this.xSpawn = var3;
+--- 121,133 ----
+        Random var1 = new Random();
+        int var2 = 0;
+  
+!       int var3 = var1.nextInt(this.width / 2) + this.width / 4;
+!       int var4 = var1.nextInt(this.height / 2) + this.height / 4;
+!       int var5 = this.getHighestTile(var3, var4) + 1;
+!       while(var5 <= this.getWaterLevel()) {
+!          var2++;
+!          var3 = var1.nextInt(this.width / 2) + this.width / 4;
+!          var4 = var1.nextInt(this.height / 2) + this.height / 4;
+           var5 = this.getHighestTile(var3, var4) + 1;
+           if(var2 == 10000) {
+              this.xSpawn = var3;
+***************
+*** 137,143 ****
+              this.zSpawn = var4;
+              return;
+           }
+!       } while((float)var5 <= this.getWaterLevel());
+  
+        this.xSpawn = var3;
+        this.ySpawn = var5;
+--- 135,141 ----
+              this.zSpawn = var4;
+              return;
+           }
+!       }
+  
+        this.xSpawn = var3;
+        this.ySpawn = var5;
+***************
+*** 149,157 ****
+           for(int var6 = var2; var6 < var2 + var4; ++var6) {
+              int var7 = this.highest[var5 + var6 * this.width];
+  
+!             int var8;
+!             for(var8 = this.depth - 1; var8 > 0 && !this.isLightBlocker(var5, var8, var6); --var8) {
+!                ;
+              }
+  
+              this.highest[var5 + var6 * this.width] = var8;
+--- 147,155 ----
+           for(int var6 = var2; var6 < var2 + var4; ++var6) {
+              int var7 = this.highest[var5 + var6 * this.width];
+  
+!             int var8 = this.depth - 1;
+!             while(var8 > 0 && !this.isLightBlocker(var5, var8, var6)) {
+!                --var8;
+              }
+  
+              this.highest[var5 + var6 * this.width] = var8;
+***************
+*** 180,187 ****
+        return (var4 = Block.blocks[this.getTile(var1, var2, var3)]) == null?false:var4.isOpaque();
+     }
+  
+!    public ArrayList getCubes(AABB var1) {
+!       ArrayList var2 = new ArrayList();
+        int var3 = (int)var1.x0;
+        int var4 = (int)var1.x1 + 1;
+        int var5 = (int)var1.y0;
+--- 178,185 ----
+        return (var4 = Block.blocks[this.getTile(var1, var2, var3)]) == null?false:var4.isOpaque();
+     }
+  
+!    public ArrayList<AABB> getCubes(AABB var1) {
+!       ArrayList<AABB> var2 = new ArrayList<AABB>();
+        int var3 = (int)var1.x0;
+        int var4 = (int)var1.x1 + 1;
+        int var5 = (int)var1.y0;
+***************
+*** 200,215 ****
+           --var7;
+        }
+  
+!       for(var3 = var3; var3 < var4; ++var3) {
+           for(int var9 = var5; var9 < var6; ++var9) {
+              for(int var10 = var7; var10 < var8; ++var10) {
+                 AABB var11;
+!                if(var3 >= 0 && var9 >= 0 && var10 >= 0 && var3 < this.width && var9 < this.depth && var10 < this.height) {
+                    Block var12;
+!                   if((var12 = Block.blocks[this.getTile(var3, var9, var10)]) != null && (var11 = var12.getCollisionBox(var3, var9, var10)) != null && var1.intersectsInner(var11)) {
+                       var2.add(var11);
+                    }
+!                } else if((var3 < 0 || var9 < 0 || var10 < 0 || var3 >= this.width || var10 >= this.height) && (var11 = Block.BEDROCK.getCollisionBox(var3, var9, var10)) != null && var1.intersectsInner(var11)) {
+                    var2.add(var11);
+                 }
+              }
+--- 198,213 ----
+           --var7;
+        }
+  
+!       for(int var13 = var3; var13 < var4; ++var13) {
+           for(int var9 = var5; var9 < var6; ++var9) {
+              for(int var10 = var7; var10 < var8; ++var10) {
+                 AABB var11;
+!                if(var13 >= 0 && var9 >= 0 && var10 >= 0 && var13 < this.width && var9 < this.depth && var10 < this.height) {
+                    Block var12;
+!                   if((var12 = Block.blocks[this.getTile(var13, var9, var10)]) != null && (var11 = var12.getCollisionBox(var13, var9, var10)) != null && var1.intersectsInner(var11)) {
+                       var2.add(var11);
+                    }
+!                } else if((var13 < 0 || var9 < 0 || var10 < 0 || var13 >= this.width || var10 >= this.height) && (var11 = Block.BEDROCK.getCollisionBox(var13, var9, var10)) != null && var1.intersectsInner(var11)) {
+                    var2.add(var11);
+                 }
+              }
+***************
+*** 239,245 ****
+           if(var4 == this.blocks[(var2 * this.height + var3) * this.width + var1]) {
+              return false;
+           } else {
+!             if(var4 == 0 && (var1 == 0 || var3 == 0 || var1 == this.width - 1 || var3 == this.height - 1) && (float)var2 >= this.getGroundLevel() && (float)var2 < this.getWaterLevel()) {
+                 var4 = Block.WATER.id;
+              }
+  
+--- 237,243 ----
+           if(var4 == this.blocks[(var2 * this.height + var3) * this.width + var1]) {
+              return false;
+           } else {
+!             if(var4 == 0 && (var1 == 0 || var3 == 0 || var1 == this.width - 1 || var3 == this.height - 1) && var2 >= this.getGroundLevel() && var2 < this.getWaterLevel()) {
+                 var4 = Block.WATER.id;
+              }
+  
+***************
+*** 256,262 ****
+              this.calcLightDepths(var1, var3, 1, 1);
+  
+              for(var4 = 0; var4 < this.listeners.size(); ++var4) {
+!                ((MinecraftServer)this.listeners.get(var4)).sendBlockChange(var1, var2, var3);
+              }
+  
+              return true;
+--- 254,260 ----
+              this.calcLightDepths(var1, var3, 1, 1);
+  
+              for(var4 = 0; var4 < this.listeners.size(); ++var4) {
+!                this.listeners.get(var4).sendBlockChange(var1, var2, var3);
+              }
+  
+              return true;
+***************
+*** 339,347 ****
+        ++this.tickCount;
+        int var1 = 1;
+  
+!       int var2;
+!       for(var2 = 1; 1 << var1 < this.width; ++var1) {
+!          ;
+        }
+  
+        while(1 << var2 < this.height) {
+--- 337,345 ----
+        ++this.tickCount;
+        int var1 = 1;
+  
+!       int var2 = 1;
+!       while(1 << var1 < this.width) {
+!     	  ++var1;
+        }
+  
+        while(1 << var2 < this.height) {
+***************
+*** 358,364 ****
+  
+           for(var7 = 0; var7 < var6; ++var7) {
+              NextTickListEntry var8;
+!             if((var8 = (NextTickListEntry)this.tickList.remove(0)).ticks > 0) {
+                 --var8.ticks;
+                 this.tickList.add(var8);
+              } else {
+--- 356,362 ----
+  
+           for(var7 = 0; var7 < var6; ++var7) {
+              NextTickListEntry var8;
+!             if((var8 = this.tickList.remove(0)).ticks > 0) {
+                 --var8.ticks;
+                 this.tickList.add(var8);
+              } else {
+***************
+*** 388,398 ****
+  
+     }
+  
+!    public int countInstanceOf(Class var1) {
+        int var2 = 0;
+  
+        for(int var3 = 0; var3 < this.blockMap.all.size(); ++var3) {
+!          Entity var4 = (Entity)this.blockMap.all.get(var3);
+           if(var1.isAssignableFrom(var4.getClass())) {
+              ++var2;
+           }
+--- 386,396 ----
+  
+     }
+  
+!    public int countInstanceOf(Class<? extends Entity> var1) {
+        int var2 = 0;
+  
+        for(int var3 = 0; var3 < this.blockMap.all.size(); ++var3) {
+!          Entity var4 = this.blockMap.all.get(var3);
+           if(var1.isAssignableFrom(var4.getClass())) {
+              ++var2;
+           }
+***************
+*** 410,416 ****
+     }
+  
+     public float getWaterLevel() {
+!       return (float)this.waterLevel;
+     }
+  
+     public boolean containsAnyLiquid(AABB var1) {
+--- 408,414 ----
+     }
+  
+     public float getWaterLevel() {
+!       return this.waterLevel;
+     }
+  
+     public boolean containsAnyLiquid(AABB var1) {
+***************
+*** 543,549 ****
+        return this.blockMap.getEntities((Entity)null, var1).size() == 0;
+     }
+  
+!    public List findEntities(Entity var1, AABB var2) {
+        return this.blockMap.getEntities(var1, var2);
+     }
+  
+--- 541,547 ----
+        return this.blockMap.getEntities((Entity)null, var1).size() == 0;
+     }
+  
+!    public List<Entity> findEntities(Entity var1, AABB var2) {
+        return this.blockMap.getEntities(var1, var2);
+     }
+  
+***************
+*** 557,565 ****
+     }
+  
+     public int getHighestTile(int var1, int var2) {
+!       int var3;
+!       for(var3 = this.depth; (this.getTile(var1, var3 - 1, var2) == 0 || Block.blocks[this.getTile(var1, var3 - 1, var2)].getLiquidType() != LiquidType.NOT_LIQUID) && var3 > 0; --var3) {
+!          ;
+        }
+  
+        return var3;
+--- 555,563 ----
+     }
+  
+     public int getHighestTile(int var1, int var2) {
+!       int var3 = this.depth;
+!       while((this.getTile(var1, var3 - 1, var2) == 0 || Block.blocks[this.getTile(var1, var3 - 1, var2)].getLiquidType() != LiquidType.NOT_LIQUID) && var3 > 0) {
+!          --var3;
+        }
+  
+        return var3;
+***************
+*** 586,597 ****
+        for(int var9 = var5 - 6; var9 <= var5 + 6; ++var9) {
+           for(int var10 = var6 - 6; var10 <= var6 + 6; ++var10) {
+              if(this.isInBounds(var9, var14, var10) && !this.isSolidTile(var9, var14, var10)) {
+!                float var11 = (float)var9 + 0.5F - var1;
+  
+                 float var12;
+!                float var13;
+!                for(var13 = (float)(Math.atan2((double)(var12 = (float)var10 + 0.5F - var3), (double)var11) - (double)(var4 * 3.1415927F / 180.0F) + 1.5707963705062866D); var13 < -3.1415927F; var13 += 6.2831855F) {
+!                   ;
+                 }
+  
+                 while(var13 >= 3.1415927F) {
+--- 584,595 ----
+        for(int var9 = var5 - 6; var9 <= var5 + 6; ++var9) {
+           for(int var10 = var6 - 6; var10 <= var6 + 6; ++var10) {
+              if(this.isInBounds(var9, var14, var10) && !this.isSolidTile(var9, var14, var10)) {
+!                float var11 = var9 + 0.5F - var1;
+  
+                 float var12;
+!                float var13 = (float)(Math.atan2(var12 = var10 + 0.5F - var3, var11) - var4 * 3.1415927F / 180.0F + 1.57);
+!                while(var13 < -3.1415927F) {
+!             	   var13 += 6.2831855F;
+                 }
+  
+                 while(var13 >= 3.1415927F) {
+***************
+*** 648,662 ****
+              float var16 = var4 * var14 + var5;
+              var14 = var4 - var5 * var14;
+              float var17 = var2 * var12 + var3 * var14;
+-             var16 = var16;
+              var14 = var2 * var14 - var3 * var12;
+              int var15 = 0;
+  
+              while(true) {
+                 if(var15 < 10) {
+!                   float var18 = var6 + var17 * (float)var15 * 0.8F;
+!                   float var19 = var7 + var16 * (float)var15 * 0.8F;
+!                   float var20 = var21 + var14 * (float)var15 * 0.8F;
+                    if(!this.isSolid(var18, var19, var20)) {
+                       ++var9;
+                       if(this.isLit((int)var18, (int)var19, (int)var20)) {
+--- 646,659 ----
+              float var16 = var4 * var14 + var5;
+              var14 = var4 - var5 * var14;
+              float var17 = var2 * var12 + var3 * var14;
+              var14 = var2 * var14 - var3 * var12;
+              int var15 = 0;
+  
+              while(true) {
+                 if(var15 < 10) {
+!                   float var18 = var6 + var17 * var15 * 0.8F;
+!                   float var19 = var7 + var16 * var15 * 0.8F;
+!                   float var20 = var21 + var14 * var15 * 0.8F;
+                    if(!this.isSolid(var18, var19, var20)) {
+                       ++var9;
+                       if(this.isLit((int)var18, (int)var19, (int)var20)) {
+***************
+*** 705,851 ****
+        this.networkMode = var1;
+     }
+  
+-    public Vec3DCreator clip(Vec3D var1, Vec3D var2) {
+-       if(!Float.isNaN(var1.x) && !Float.isNaN(var1.y) && !Float.isNaN(var1.z)) {
+-          if(!Float.isNaN(var2.x) && !Float.isNaN(var2.y) && !Float.isNaN(var2.z)) {
+-             int var3 = (int)Math.floor((double)var2.x);
+-             int var4 = (int)Math.floor((double)var2.y);
+-             int var5 = (int)Math.floor((double)var2.z);
+-             int var6 = (int)Math.floor((double)var1.x);
+-             int var7 = (int)Math.floor((double)var1.y);
+-             int var8 = (int)Math.floor((double)var1.z);
+-             int var9 = 20;
+- 
+-             while(var9-- >= 0) {
+-                if(Float.isNaN(var1.x) || Float.isNaN(var1.y) || Float.isNaN(var1.z)) {
+-                   return null;
+-                }
+- 
+-                if(var6 == var3 && var7 == var4 && var8 == var5) {
+-                   return null;
+-                }
+- 
+-                float var10 = 999.0F;
+-                float var11 = 999.0F;
+-                float var12 = 999.0F;
+-                if(var3 > var6) {
+-                   var10 = (float)var6 + 1.0F;
+-                }
+- 
+-                if(var3 < var6) {
+-                   var10 = (float)var6;
+-                }
+- 
+-                if(var4 > var7) {
+-                   var11 = (float)var7 + 1.0F;
+-                }
+- 
+-                if(var4 < var7) {
+-                   var11 = (float)var7;
+-                }
+- 
+-                if(var5 > var8) {
+-                   var12 = (float)var8 + 1.0F;
+-                }
+- 
+-                if(var5 < var8) {
+-                   var12 = (float)var8;
+-                }
+- 
+-                float var13 = 999.0F;
+-                float var14 = 999.0F;
+-                float var15 = 999.0F;
+-                float var16 = var2.x - var1.x;
+-                float var17 = var2.y - var1.y;
+-                float var18 = var2.z - var1.z;
+-                if(var10 != 999.0F) {
+-                   var13 = (var10 - var1.x) / var16;
+-                }
+- 
+-                if(var11 != 999.0F) {
+-                   var14 = (var11 - var1.y) / var17;
+-                }
+- 
+-                if(var12 != 999.0F) {
+-                   var15 = (var12 - var1.z) / var18;
+-                }
+- 
+-                boolean var19 = false;
+-                byte var24;
+-                if(var13 < var14 && var13 < var15) {
+-                   if(var3 > var6) {
+-                      var24 = 4;
+-                   } else {
+-                      var24 = 5;
+-                   }
+- 
+-                   var1.x = var10;
+-                   var1.y += var17 * var13;
+-                   var1.z += var18 * var13;
+-                } else if(var14 < var15) {
+-                   if(var4 > var7) {
+-                      var24 = 0;
+-                   } else {
+-                      var24 = 1;
+-                   }
+- 
+-                   var1.x += var16 * var14;
+-                   var1.y = var11;
+-                   var1.z += var18 * var14;
+-                } else {
+-                   if(var5 > var8) {
+-                      var24 = 2;
+-                   } else {
+-                      var24 = 3;
+-                   }
+- 
+-                   var1.x += var16 * var15;
+-                   var1.y += var17 * var15;
+-                   var1.z = var12;
+-                }
+- 
+-                Vec3D var20;
+-                var6 = (int)((var20 = new Vec3D(var1.x, var1.y, var1.z)).x = (float)Math.floor((double)var1.x));
+-                if(var24 == 5) {
+-                   --var6;
+-                   ++var20.x;
+-                }
+- 
+-                var7 = (int)(var20.y = (float)Math.floor((double)var1.y));
+-                if(var24 == 1) {
+-                   --var7;
+-                   ++var20.y;
+-                }
+- 
+-                var8 = (int)(var20.z = (float)Math.floor((double)var1.z));
+-                if(var24 == 3) {
+-                   --var8;
+-                   ++var20.z;
+-                }
+- 
+-                int var22 = this.getTile(var6, var7, var8);
+-                Block var21 = Block.blocks[var22];
+-                if(var22 > 0 && var21.getLiquidType() == LiquidType.NOT_LIQUID) {
+-                   Vec3DCreator var23;
+-                   if(var21.isCube()) {
+-                      if((var23 = var21.clip(var6, var7, var8, var1, var2)) != null) {
+-                         return var23;
+-                      }
+-                   } else if((var23 = var21.clip(var6, var7, var8, var1, var2)) != null) {
+-                      return var23;
+-                   }
+-                }
+-             }
+- 
+-             return null;
+-          } else {
+-             return null;
+-          }
+-       } else {
+-          return null;
+-       }
+-    }
+- 
+     public void playSound(String var1, Entity var2, float var3, float var4) {}
+  
+     public void playSound(String var1, float var2, float var3, float var4, float var5, float var6) {}
+--- 702,707 ----
+***************
+*** 941,949 ****
+        for(int var12 = var6; var12 < var7; ++var12) {
+           for(var13 = var9 - 1; var13 >= var8; --var13) {
+              for(int var14 = var10; var14 < var11; ++var14) {
+!                var15 = (float)var12 + 0.5F - var2;
+!                var16 = (float)var13 + 0.5F - var3;
+!                float var17 = (float)var14 + 0.5F - var4;
+                 int var19;
+                 if(var12 >= 0 && var13 >= 0 && var14 >= 0 && var12 < this.width && var13 < this.depth && var14 < this.height && var15 * var15 + var16 * var16 + var17 * var17 < var5 * var5 && (var19 = this.getTile(var12, var13, var14)) > 0 && Block.blocks[var19].canExplode()) {
+                    Block.blocks[var19].dropItem(this, 0.3F);
+--- 797,805 ----
+        for(int var12 = var6; var12 < var7; ++var12) {
+           for(var13 = var9 - 1; var13 >= var8; --var13) {
+              for(int var14 = var10; var14 < var11; ++var14) {
+!                var15 = var12 + 0.5F - var2;
+!                var16 = var13 + 0.5F - var3;
+!                float var17 = var14 + 0.5F - var4;
+                 int var19;
+                 if(var12 >= 0 && var13 >= 0 && var14 >= 0 && var12 < this.width && var13 < this.depth && var14 < this.height && var15 * var15 + var16 * var16 + var17 * var17 < var5 * var5 && (var19 = this.getTile(var12, var13, var14)) > 0 && Block.blocks[var19].canExplode()) {
+                    Block.blocks[var19].dropItem(this, 0.3F);
+***************
+*** 953,963 ****
+           }
+        }
+  
+!       List var18 = this.blockMap.getEntities(var1, (float)var6, (float)var8, (float)var10, (float)var7, (float)var9, (float)var11);
+  
+        for(var13 = 0; var13 < var18.size(); ++var13) {
+!          Entity var20;
+!          if((var15 = (var20 = (Entity)var18.get(var13)).distanceTo(var2, var3, var4) / var5) <= 1.0F) {
+              var16 = 1.0F - var15;
+              var20.hurt(var1, (int)(var16 * 15.0F + 1.0F));
+           }
+--- 809,819 ----
+           }
+        }
+  
+!       List<Entity> var18 = this.blockMap.getEntities(var1, var6, var8, var10, var7, var9, var11);
+  
+        for(var13 = 0; var13 < var18.size(); ++var13) {
+!          Entity var20 = var18.get(var13);
+!          if((var15 = var20.distanceTo(var2, var3, var4) / var5) <= 1.0F) {
+              var16 = 1.0F - var15;
+              var20.hurt(var1, (int)(var16 * 15.0F + 1.0F));
+           }
+***************
+*** 965,973 ****
+  
+     }
+  
+!    public Entity findSubclassOf(Class var1) {
+        for(int var2 = 0; var2 < this.blockMap.all.size(); ++var2) {
+!          Entity var3 = (Entity)this.blockMap.all.get(var2);
+           if(var1.isAssignableFrom(var3.getClass())) {
+              return var3;
+           }
+--- 821,829 ----
+  
+     }
+  
+!    public Entity findSubclassOf(Class<? extends Entity> var1) {
+        for(int var2 = 0; var2 < this.blockMap.all.size(); ++var2) {
+!          Entity var3 = this.blockMap.all.get(var2);
+           if(var1.isAssignableFrom(var3.getClass())) {
+              return var3;
+           }
+diff -crB src/com/mojang/minecraft/level/LevelObjectInputStream.java src2/com/mojang/minecraft/level/LevelObjectInputStream.java
+*** src/com/mojang/minecraft/level/LevelObjectInputStream.java	2013-07-15 20:01:24.000000000 -0700
+--- src2/com/mojang/minecraft/level/LevelObjectInputStream.java	2013-07-15 20:05:27.784455000 -0700
+***************
+*** 1,5 ****
+--- 1,6 ----
+  package com.mojang.minecraft.level;
+  
++ import java.io.IOException;
+  import java.io.InputStream;
+  import java.io.ObjectInputStream;
+  import java.io.ObjectStreamClass;
+***************
+*** 8,24 ****
+  
+  public final class LevelObjectInputStream extends ObjectInputStream {
+  
+!    private Set classes = new HashSet();
+  
+  
+!    public LevelObjectInputStream(InputStream var1) {
+        super(var1);
+        this.classes.add("com.mojang.minecraft.player.Player$1");
+        this.classes.add("com.mojang.minecraft.mob.Creeper$1");
+        this.classes.add("com.mojang.minecraft.mob.Skeleton$1");
+     }
+  
+!    protected final ObjectStreamClass readClassDescriptor() {
+        ObjectStreamClass var1 = super.readClassDescriptor();
+        return this.classes.contains(var1.getName())?ObjectStreamClass.lookup(Class.forName(var1.getName())):var1;
+     }
+--- 9,25 ----
+  
+  public final class LevelObjectInputStream extends ObjectInputStream {
+  
+!    private Set<String> classes = new HashSet<String>();
+  
+  
+!    public LevelObjectInputStream(InputStream var1) throws IOException {
+        super(var1);
+        this.classes.add("com.mojang.minecraft.player.Player$1");
+        this.classes.add("com.mojang.minecraft.mob.Creeper$1");
+        this.classes.add("com.mojang.minecraft.mob.Skeleton$1");
+     }
+  
+!    protected final ObjectStreamClass readClassDescriptor() throws IOException, ClassNotFoundException {
+        ObjectStreamClass var1 = super.readClassDescriptor();
+        return this.classes.contains(var1.getName())?ObjectStreamClass.lookup(Class.forName(var1.getName())):var1;
+     }
+diff -crB src/com/mojang/minecraft/level/tile/Block.java src2/com/mojang/minecraft/level/tile/Block.java
+*** src/com/mojang/minecraft/level/tile/Block.java	2013-07-15 20:01:30.000000000 -0700
+--- src2/com/mojang/minecraft/level/tile/Block.java	2013-07-15 20:37:07.108440000 -0700
+***************
+*** 1,6 ****
+  package com.mojang.minecraft.level.tile;
+  
+- import com.mojang.minecraft.Vec3DCreator;
+  import com.mojang.minecraft.level.Level;
+  import com.mojang.minecraft.level.liquid.LiquidType;
+  import com.mojang.minecraft.level.tile.BookshelfBlock;
+--- 1,5 ----
+***************
+*** 22,28 ****
+  import com.mojang.minecraft.level.tile.TNTBlock;
+  import com.mojang.minecraft.level.tile.Tile$SoundType;
+  import com.mojang.minecraft.level.tile.WoodBlock;
+- import com.mojang.minecraft.math.Vec3D;
+  import com.mojang.minecraft.phys.AABB;
+  import java.util.Random;
+  
+--- 21,26 ----
+***************
+*** 86,92 ****
+     public static final Block OBSIDIAN;
+     public final int id;
+     public Tile$SoundType sound;
+!    private boolean explodes;
+     private float x1;
+     private float y1;
+     private float z1;
+--- 84,90 ----
+     public static final Block OBSIDIAN;
+     public final int id;
+     public Tile$SoundType sound;
+!    protected boolean explodes;
+     private float x1;
+     private float y1;
+     private float z1;
+***************
+*** 131,137 ****
+     }
+  
+     public AABB getCollisionBox(int var1, int var2, int var3) {
+!       return new AABB((float)var1 + this.x1, (float)var2 + this.y1, (float)var3 + this.z1, (float)var1 + this.x2, (float)var2 + this.y2, (float)var3 + this.z2);
+     }
+  
+     public boolean isOpaque() {
+--- 129,135 ----
+     }
+  
+     public AABB getCollisionBox(int var1, int var2, int var3) {
+!       return new AABB(var1 + this.x1, var2 + this.y1, var3 + this.z1, var1 + this.x2, var2 + this.y2, var3 + this.z2);
+     }
+  
+     public boolean isOpaque() {
+***************
+*** 183,708 ****
+        return this.explodes;
+     }
+  
+-    public final Vec3DCreator clip(int var1, int var2, int var3, Vec3D var4, Vec3D var5) {
+-       var4 = var4.add((float)(-var1), (float)(-var2), (float)(-var3));
+-       var5 = var5.add((float)(-var1), (float)(-var2), (float)(-var3));
+-       Vec3D var6 = var4.getXIntersection(var5, this.x1);
+-       Vec3D var7 = var4.getXIntersection(var5, this.x2);
+-       Vec3D var8 = var4.getYIntersection(var5, this.y1);
+-       Vec3D var9 = var4.getYIntersection(var5, this.y2);
+-       Vec3D var10 = var4.getZIntersection(var5, this.z1);
+-       var5 = var4.getZIntersection(var5, this.z2);
+-       if(!this.xIntersects(var6)) {
+-          var6 = null;
+-       }
+- 
+-       if(!this.xIntersects(var7)) {
+-          var7 = null;
+-       }
+- 
+-       if(!this.yIntersects(var8)) {
+-          var8 = null;
+-       }
+- 
+-       if(!this.yIntersects(var9)) {
+-          var9 = null;
+-       }
+- 
+-       if(!this.zIntersects(var10)) {
+-          var10 = null;
+-       }
+- 
+-       if(!this.zIntersects(var5)) {
+-          var5 = null;
+-       }
+- 
+-       Vec3D var11 = null;
+-       if(var6 != null) {
+-          var11 = var6;
+-       }
+- 
+-       if(var7 != null && (var11 == null || var4.distance(var7) < var4.distance(var11))) {
+-          var11 = var7;
+-       }
+- 
+-       if(var8 != null && (var11 == null || var4.distance(var8) < var4.distance(var11))) {
+-          var11 = var8;
+-       }
+- 
+-       if(var9 != null && (var11 == null || var4.distance(var9) < var4.distance(var11))) {
+-          var11 = var9;
+-       }
+- 
+-       if(var10 != null && (var11 == null || var4.distance(var10) < var4.distance(var11))) {
+-          var11 = var10;
+-       }
+- 
+-       if(var5 != null && (var11 == null || var4.distance(var5) < var4.distance(var11))) {
+-          var11 = var5;
+-       }
+- 
+-       if(var11 == null) {
+-          return null;
+-       } else {
+-          byte var12 = -1;
+-          if(var11 == var6) {
+-             var12 = 4;
+-          }
+- 
+-          if(var11 == var7) {
+-             var12 = 5;
+-          }
+- 
+-          if(var11 == var8) {
+-             var12 = 0;
+-          }
+- 
+-          if(var11 == var9) {
+-             var12 = 1;
+-          }
+- 
+-          if(var11 == var10) {
+-             var12 = 2;
+-          }
+- 
+-          if(var11 == var5) {
+-             var12 = 3;
+-          }
+- 
+-          return new Vec3DCreator(var1, var2, var3, var12, var11.add((float)var1, (float)var2, (float)var3));
+-       }
+-    }
+- 
+-    private boolean xIntersects(Vec3D var1) {
+-       return var1 == null?false:var1.y >= this.y1 && var1.y <= this.y2 && var1.z >= this.z1 && var1.z <= this.z2;
+-    }
+- 
+-    private boolean yIntersects(Vec3D var1) {
+-       return var1 == null?false:var1.x >= this.x1 && var1.x <= this.x2 && var1.z >= this.z1 && var1.z <= this.z2;
+-    }
+- 
+-    private boolean zIntersects(Vec3D var1) {
+-       return var1 == null?false:var1.x >= this.x1 && var1.x <= this.x2 && var1.y >= this.y1 && var1.y <= this.y2;
+-    }
+- 
+     static {
+!       StoneBlock var10000 = new StoneBlock(1, 1);
+!       float var0 = 1.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       Tile$SoundType var1 = Tile$SoundType.stone;
+!       StoneBlock var2 = var10000;
+!       var10000.sound = var1;
+!       boolean var3 = false;
+!       var2.explodes = false;
+!       STONE = var2;
+!       GrassBlock var22 = new GrassBlock(2);
+!       var0 = 0.6F;
+!       var0 = 1.0F;
+!       var0 = 0.9F;
+!       var1 = Tile$SoundType.grass;
+!       GrassBlock var4 = var22;
+!       var22.sound = var1;
+!       GRASS = var4;
+!       DirtBlock var23 = new DirtBlock(3, 2);
+!       var0 = 0.5F;
+!       var0 = 1.0F;
+!       var0 = 0.8F;
+!       var1 = Tile$SoundType.grass;
+!       DirtBlock var5 = var23;
+!       var23.sound = var1;
+!       DIRT = var5;
+!       Block var21 = new Block(4, 16);
+!       var0 = 1.5F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       Block var6 = var21;
+!       var21.sound = var1;
+!       var3 = false;
+!       var6.explodes = false;
+!       COBBLESTONE = var6;
+!       var21 = new Block(5, 4);
+!       var0 = 1.5F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.wood;
+!       var6 = var21;
+!       var21.sound = var1;
+!       WOOD = var6;
+!       SaplingBlock var20 = new SaplingBlock(6, 15);
+!       var0 = 0.0F;
+!       var0 = 1.0F;
+!       var0 = 0.7F;
+!       var1 = Tile$SoundType.none;
+!       SaplingBlock var7 = var20;
+!       var20.sound = var1;
+!       SAPLING = var7;
+!       var21 = new Block(7, 17);
+!       var0 = 999.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       var6 = var21;
+!       var21.sound = var1;
+!       var3 = false;
+!       var6.explodes = false;
+!       BEDROCK = var6;
+!       LiquidBlock var18 = new LiquidBlock(8, LiquidType.WATER);
+!       var0 = 100.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.none;
+!       LiquidBlock var8 = var18;
+!       var18.sound = var1;
+!       WATER = var8;
+!       StillLiquidBlock var19 = new StillLiquidBlock(9, LiquidType.WATER);
+!       var0 = 100.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.none;
+!       StillLiquidBlock var9 = var19;
+!       var19.sound = var1;
+!       STATIONARY_WATER = var9;
+!       var18 = new LiquidBlock(10, LiquidType.LAVA);
+!       var0 = 100.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.none;
+!       var8 = var18;
+!       var18.sound = var1;
+!       LAVA = var8;
+!       var19 = new StillLiquidBlock(11, LiquidType.LAVA);
+!       var0 = 100.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.none;
+!       var9 = var19;
+!       var19.sound = var1;
+!       STATIONARY_LAVA = var9;
+!       SandBlock var17 = new SandBlock(12, 18);
+!       var0 = 0.5F;
+!       var0 = 1.0F;
+!       var0 = 0.8F;
+!       var1 = Tile$SoundType.gravel;
+!       SandBlock var10 = var17;
+!       var17.sound = var1;
+!       SAND = var10;
+!       var17 = new SandBlock(13, 19);
+!       var0 = 0.6F;
+!       var0 = 1.0F;
+!       var0 = 0.8F;
+!       var1 = Tile$SoundType.gravel;
+!       var10 = var17;
+!       var17.sound = var1;
+!       GRAVEL = var10;
+!       OreBlock var16 = new OreBlock(14, 32);
+!       var0 = 3.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       OreBlock var11 = var16;
+!       var16.sound = var1;
+!       var3 = false;
+!       var11.explodes = false;
+!       GOLD_ORE = var11;
+!       var16 = new OreBlock(15, 33);
+!       var0 = 3.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       var11 = var16;
+!       var16.sound = var1;
+!       var3 = false;
+!       var11.explodes = false;
+!       IRON_ORE = var11;
+!       var16 = new OreBlock(16, 34);
+!       var0 = 3.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       var11 = var16;
+!       var16.sound = var1;
+!       var3 = false;
+!       var11.explodes = false;
+!       COAL_ORE = var11;
+!       WoodBlock var36 = new WoodBlock(17);
+!       var0 = 2.5F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.wood;
+!       WoodBlock var12 = var36;
+!       var36.sound = var1;
+!       LOG = var12;
+!       LeavesBlock var38 = new LeavesBlock(18, 22);
+!       var0 = 0.2F;
+!       var0 = 0.4F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.grass;
+!       LeavesBlock var14 = var38;
+!       var38.sound = var1;
+!       LEAVES = var14;
+!       SpongeBlock var37 = new SpongeBlock(19);
+!       var0 = 0.6F;
+!       var0 = 0.9F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       SpongeBlock var13 = var37;
+!       var37.sound = var1;
+!       SPONGE = var13;
+!       GlassBlock var39 = new GlassBlock(20, 49, false);
+!       var0 = 0.3F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.metal;
+!       GlassBlock var15 = var39;
+!       var39.sound = var1;
+!       GLASS = var15;
+!       var21 = new Block(21, 64);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       RED_WOOL = var6;
+!       var21 = new Block(22, 65);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       ORANGE_WOOL = var6;
+!       var21 = new Block(23, 66);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       YELLOW_WOOL = var6;
+!       var21 = new Block(24, 67);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       LIME_WOOL = var6;
+!       var21 = new Block(25, 68);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       GREEN_WOOL = var6;
+!       var21 = new Block(26, 69);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       AQUA_GREEN_WOOL = var6;
+!       var21 = new Block(27, 70);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       CYAN_WOOL = var6;
+!       var21 = new Block(28, 71);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       BLUE_WOOL = var6;
+!       var21 = new Block(29, 72);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       PURPLE_WOOL = var6;
+!       var21 = new Block(30, 73);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       INDIGO_WOOL = var6;
+!       var21 = new Block(31, 74);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       VIOLET_WOOL = var6;
+!       var21 = new Block(32, 75);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       MAGENTA_WOOL = var6;
+!       var21 = new Block(33, 76);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       PINK_WOOL = var6;
+!       var21 = new Block(34, 77);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       BLACK_WOOL = var6;
+!       var21 = new Block(35, 78);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       GRAY_WOOL = var6;
+!       var21 = new Block(36, 79);
+!       var0 = 0.8F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       var6 = var21;
+!       var21.sound = var1;
+!       WHITE_WOOL = var6;
+!       FlowerBlock var34 = new FlowerBlock(37, 13);
+!       var0 = 0.0F;
+!       var0 = 1.0F;
+!       var0 = 0.7F;
+!       var1 = Tile$SoundType.none;
+!       FlowerBlock var25 = var34;
+!       var34.sound = var1;
+!       DANDELION = var25;
+!       var34 = new FlowerBlock(38, 12);
+!       var0 = 0.0F;
+!       var0 = 1.0F;
+!       var0 = 0.7F;
+!       var1 = Tile$SoundType.none;
+!       var25 = var34;
+!       var34.sound = var1;
+!       ROSE = var25;
+!       MushroomBlock var35 = new MushroomBlock(39, 29);
+!       var0 = 0.0F;
+!       var0 = 1.0F;
+!       var0 = 0.7F;
+!       var1 = Tile$SoundType.none;
+!       MushroomBlock var24 = var35;
+!       var35.sound = var1;
+!       BROWN_MUSHROOM = var24;
+!       var35 = new MushroomBlock(40, 28);
+!       var0 = 0.0F;
+!       var0 = 1.0F;
+!       var0 = 0.7F;
+!       var1 = Tile$SoundType.none;
+!       var24 = var35;
+!       var35.sound = var1;
+!       RED_MUSHROOM = var24;
+!       MetalBlock var30 = new MetalBlock(41, 40);
+!       var0 = 3.0F;
+!       var0 = 1.0F;
+!       var0 = 0.7F;
+!       var1 = Tile$SoundType.metal;
+!       MetalBlock var27 = var30;
+!       var30.sound = var1;
+!       var3 = false;
+!       var27.explodes = false;
+!       GOLD_BLOCK = var27;
+!       var30 = new MetalBlock(42, 39);
+!       var0 = 5.0F;
+!       var0 = 1.0F;
+!       var0 = 0.7F;
+!       var1 = Tile$SoundType.metal;
+!       var27 = var30;
+!       var30.sound = var1;
+!       var3 = false;
+!       var27.explodes = false;
+!       IRON_BLOCK = var27;
+!       SlabBlock var31 = new SlabBlock(43, true);
+!       var0 = 2.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       SlabBlock var26 = var31;
+!       var31.sound = var1;
+!       var3 = false;
+!       var26.explodes = false;
+!       DOUBLE_SLAB = var26;
+!       var31 = new SlabBlock(44, false);
+!       var0 = 2.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       var26 = var31;
+!       var31.sound = var1;
+!       var3 = false;
+!       var26.explodes = false;
+!       SLAB = var26;
+!       var21 = new Block(45, 7);
+!       var0 = 2.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       var6 = var21;
+!       var21.sound = var1;
+!       var3 = false;
+!       var6.explodes = false;
+!       BRICK = var6;
+!       TNTBlock var32 = new TNTBlock(46, 8);
+!       var0 = 0.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.cloth;
+!       TNTBlock var28 = var32;
+!       var32.sound = var1;
+!       TNT = var28;
+!       BookshelfBlock var33 = new BookshelfBlock(47, 35);
+!       var0 = 1.5F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.wood;
+!       BookshelfBlock var29 = var33;
+!       var33.sound = var1;
+!       BOOKSHELF = var29;
+!       var21 = new Block(48, 36);
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       var6 = var21;
+!       var21.sound = var1;
+!       var3 = false;
+!       var6.explodes = false;
+!       MOSSY_COBBLESTONE = var6;
+!       var10000 = new StoneBlock(49, 37);
+!       var0 = 10.0F;
+!       var0 = 1.0F;
+!       var0 = 1.0F;
+!       var1 = Tile$SoundType.stone;
+!       var2 = var10000;
+!       var10000.sound = var1;
+!       var3 = false;
+!       var2.explodes = false;
+!       OBSIDIAN = var2;
+     }
+  }
+--- 181,297 ----
+        return this.explodes;
+     }
+  
+     static {
+! 	  STONE = new StoneBlock(1, 1);
+! 	  STONE.sound = Tile$SoundType.stone;
+! 	  STONE.explodes = false;
+! 	  GRASS = new GrassBlock(2);
+!       GRASS.sound = Tile$SoundType.grass;
+!       DIRT = new DirtBlock(3, 2);
+!       DIRT.sound = Tile$SoundType.grass;
+!       COBBLESTONE = new Block(4, 16);
+!       COBBLESTONE.sound = Tile$SoundType.stone;
+!       COBBLESTONE.explodes = false;
+!       WOOD = new Block(5, 4);
+!       WOOD.sound = Tile$SoundType.wood;
+!       SAPLING = new SaplingBlock(6, 15);
+!       SAPLING.sound = Tile$SoundType.none;
+!       BEDROCK = new Block(7, 17);
+!       BEDROCK.sound = Tile$SoundType.stone;
+!       BEDROCK.explodes = false;
+!       WATER = new LiquidBlock(8, LiquidType.WATER);
+!       WATER.sound = Tile$SoundType.none;
+!       STATIONARY_WATER = new StillLiquidBlock(9, LiquidType.WATER);
+!       STATIONARY_WATER.sound = Tile$SoundType.none;
+!       LAVA = new LiquidBlock(10, LiquidType.LAVA);
+!       LAVA.sound = Tile$SoundType.none;
+!       STATIONARY_LAVA = new StillLiquidBlock(11, LiquidType.LAVA);
+!       STATIONARY_LAVA.sound = Tile$SoundType.none;
+!       SAND = new SandBlock(12, 18);
+!       SAND.sound = Tile$SoundType.gravel;
+!       GRAVEL = new SandBlock(13, 19);
+!       GRAVEL.sound = Tile$SoundType.gravel;
+!       GOLD_ORE = new OreBlock(14, 32);
+!       GOLD_ORE.sound = Tile$SoundType.stone;
+!       GOLD_ORE.explodes = false;
+!       IRON_ORE = new OreBlock(15, 33);
+!       IRON_ORE.sound = Tile$SoundType.stone;
+!       IRON_ORE.explodes = false;
+!       COAL_ORE = new OreBlock(16, 34);
+!       COAL_ORE.sound = Tile$SoundType.stone;
+!       COAL_ORE.explodes = false;
+!       LOG = new WoodBlock(17);
+!       LOG.sound = Tile$SoundType.wood;
+!       LEAVES = new LeavesBlock(18, 22);
+!       LEAVES.sound = Tile$SoundType.grass;
+!       SPONGE = new SpongeBlock(19);
+!       SPONGE.sound = Tile$SoundType.cloth;
+!       GLASS = new GlassBlock(20, 49, false);
+!       GLASS.sound = Tile$SoundType.metal;
+!       RED_WOOL = new Block(21, 64);
+!       RED_WOOL.sound = Tile$SoundType.cloth;
+!       ORANGE_WOOL = new Block(22, 65);
+!       ORANGE_WOOL.sound = Tile$SoundType.cloth;
+!       YELLOW_WOOL = new Block(23, 66);
+!       YELLOW_WOOL.sound = Tile$SoundType.cloth;
+!       LIME_WOOL = new Block(24, 67);
+!       LIME_WOOL.sound = Tile$SoundType.cloth;
+!       GREEN_WOOL = new Block(25, 68);
+!       GREEN_WOOL.sound = Tile$SoundType.cloth;
+!       AQUA_GREEN_WOOL = new Block(26, 69);
+!       AQUA_GREEN_WOOL.sound = Tile$SoundType.cloth;
+!       CYAN_WOOL = new Block(27, 70);
+!       CYAN_WOOL.sound = Tile$SoundType.cloth;
+!       BLUE_WOOL = new Block(28, 71);
+!       BLUE_WOOL.sound = Tile$SoundType.cloth;
+!       PURPLE_WOOL = new Block(29, 72);
+!       PURPLE_WOOL.sound = Tile$SoundType.cloth;
+!       INDIGO_WOOL = new Block(30, 73);
+!       INDIGO_WOOL.sound = Tile$SoundType.cloth;
+!       VIOLET_WOOL = new Block(31, 74);
+!       VIOLET_WOOL.sound = Tile$SoundType.cloth;
+!       MAGENTA_WOOL = new Block(32, 75);
+!       MAGENTA_WOOL.sound = Tile$SoundType.cloth;
+!       PINK_WOOL = new Block(33, 76);
+!       PINK_WOOL.sound = Tile$SoundType.cloth;
+!       BLACK_WOOL = new Block(34, 77);
+!       BLACK_WOOL.sound = Tile$SoundType.cloth;
+!       GRAY_WOOL = new Block(35, 78);
+!       GRAY_WOOL.sound = Tile$SoundType.cloth;
+!       WHITE_WOOL = new Block(36, 79);
+!       WHITE_WOOL.sound = Tile$SoundType.cloth;
+!       DANDELION = new FlowerBlock(37, 13);
+!       DANDELION.sound = Tile$SoundType.none;
+!       ROSE = new FlowerBlock(38, 12);
+!       ROSE.sound = Tile$SoundType.none;
+!       BROWN_MUSHROOM = new MushroomBlock(39, 29);
+!       BROWN_MUSHROOM.sound = Tile$SoundType.none;
+!       RED_MUSHROOM = new MushroomBlock(40, 28);
+!       RED_MUSHROOM.sound = Tile$SoundType.none;
+!       GOLD_BLOCK = new MetalBlock(41, 40);
+!       GOLD_BLOCK.sound = Tile$SoundType.metal;
+!       GOLD_BLOCK.explodes = false;
+!       IRON_BLOCK = new MetalBlock(42, 39);
+!       IRON_BLOCK.sound = Tile$SoundType.metal;
+!       IRON_BLOCK.explodes = false;
+!       DOUBLE_SLAB = new SlabBlock(43, true);
+!       DOUBLE_SLAB.sound = Tile$SoundType.stone;
+!       DOUBLE_SLAB.explodes = false;
+!       SLAB = new SlabBlock(44, false);
+!       SLAB.sound = Tile$SoundType.stone;
+!       SLAB.explodes = false;
+!       BRICK = new Block(45, 7);
+!       BRICK.sound = Tile$SoundType.stone;
+!       BRICK.explodes = false;
+!       TNT = new TNTBlock(46, 8);
+!       TNT.sound = Tile$SoundType.grass;
+!       BOOKSHELF = new BookshelfBlock(47, 35);
+!       BOOKSHELF.sound = Tile$SoundType.wood;
+!       MOSSY_COBBLESTONE = new Block(48, 36);
+!       MOSSY_COBBLESTONE.sound = Tile$SoundType.stone;
+!       MOSSY_COBBLESTONE.explodes = false;
+!       OBSIDIAN = new StoneBlock(49, 37);
+!       OBSIDIAN.sound = Tile$SoundType.stone;
+!       OBSIDIAN.explodes = false;
+     }
+  }
+diff -crB src/com/mojang/minecraft/level/tile/LiquidBlock.java src2/com/mojang/minecraft/level/tile/LiquidBlock.java
+*** src/com/mojang/minecraft/level/tile/LiquidBlock.java	2013-07-15 20:01:30.000000000 -0700
+--- src2/com/mojang/minecraft/level/tile/LiquidBlock.java	2013-07-15 20:37:34.884439000 -0700
+***************
+*** 37,49 ****
+        var1.addToTickNextTick(var2, var3, var4, this.flowId);
+     }
+  
+!    public void update(Level var1, int var2, int var3, int var4, Random var5) {
+!       boolean var7 = false;
+!       var4 = var4;
+!       var3 = var3;
+!       var2 = var2;
+!       var1 = var1;
+!       this = this;
+        boolean var8 = false;
+  
+        boolean var6;
+--- 37,43 ----
+        var1.addToTickNextTick(var2, var3, var4, this.flowId);
+     }
+  
+!    public void update(Level var1, int var2, int var3, int var4, Random var5) {
+        boolean var8 = false;
+  
+        boolean var6;
+***************
+*** 52,59 ****
+           if(var1.getTile(var2, var3, var4) != 0 || !this.canFlow(var1, var2, var3, var4)) {
+              break;
+           }
+! 
+!          if(var6 = var1.setTile(var2, var3, var4, this.flowId)) {
+              var8 = true;
+           }
+        } while(var6 && this.liquidType != LiquidType.LAVA);
+--- 46,54 ----
+           if(var1.getTile(var2, var3, var4) != 0 || !this.canFlow(var1, var2, var3, var4)) {
+              break;
+           }
+! 
+!          var6 = var1.setTile(var2, var3, var4, this.flowId);
+!          if(var6) {
+              var8 = true;
+           }
+        } while(var6 && this.liquidType != LiquidType.LAVA);
+diff -crB src/com/mojang/minecraft/level/tile/SlabBlock.java src2/com/mojang/minecraft/level/tile/SlabBlock.java
+*** src/com/mojang/minecraft/level/tile/SlabBlock.java	2013-07-15 20:01:30.000000000 -0700
+--- src2/com/mojang/minecraft/level/tile/SlabBlock.java	2013-07-15 20:37:44.060439000 -0700
+***************
+*** 21,32 ****
+        return this.ad;
+     }
+  
+-    public final void onNeighborChange(Level var1, int var2, int var3, int var4, int var5) {
+-       if(this == Block.SLAB) {
+-          ;
+-       }
+-    }
+- 
+     public final void onAdded(Level var1, int var2, int var3, int var4) {
+        if(this != Block.SLAB) {
+           super.onAdded(var1, var2, var3, var4);
+--- 21,26 ----
+diff -crB src/com/mojang/minecraft/level/tile/Tile$SoundType.java src2/com/mojang/minecraft/level/tile/Tile$SoundType.java
+*** src/com/mojang/minecraft/level/tile/Tile$SoundType.java	2013-07-15 20:01:30.000000000 -0700
+--- src2/com/mojang/minecraft/level/tile/Tile$SoundType.java	2013-07-15 20:37:49.952439000 -0700
+***************
+*** 14,22 ****
+     public final String name;
+     private final float volume;
+     private final float pitch;
+-    // $FF: synthetic field
+-    private static final Tile$SoundType[] values = new Tile$SoundType[]{none, grass, cloth, gravel, stone, metal, wood};
+- 
+  
+     private Tile$SoundType(String var1, int var2, String var3, float var4, float var5) {
+        this.name = var3;
+--- 14,19 ----
+diff -crB src/com/mojang/minecraft/net/LevelZipThread.java src2/com/mojang/minecraft/net/LevelZipThread.java
+*** src/com/mojang/minecraft/net/LevelZipThread.java	2013-07-15 20:01:24.000000000 -0700
+--- src2/com/mojang/minecraft/net/LevelZipThread.java	2013-07-15 20:38:25.748439000 -0700
+***************
+*** 7,18 ****
+  
+  final class LevelZipThread extends Thread {
+  
+-    // $FF: synthetic field
+     private byte[] data;
+-    // $FF: synthetic field
+     private PlayerConnection connection;
+  
+- 
+     LevelZipThread(PlayerConnection var1, byte[] var2) {
+        this.connection = var1;
+        this.data = var2;
+--- 7,15 ----
+***************
+*** 16,22 ****
+     LevelZipThread(PlayerConnection var1, byte[] var2) {
+        this.connection = var1;
+        this.data = var2;
+-       super();
+     }
+  
+     public final void run() {
+--- 13,18 ----
+***************
+*** 38,44 ****
+           Thread.sleep(500L);
+           this.connection.queueLevelData(var1.toByteArray());
+        } catch (InterruptedException var5) {
+-          ;
+        }
+     }
+  }
+--- 34,39 ----
+diff -crB src/com/mojang/minecraft/net/NetworkHandler.java src2/com/mojang/minecraft/net/NetworkHandler.java
+*** src/com/mojang/minecraft/net/NetworkHandler.java	2013-07-15 20:01:22.000000000 -0700
+--- src2/com/mojang/minecraft/net/NetworkHandler.java	2013-07-15 20:39:14.368439000 -0700
+***************
+*** 2,7 ****
+--- 2,9 ----
+  
+  import com.mojang.minecraft.net.PacketType;
+  import com.mojang.minecraft.net.PlayerConnection;
++ 
++ import java.io.IOException;
+  import java.net.Socket;
+  import java.nio.ByteBuffer;
+  import java.nio.channels.SocketChannel;
+***************
+*** 15,26 ****
+     public ByteBuffer out = ByteBuffer.allocate(1048576);
+     public PlayerConnection connection;
+     private Socket sock;
+-    private boolean unused = false;
+     public String ip;
+     private byte[] stringBytes = new byte[64];
+  
+  
+!    public NetworkHandler(SocketChannel var1) {
+        this.channel = var1;
+        this.channel.configureBlocking(false);
+        System.currentTimeMillis();
+--- 17,27 ----
+     public ByteBuffer out = ByteBuffer.allocate(1048576);
+     public PlayerConnection connection;
+     private Socket sock;
+     public String ip;
+     private byte[] stringBytes = new byte[64];
+  
+  
+!    public NetworkHandler(SocketChannel var1) throws IOException {
+        this.channel = var1;
+        this.channel.configureBlocking(false);
+        System.currentTimeMillis();
+***************
+*** 44,50 ****
+              this.out.compact();
+           }
+        } catch (Exception var2) {
+-          ;
+        }
+  
+        this.connected = false;
+--- 45,50 ----
+***************
+*** 52,58 ****
+        try {
+           this.channel.close();
+        } catch (Exception var1) {
+-          ;
+        }
+  
+        this.sock = null;
+--- 52,57 ----
+***************
+*** 64,72 ****
+           this.out.put(var1.opcode);
+  
+           for(int var3 = 0; var3 < var2.length; ++var3) {
+-             Class var10001 = var1.params[var3];
+              Object var4 = var2[var3];
+!             Class var5 = var10001;
+              NetworkHandler var6 = this;
+              if(this.connected) {
+                 try {
+--- 63,70 ----
+           this.out.put(var1.opcode);
+  
+           for(int var3 = 0; var3 < var2.length; ++var3) {
+              Object var4 = var2[var3];
+!             Class<?> var5 = var1.params[var3];
+              NetworkHandler var6 = this;
+              if(this.connected) {
+                 try {
+***************
+*** 86,92 ****
+                       byte[] var9;
+                       if(var5 != String.class) {
+                          if(var5 == byte[].class) {
+!                            if((var9 = (byte[])((byte[])var4)).length < 1024) {
+                                var9 = Arrays.copyOf(var9, 1024);
+                             }
+  
+--- 84,90 ----
+                       byte[] var9;
+                       if(var5 != String.class) {
+                          if(var5 == byte[].class) {
+!                            if((var9 = ((byte[])var4)).length < 1024) {
+                                var9 = Arrays.copyOf(var9, 1024);
+                             }
+  
+***************
+*** 117,123 ****
+        }
+     }
+  
+!    public Object read(Class var1) {
+        if(!this.connected) {
+           return null;
+        } else {
+--- 115,121 ----
+        }
+     }
+  
+!    public Object read(Class<?> var1) {
+        if(!this.connected) {
+           return null;
+        } else {
+diff -crB src/com/mojang/minecraft/net/NetworkListener.java src2/com/mojang/minecraft/net/NetworkListener.java
+*** src/com/mojang/minecraft/net/NetworkListener.java	2013-07-15 20:01:22.000000000 -0700
+--- src2/com/mojang/minecraft/net/NetworkListener.java	2013-07-15 20:44:27.364436000 -0700
+***************
+*** 1,6 ****
+--- 1,8 ----
+  package com.mojang.minecraft.net;
+  
+  import com.mojang.minecraft.server.MinecraftServer;
++ 
++ import java.io.IOException;
+  import java.net.InetSocketAddress;
+  import java.nio.channels.ServerSocketChannel;
+  import java.util.LinkedList;
+***************
+*** 10,19 ****
+  
+     public ServerSocketChannel channel;
+     public MinecraftServer server;
+!    public List connected = new LinkedList();
+! 
+  
+!    public NetworkListener(int var1, MinecraftServer var2) {
+        this.server = var2;
+        this.channel = ServerSocketChannel.open();
+        this.channel.socket().bind(new InetSocketAddress(var1));
+--- 12,20 ----
+  
+     public ServerSocketChannel channel;
+     public MinecraftServer server;
+!    public List<NetworkHandler> connected = new LinkedList<NetworkHandler>();
+  
+!    public NetworkListener(int var1, MinecraftServer var2) throws IOException {
+        this.server = var2;
+        this.channel = ServerSocketChannel.open();
+        this.channel.socket().bind(new InetSocketAddress(var1));
+diff -crB src/com/mojang/minecraft/net/PacketType.java src2/com/mojang/minecraft/net/PacketType.java
+*** src/com/mojang/minecraft/net/PacketType.java	2013-07-15 20:01:22.000000000 -0700
+--- src2/com/mojang/minecraft/net/PacketType.java	2013-07-15 20:38:11.168439000 -0700
+***************
+*** 23,39 ****
+     public final int length;
+     private static int nextOpcode = 0;
+     public final byte opcode;
+!    public Class[] params;
+! 
+  
+!    private PacketType(Class ... var1) {
+        this.opcode = (byte)(nextOpcode++);
+        packets[this.opcode] = this;
+        this.params = new Class[var1.length];
+        int var2 = 0;
+  
+        for(int var3 = 0; var3 < var1.length; ++var3) {
+!          Class var4 = var1[var3];
+           this.params[var3] = var4;
+           if(var4 == Long.TYPE) {
+              var2 += 8;
+--- 22,37 ----
+     public final int length;
+     private static int nextOpcode = 0;
+     public final byte opcode;
+!    public Class<?>[] params;
+  
+!    private PacketType(Class<?>... var1) {
+        this.opcode = (byte)(nextOpcode++);
+        packets[this.opcode] = this;
+        this.params = new Class[var1.length];
+        int var2 = 0;
+  
+        for(int var3 = 0; var3 < var1.length; ++var3) {
+!          Class<?> var4 = var1[var3];
+           this.params[var3] = var4;
+           if(var4 == Long.TYPE) {
+              var2 += 8;
+diff -crB src/com/mojang/minecraft/net/PlayerConnection.java src2/com/mojang/minecraft/net/PlayerConnection.java
+*** src/com/mojang/minecraft/net/PlayerConnection.java	2013-07-15 20:01:26.000000000 -0700
+--- src2/com/mojang/minecraft/net/PlayerConnection.java	2013-07-15 20:43:01.668437000 -0700
+***************
+*** 12,31 ****
+  import java.util.ArrayList;
+  import java.util.Iterator;
+  import java.util.List;
+- import java.util.logging.Logger;
+  
+  public final class PlayerConnection {
+  
+-    private static Logger serverLogger = MinecraftServer.logger;
+     public final NetworkHandler netHandler;
+     private final MinecraftServer server;
+     private boolean loggedIn = false;
+     private boolean connected = false;
+     public String name = "";
+     public final int playerId;
+!    private ArrayList packetQueue = new ArrayList();
+     private long creationTime;
+!    private List readQueue = new ArrayList();
+     private int chatLength = 0;
+     public int x;
+     public int y;
+--- 12,29 ----
+  import java.util.ArrayList;
+  import java.util.Iterator;
+  import java.util.List;
+  
+  public final class PlayerConnection {
+  
+     public final NetworkHandler netHandler;
+     private final MinecraftServer server;
+     private boolean loggedIn = false;
+     private boolean connected = false;
+     public String name = "";
+     public final int playerId;
+!    private ArrayList<Object> packetQueue = new ArrayList<Object>();
+     private long creationTime;
+!    private List<Object[]> readQueue = new ArrayList<Object[]>();
+     private int chatLength = 0;
+     public int x;
+     public int y;
+***************
+*** 53,61 ****
+        this.pitch = 0;
+     }
+  
+!    public final String toString() {
+!       NetworkHandler var1;
+!       return !this.loggedIn?(var1 = this.netHandler).ip:this.name + " (" + (var1 = this.netHandler).ip + ")";
+     }
+  
+     public final void receivePacket(PacketType var1, Object[] var2) {
+--- 51,58 ----
+        this.pitch = 0;
+     }
+  
+!    public final String toString() {
+!       return !this.loggedIn?this.netHandler.ip:this.name + " (" + this.netHandler.ip + ")";
+     }
+  
+     public final void receivePacket(PacketType var1, Object[] var2) {
+***************
+*** 113,119 ****
+                 this.kick("You\'re banned!");
+              } else if(this.server.adminSlot && !this.server.admins.contains(var3) && this.server.getOpenSlots() < 1) {
+                 this.netHandler.send(PacketType.DISCONNECT, new Object[]{"The server is full!"});
+!                serverLogger.info(var3 + " connected, but got kicked because the server was almost full and there are reserved admin slots.");
+                 this.server.queueClose(this);
+                 this.kicked = true;
+              } else {
+--- 110,116 ----
+                 this.kick("You\'re banned!");
+              } else if(this.server.adminSlot && !this.server.admins.contains(var3) && this.server.getOpenSlots() < 1) {
+                 this.netHandler.send(PacketType.DISCONNECT, new Object[]{"The server is full!"});
+!                this.server.logInfo(var3 + " connected, but got kicked because the server was almost full and there are reserved admin slots.");
+                 this.server.queueClose(this);
+                 this.kicked = true;
+              } else {
+***************
+*** 122,128 ****
+                    var11.kick("You logged in from another computer.");
+                 }
+  
+!                serverLogger.info(this + " logged in as " + var3);
+                 this.loggedIn = true;
+                 this.name = var3;
+                 this.netHandler.send(PacketType.IDENTIFICATION, new Object[]{Byte.valueOf((byte)7), this.server.name, this.server.motd, Integer.valueOf(this.server.admins.contains(var3)?100:0)});
+--- 119,125 ----
+                    var11.kick("You logged in from another computer.");
+                 }
+  
+!                this.server.logInfo(this + " logged in as " + var3);
+                 this.loggedIn = true;
+                 this.name = var3;
+                 this.netHandler.send(PacketType.IDENTIFICATION, new Object[]{Byte.valueOf((byte)7), this.server.name, this.server.motd, Integer.valueOf(this.server.admins.contains(var3)?100:0)});
+***************
+*** 141,147 ****
+        if(this.chatLength > 600) {
+           this.chatLength = 760;
+           this.send(PacketType.CHAT_MESSAGE, new Object[]{Integer.valueOf(-1), "Too much chatter! Muted for eight seconds."});
+!          serverLogger.info("Muting " + this.name + " for chatting too much");
+        } else {
+           char[] var2 = var1.toCharArray();
+  
+--- 138,144 ----
+        if(this.chatLength > 600) {
+           this.chatLength = 760;
+           this.send(PacketType.CHAT_MESSAGE, new Object[]{Integer.valueOf(-1), "Too much chatter! Muted for eight seconds."});
+!          this.server.logInfo("Muting " + this.name + " for chatting too much");
+        } else {
+           char[] var2 = var1.toCharArray();
+  
+***************
+*** 159,165 ****
+                 this.send(PacketType.CHAT_MESSAGE, new Object[]{Integer.valueOf(-1), "You\'re not a server admin!"});
+              }
+           } else {
+!             serverLogger.info(this.name + " says: " + var1);
+              this.server.sendToAll(PacketType.CHAT_MESSAGE, new Object[]{Integer.valueOf(this.playerId), this.name + ": " + var1});
+           }
+        }
+--- 156,162 ----
+                 this.send(PacketType.CHAT_MESSAGE, new Object[]{Integer.valueOf(-1), "You\'re not a server admin!"});
+              }
+           } else {
+!         	 this.server.logInfo(this.name + " says: " + var1);
+              this.server.sendToAll(PacketType.CHAT_MESSAGE, new Object[]{Integer.valueOf(this.playerId), this.name + ": " + var1});
+           }
+        }
+***************
+*** 167,173 ****
+  
+     public final void kick(String var1) {
+        this.netHandler.send(PacketType.DISCONNECT, new Object[]{var1});
+!       serverLogger.info("Kicking " + this + ": " + var1);
+        this.server.queueClose(this);
+        this.kicked = true;
+     }
+--- 164,170 ----
+  
+     public final void kick(String var1) {
+        this.netHandler.send(PacketType.DISCONNECT, new Object[]{var1});
+!       this.server.logInfo("Kicking " + this + ": " + var1);
+        this.server.queueClose(this);
+        this.kicked = true;
+     }
+***************
+*** 210,216 ****
+              short var10001;
+              short var10003;
+              short var10002;
+!             if((var2 = (Object[])this.readQueue.remove(0))[0] instanceof Short) {
+                 var10001 = ((Short)var2[0]).shortValue();
+                 var10002 = ((Short)var2[1]).shortValue();
+                 var10003 = ((Short)var2[2]).shortValue();
+--- 207,213 ----
+              short var10001;
+              short var10003;
+              short var10002;
+!             if((var2 = this.readQueue.remove(0))[0] instanceof Short) {
+                 var10001 = ((Short)var2[0]).shortValue();
+                 var10002 = ((Short)var2[1]).shortValue();
+                 var10003 = ((Short)var2[2]).shortValue();
+***************
+*** 225,233 ****
+                    this.hackKick("Too much clicking!");
+                 } else {
+                    Level var7 = this.server.level;
+!                   float var8 = (float)var13 - (float)this.x / 32.0F;
+!                   float var9 = (float)var6 - ((float)this.y / 32.0F - 1.62F);
+!                   float var10 = (float)var5 - (float)this.z / 32.0F;
+                    var8 = var8 * var8 + var9 * var9 + var10 * var10;
+                    var9 = 8.0F;
+                    if(var8 >= var9 * var9) {
+--- 222,230 ----
+                    this.hackKick("Too much clicking!");
+                 } else {
+                    Level var7 = this.server.level;
+!                   float var8 = var13 - this.x / 32.0F;
+!                   float var9 = var6 - (this.y / 32.0F - 1.62F);
+!                   float var10 = var5 - this.z / 32.0F;
+                    var8 = var8 * var8 + var9 * var9 + var10 * var10;
+                    var9 = 8.0F;
+                    if(var8 >= var9 * var9) {
+***************
+*** 337,347 ****
+           this.netHandler.send(PacketType.SPAWN_PLAYER, new Object[]{Integer.valueOf(-1), this.name, Integer.valueOf(this.x), Integer.valueOf(this.y), Integer.valueOf(this.z), Integer.valueOf(this.yaw), Integer.valueOf(this.pitch)});
+           this.server.send(this, PacketType.SPAWN_PLAYER, new Object[]{Integer.valueOf(this.playerId), this.name, Integer.valueOf((var11.xSpawn << 5) + 16), Integer.valueOf((var11.ySpawn << 5) + 16), Integer.valueOf((var11.zSpawn << 5) + 16), Integer.valueOf((int)(var11.rotSpawn * 256.0F / 360.0F)), Integer.valueOf(0)});
+           this.server.sendToAll(PacketType.CHAT_MESSAGE, new Object[]{Integer.valueOf(-1), this.name + " joined the game"});
+!          Iterator var18 = this.server.getConnections().iterator();
+  
+           while(var18.hasNext()) {
+!             PlayerConnection var12;
+!             if((var12 = (PlayerConnection)var18.next()) != null && var12 != this && var12.loggedIn) {
+                 this.netHandler.send(PacketType.SPAWN_PLAYER, new Object[]{Integer.valueOf(var12.playerId), var12.name, Integer.valueOf(var12.x), Integer.valueOf(var12.y), Integer.valueOf(var12.z), Integer.valueOf(var12.yaw), Integer.valueOf(var12.pitch)});
+              }
+           }
+--- 334,344 ----
+           this.netHandler.send(PacketType.SPAWN_PLAYER, new Object[]{Integer.valueOf(-1), this.name, Integer.valueOf(this.x), Integer.valueOf(this.y), Integer.valueOf(this.z), Integer.valueOf(this.yaw), Integer.valueOf(this.pitch)});
+           this.server.send(this, PacketType.SPAWN_PLAYER, new Object[]{Integer.valueOf(this.playerId), this.name, Integer.valueOf((var11.xSpawn << 5) + 16), Integer.valueOf((var11.ySpawn << 5) + 16), Integer.valueOf((var11.zSpawn << 5) + 16), Integer.valueOf((int)(var11.rotSpawn * 256.0F / 360.0F)), Integer.valueOf(0)});
+           this.server.sendToAll(PacketType.CHAT_MESSAGE, new Object[]{Integer.valueOf(-1), this.name + " joined the game"});
+!          Iterator<PlayerConnection> var18 = this.server.getConnections().iterator();
+  
+           while(var18.hasNext()) {
+!             PlayerConnection var12 = var18.next();
+!             if(var12 != null && var12 != this && var12.loggedIn) {
+                 this.netHandler.send(PacketType.SPAWN_PLAYER, new Object[]{Integer.valueOf(var12.playerId), var12.name, Integer.valueOf(var12.x), Integer.valueOf(var12.y), Integer.valueOf(var12.z), Integer.valueOf(var12.yaw), Integer.valueOf(var12.pitch)});
+              }
+           }
+***************
+*** 351,357 ****
+  
+           while(var17 < this.packetQueue.size()) {
+              PacketType var14 = (PacketType)this.packetQueue.get(var17++);
+!             var2 = (Object[])((Object[])this.packetQueue.get(var17++));
+              this.send(var14, var2);
+           }
+  
+--- 348,354 ----
+  
+           while(var17 < this.packetQueue.size()) {
+              PacketType var14 = (PacketType)this.packetQueue.get(var17++);
+!             var2 = ((Object[])this.packetQueue.get(var17++));
+              this.send(var14, var2);
+           }
+  
+***************
+*** 371,380 ****
+  
+     public final void errorKick(Exception var1) {
+        if(var1 instanceof IOException) {
+!          serverLogger.info(this + " lost connection suddenly. (" + var1 + ")");
+        } else {
+!          serverLogger.warning(this + ":" + var1);
+!          serverLogger.log(java.util.logging.Level.WARNING, "Exception handling " + this + "!", var1);
+           var1.printStackTrace();
+        }
+  
+--- 368,376 ----
+  
+     public final void errorKick(Exception var1) {
+        if(var1 instanceof IOException) {
+!     	  this.server.logInfo(this + " lost connection suddenly. (" + var1 + ")");
+        } else {
+!          this.server.logWarning("Exception handling " + this + ": " + var1);
+           var1.printStackTrace();
+        }
+  
+diff -crB src/com/mojang/minecraft/phys/AABB.java src2/com/mojang/minecraft/phys/AABB.java
+*** src/com/mojang/minecraft/phys/AABB.java	2013-07-15 20:01:24.000000000 -0700
+--- src2/com/mojang/minecraft/phys/AABB.java	2013-07-15 20:16:29.752449000 -0700
+***************
+*** 1,6 ****
+  package com.mojang.minecraft.phys;
+  
+- import com.mojang.minecraft.Vec3DCreator;
+  import com.mojang.minecraft.math.Vec3D;
+  import java.io.Serializable;
+  
+--- 1,5 ----
+***************
+*** 205,308 ****
+     public AABB copy() {
+        return new AABB(this.x0, this.y0, this.z0, this.x1, this.y1, this.z1);
+     }
+- 
+-    public Vec3DCreator clip(Vec3D var1, Vec3D var2) {
+-       Vec3D var3 = var1.getXIntersection(var2, this.x0);
+-       Vec3D var4 = var1.getXIntersection(var2, this.x1);
+-       Vec3D var5 = var1.getYIntersection(var2, this.y0);
+-       Vec3D var6 = var1.getYIntersection(var2, this.y1);
+-       Vec3D var7 = var1.getZIntersection(var2, this.z0);
+-       var2 = var1.getZIntersection(var2, this.z1);
+-       if(!this.xIntersects(var3)) {
+-          var3 = null;
+-       }
+- 
+-       if(!this.xIntersects(var4)) {
+-          var4 = null;
+-       }
+- 
+-       if(!this.yIntersects(var5)) {
+-          var5 = null;
+-       }
+- 
+-       if(!this.yIntersects(var6)) {
+-          var6 = null;
+-       }
+- 
+-       if(!this.zIntersects(var7)) {
+-          var7 = null;
+-       }
+- 
+-       if(!this.zIntersects(var2)) {
+-          var2 = null;
+-       }
+- 
+-       Vec3D var8 = null;
+-       if(var3 != null) {
+-          var8 = var3;
+-       }
+- 
+-       if(var4 != null && (var8 == null || var1.distanceSquared(var4) < var1.distanceSquared(var8))) {
+-          var8 = var4;
+-       }
+- 
+-       if(var5 != null && (var8 == null || var1.distanceSquared(var5) < var1.distanceSquared(var8))) {
+-          var8 = var5;
+-       }
+- 
+-       if(var6 != null && (var8 == null || var1.distanceSquared(var6) < var1.distanceSquared(var8))) {
+-          var8 = var6;
+-       }
+- 
+-       if(var7 != null && (var8 == null || var1.distanceSquared(var7) < var1.distanceSquared(var8))) {
+-          var8 = var7;
+-       }
+- 
+-       if(var2 != null && (var8 == null || var1.distanceSquared(var2) < var1.distanceSquared(var8))) {
+-          var8 = var2;
+-       }
+- 
+-       if(var8 == null) {
+-          return null;
+-       } else {
+-          byte var9 = -1;
+-          if(var8 == var3) {
+-             var9 = 4;
+-          }
+- 
+-          if(var8 == var4) {
+-             var9 = 5;
+-          }
+- 
+-          if(var8 == var5) {
+-             var9 = 0;
+-          }
+- 
+-          if(var8 == var6) {
+-             var9 = 1;
+-          }
+- 
+-          if(var8 == var7) {
+-             var9 = 2;
+-          }
+- 
+-          if(var8 == var2) {
+-             var9 = 3;
+-          }
+- 
+-          return new Vec3DCreator(0, 0, 0, var9, var8);
+-       }
+-    }
+- 
+-    private boolean xIntersects(Vec3D var1) {
+-       return var1 == null?false:var1.y >= this.y0 && var1.y <= this.y1 && var1.z >= this.z0 && var1.z <= this.z1;
+-    }
+- 
+-    private boolean yIntersects(Vec3D var1) {
+-       return var1 == null?false:var1.x >= this.x0 && var1.x <= this.x1 && var1.z >= this.z0 && var1.z <= this.z1;
+-    }
+- 
+-    private boolean zIntersects(Vec3D var1) {
+-       return var1 == null?false:var1.x >= this.x0 && var1.x <= this.x1 && var1.y >= this.y0 && var1.y <= this.y1;
+-    }
+  }
+--- 204,207 ----
+diff -crB src/com/mojang/minecraft/server/ConsoleReadThread.java src2/com/mojang/minecraft/server/ConsoleReadThread.java
+*** src/com/mojang/minecraft/server/ConsoleReadThread.java	2013-07-15 20:01:24.000000000 -0700
+--- src2/com/mojang/minecraft/server/ConsoleReadThread.java	2013-07-15 20:48:45.948434000 -0700
+***************
+*** 7,19 ****
+  
+  final class ConsoleReadThread extends Thread {
+  
+-    // $FF: synthetic field
+     private MinecraftServer server;
+  
+- 
+     ConsoleReadThread(MinecraftServer var1) {
+        this.server = var1;
+-       super();
+     }
+  
+     public final void run() {
+--- 7,16 ----
+***************
+*** 22,29 ****
+           String var2 = null;
+  
+           while((var2 = var1.readLine()) != null) {
+!             synchronized(MinecraftServer.getConsoleQueue(this.server)) {
+!                MinecraftServer.getConsoleQueue(this.server).add(var2);
+              }
+           }
+  
+--- 19,26 ----
+           String var2 = null;
+  
+           while((var2 = var1.readLine()) != null) {
+!             synchronized(this.server.getConsoleQueue()) {
+!                this.server.getConsoleQueue().add(var2);
+              }
+           }
+  
+diff -crB src/com/mojang/minecraft/server/HeartbeatThread.java src2/com/mojang/minecraft/server/HeartbeatThread.java
+*** src/com/mojang/minecraft/server/HeartbeatThread.java	2013-07-15 20:01:24.000000000 -0700
+--- src2/com/mojang/minecraft/server/HeartbeatThread.java	2013-07-15 20:49:58.104434000 -0700
+***************
+*** 11,22 ****
+  
+  final class HeartbeatThread extends Thread {
+  
+-    // $FF: synthetic field
+     private String data;
+-    // $FF: synthetic field
+     private MinecraftServer server;
+  
+- 
+     HeartbeatThread(MinecraftServer var1, String var2) {
+        this.server = var1;
+        this.data = var2;
+--- 11,19 ----
+***************
+*** 20,26 ****
+     HeartbeatThread(MinecraftServer var1, String var2) {
+        this.server = var1;
+        this.data = var2;
+-       super();
+     }
+  
+     public final void run() {
+--- 17,22 ----
+***************
+*** 36,54 ****
+           var1.setDoInput(true);
+           var1.setDoOutput(true);
+           var1.connect();
+!          DataOutputStream var2;
+!          (var2 = new DataOutputStream(var1.getOutputStream())).writeBytes(this.data);
+           var2.flush();
+           var2.close();
+!          BufferedReader var9;
+!          String var3 = (var9 = new BufferedReader(new InputStreamReader(var1.getInputStream()))).readLine();
+!          if(!MinecraftServer.getUrl(this.server).equals(var3)) {
+!             MinecraftServer.logger.info("To connect directly to this server, surf to: " + var3);
+!             PrintWriter var4;
+!             (var4 = new PrintWriter(new FileWriter("externalurl.txt"))).println(var3);
+              var4.close();
+!             MinecraftServer.logger.info("(This is also in externalurl.txt)");
+!             MinecraftServer.setUrl(this.server, var3);
+           }
+  
+           var9.close();
+--- 32,50 ----
+           var1.setDoInput(true);
+           var1.setDoOutput(true);
+           var1.connect();
+!          DataOutputStream var2 = new DataOutputStream(var1.getOutputStream());
+!          var2.writeBytes(this.data);
+           var2.flush();
+           var2.close();
+!          BufferedReader var9 = new BufferedReader(new InputStreamReader(var1.getInputStream()));
+!          String var3 = var9.readLine();
+!          if(!this.server.getUrl().equals(var3)) {
+!             this.server.logInfo("To connect directly to this server, surf to: " + var3);
+!             PrintWriter var4 = new PrintWriter(new FileWriter("externalurl.txt"));
+!             var4.println(var3);
+              var4.close();
+!             this.server.logInfo("(This is also in externalurl.txt)");
+!             this.server.setUrl(var3);
+           }
+  
+           var9.close();
+diff -crB src/com/mojang/minecraft/server/MinecraftServer.java src2/com/mojang/minecraft/server/MinecraftServer.java
+*** src/com/mojang/minecraft/server/MinecraftServer.java	2013-07-15 20:01:26.000000000 -0700
+--- src2/com/mojang/minecraft/server/MinecraftServer.java	2013-07-15 20:48:20.864434000 -0700
+***************
+*** 40,52 ****
+     static Logger logger = Logger.getLogger("MinecraftServer");
+     static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+     private NetworkListener netListener;
+!    private Map connectionMap = new HashMap();
+!    private List connections = new ArrayList();
+!    private List queuedCloses = new ArrayList();
+     private int maxPlayers;
+     private Properties properties = new Properties();
+     public com.mojang.minecraft.level.Level level;
+!    private boolean public = false;
+     public String name;
+     public String motd;
+     private int port;
+--- 40,52 ----
+     static Logger logger = Logger.getLogger("MinecraftServer");
+     static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+     private NetworkListener netListener;
+!    private Map<NetworkHandler, PlayerConnection> connectionMap = new HashMap<NetworkHandler, PlayerConnection>();
+!    private List<PlayerConnection> connections = new ArrayList<PlayerConnection>();
+!    private List<QueuedConnectionClose> queuedCloses = new ArrayList<QueuedConnectionClose>();
+     private int maxPlayers;
+     private Properties properties = new Properties();
+     public com.mojang.minecraft.level.Level level;
+!    private boolean publicServer = false;
+     public String name;
+     public String motd;
+     private int port;
+***************
+*** 56,62 ****
+     public PlayerListFile banned = new PlayerListFile("Banned", new File("banned.txt"));
+     private PlayerListFile ipBanned = new PlayerListFile("Banned (IP)", new File("banned-ip.txt"));
+     public PlayerListFile players = new PlayerListFile("Players", new File("players.txt"));
+!    private List consoleQueue = new ArrayList();
+     private String salt = "" + (new Random()).nextLong();
+     private String url = "";
+     public MD5Encryption encryption;
+--- 56,62 ----
+     public PlayerListFile banned = new PlayerListFile("Banned", new File("banned.txt"));
+     private PlayerListFile ipBanned = new PlayerListFile("Banned (IP)", new File("banned-ip.txt"));
+     public PlayerListFile players = new PlayerListFile("Players", new File("players.txt"));
+!    private List<String> consoleQueue = new ArrayList<String>();
+     private String salt = "" + (new Random()).nextLong();
+     private String url = "";
+     public MD5Encryption encryption;
+***************
+*** 65,71 ****
+     private int maxConnections;
+  
+  
+!    public MinecraftServer() {
+        this.encryption = new MD5Encryption(this.salt);
+        this.verifyNames = false;
+        this.growTrees = false;
+--- 65,71 ----
+     private int maxConnections;
+  
+  
+!    public MinecraftServer() throws IOException {
+        this.encryption = new MD5Encryption(this.salt);
+        this.verifyNames = false;
+        this.growTrees = false;
+***************
+*** 81,87 ****
+           this.motd = this.properties.getProperty("motd", "Welcome to my Minecraft Server!");
+           this.port = Integer.parseInt(this.properties.getProperty("port", "25565"));
+           this.maxPlayers = Integer.parseInt(this.properties.getProperty("max-players", "16"));
+!          this.public = Boolean.parseBoolean(this.properties.getProperty("public", "true"));
+           this.verifyNames = Boolean.parseBoolean(this.properties.getProperty("verify-names", "true"));
+           this.growTrees = Boolean.parseBoolean(this.properties.getProperty("grow-trees", "false"));
+           this.adminSlot = Boolean.parseBoolean(this.properties.getProperty("admin-slot", "false"));
+--- 81,87 ----
+           this.motd = this.properties.getProperty("motd", "Welcome to my Minecraft Server!");
+           this.port = Integer.parseInt(this.properties.getProperty("port", "25565"));
+           this.maxPlayers = Integer.parseInt(this.properties.getProperty("max-players", "16"));
+!          this.publicServer = Boolean.parseBoolean(this.properties.getProperty("public", "true"));
+           this.verifyNames = Boolean.parseBoolean(this.properties.getProperty("verify-names", "true"));
+           this.growTrees = Boolean.parseBoolean(this.properties.getProperty("grow-trees", "false"));
+           this.adminSlot = Boolean.parseBoolean(this.properties.getProperty("admin-slot", "false"));
+***************
+*** 98,104 ****
+           this.properties.setProperty("motd", this.motd);
+           this.properties.setProperty("max-players", "" + this.maxPlayers);
+           this.properties.setProperty("port", "" + this.port);
+!          this.properties.setProperty("public", "" + this.public);
+           this.properties.setProperty("verify-names", "" + this.verifyNames);
+           this.properties.setProperty("max-connections", "3");
+           this.properties.setProperty("grow-trees", "" + this.growTrees);
+--- 98,104 ----
+           this.properties.setProperty("motd", this.motd);
+           this.properties.setProperty("max-players", "" + this.maxPlayers);
+           this.properties.setProperty("port", "" + this.port);
+!          this.properties.setProperty("public", "" + this.publicServer);
+           this.properties.setProperty("verify-names", "" + this.verifyNames);
+           this.properties.setProperty("max-connections", "3");
+           this.properties.setProperty("grow-trees", "" + this.growTrees);
+***************
+*** 114,120 ****
+           logger.warning("verify-names is set to false! This means that anyone who");
+           logger.warning("connects to this server can choose any username he or she");
+           logger.warning("wants! This includes impersonating an OP!");
+!          if(this.public) {
+              logger.warning("");
+              logger.warning("AND SINCE THIS IS A PUBLIC SERVER, IT WILL HAPPEN TO YOU!");
+              logger.warning("");
+--- 114,120 ----
+           logger.warning("verify-names is set to false! This means that anyone who");
+           logger.warning("connects to this server can choose any username he or she");
+           logger.warning("wants! This includes impersonating an OP!");
+!          if(this.publicServer) {
+              logger.warning("");
+              logger.warning("AND SINCE THIS IS A PUBLIC SERVER, IT WILL HAPPEN TO YOU!");
+              logger.warning("");
+***************
+*** 138,144 ****
+  
+     public final void disconnect(NetworkHandler var1) {
+        PlayerConnection var2;
+!       if((var2 = (PlayerConnection)this.connectionMap.get(var1)) != null) {
+           this.players.remove(var2.name);
+           logger.info(var2 + " disconnected");
+           this.connectionMap.remove(var2.netHandler);
+--- 138,144 ----
+  
+     public final void disconnect(NetworkHandler var1) {
+        PlayerConnection var2;
+!       if((var2 = this.connectionMap.get(var1)) != null) {
+           this.players.remove(var2.name);
+           logger.info(var2 + " disconnected");
+           this.connectionMap.remove(var2.netHandler);
+***************
+*** 167,175 ****
+     public final void sendToAll(PacketType var1, Object ... var2) {
+        for(int var3 = 0; var3 < this.connections.size(); ++var3) {
+           try {
+!             ((PlayerConnection)this.connections.get(var3)).send(var1, var2);
+           } catch (Exception var5) {
+!             ((PlayerConnection)this.connections.get(var3)).errorKick(var5);
+           }
+        }
+  
+--- 167,175 ----
+     public final void sendToAll(PacketType var1, Object ... var2) {
+        for(int var3 = 0; var3 < this.connections.size(); ++var3) {
+           try {
+!             this.connections.get(var3).send(var1, var2);
+           } catch (Exception var5) {
+!             this.connections.get(var3).errorKick(var5);
+           }
+        }
+  
+***************
+*** 179,187 ****
+        for(int var4 = 0; var4 < this.connections.size(); ++var4) {
+           if(this.connections.get(var4) != var1) {
+              try {
+!                ((PlayerConnection)this.connections.get(var4)).send(var2, var3);
+              } catch (Exception var6) {
+!                ((PlayerConnection)this.connections.get(var4)).errorKick(var6);
+              }
+           }
+        }
+--- 179,187 ----
+        for(int var4 = 0; var4 < this.connections.size(); ++var4) {
+           if(this.connections.get(var4) != var1) {
+              try {
+!                this.connections.get(var4).send(var2, var3);
+              } catch (Exception var6) {
+!                this.connections.get(var4).errorKick(var6);
+              }
+           }
+        }
+***************
+*** 201,214 ****
+           while(true) {
+              this.updateNetwork();
+  
+!             for(; System.nanoTime() - var5 > (long)var1; ++var7) {
+!                var5 += (long)var1;
+                 this.tick();
+                 if(var7 % 1200 == 0) {
+                    MinecraftServer var8 = this;
+  
+                    try {
+-                      new LevelIO(var8);
+                       LevelIO.write(var8.level, new FileOutputStream("server_level.dat"));
+                    } catch (Exception var11) {
+                       logger.severe("Failed to save the level! " + var11);
+--- 201,213 ----
+           while(true) {
+              this.updateNetwork();
+  
+!             for(; System.nanoTime() - var5 > var1; ++var7) {
+!                var5 += var1;
+                 this.tick();
+                 if(var7 % 1200 == 0) {
+                    MinecraftServer var8 = this;
+  
+                    try {
+                       LevelIO.write(var8.level, new FileOutputStream("server_level.dat"));
+                    } catch (Exception var11) {
+                       logger.severe("Failed to save the level! " + var11);
+***************
+*** 218,228 ****
+                 }
+  
+                 if(var7 % 900 == 0) {
+!                   HashMap var9;
+!                   (var9 = new HashMap()).put("name", this.name);
+                    var9.put("users", Integer.valueOf(this.connections.size()));
+                    var9.put("max", Integer.valueOf(this.maxPlayers - (this.adminSlot?1:0)));
+!                   var9.put("public", Boolean.valueOf(this.public));
+                    var9.put("port", Integer.valueOf(this.port));
+                    var9.put("salt", this.salt);
+                    var9.put("admin-slot", Boolean.valueOf(this.adminSlot));
+--- 217,227 ----
+                 }
+  
+                 if(var7 % 900 == 0) {
+!                   HashMap<String, Object> var9 = new HashMap<String, Object>();
+!                   var9.put("name", this.name);
+                    var9.put("users", Integer.valueOf(this.connections.size()));
+                    var9.put("max", Integer.valueOf(this.maxPlayers - (this.adminSlot?1:0)));
+!                   var9.put("public", Boolean.valueOf(this.publicServer));
+                    var9.put("port", Integer.valueOf(this.port));
+                    var9.put("salt", this.salt);
+                    var9.put("admin-slot", Boolean.valueOf(this.adminSlot));
+***************
+*** 232,239 ****
+                 }
+              }
+  
+!             while(System.nanoTime() - var3 > (long)var2) {
+!                var3 += (long)var2;
+                 this.sendToAll(PacketType.PING, new Object[0]);
+              }
+  
+--- 231,238 ----
+                 }
+              }
+  
+!             while(System.nanoTime() - var3 > var2) {
+!                var3 += var2;
+                 this.sendToAll(PacketType.PING, new Object[0]);
+              }
+  
+***************
+*** 245,257 ****
+        }
+     }
+  
+!    private static String assembleHeartbeat(Map var0) {
+        try {
+           String var1 = "";
+  
+           String var3;
+!          for(Iterator var2 = var0.keySet().iterator(); var2.hasNext(); var1 = var1 + var3 + "=" + URLEncoder.encode(var0.get(var3).toString(), "UTF-8")) {
+!             var3 = (String)var2.next();
+              if(var1 != "") {
+                 var1 = var1 + "&";
+              }
+--- 244,256 ----
+        }
+     }
+  
+!    private static String assembleHeartbeat(Map<String, Object> var0) {
+        try {
+           String var1 = "";
+  
+           String var3;
+!          for(Iterator<String> var2 = var0.keySet().iterator(); var2.hasNext(); var1 = var1 + var3 + "=" + URLEncoder.encode(var0.get(var3).toString(), "UTF-8")) {
+!             var3 = var2.next();
+              if(var1 != "") {
+                 var1 = var1 + "&";
+              }
+***************
+*** 265,274 ****
+     }
+  
+     private void tick() {
+!       Iterator var1 = this.connections.iterator();
+  
+        while(var1.hasNext()) {
+!          PlayerConnection var2 = (PlayerConnection)var1.next();
+  
+           try {
+              var2.update();
+--- 264,273 ----
+     }
+  
+     private void tick() {
+!       Iterator<PlayerConnection> var1 = this.connections.iterator();
+  
+        while(var1.hasNext()) {
+!          PlayerConnection var2 = var1.next();
+  
+           try {
+              var2.update();
+***************
+*** 280,286 ****
+        this.level.tick();
+  
+        for(int var9 = 0; var9 < this.queuedCloses.size(); ++var9) {
+!          QueuedConnectionClose var10 = (QueuedConnectionClose)this.queuedCloses.get(var9);
+           this.disconnect(var10.handler);
+  
+           try {
+--- 279,285 ----
+        this.level.tick();
+  
+        for(int var9 = 0; var9 < this.queuedCloses.size(); ++var9) {
+!          QueuedConnectionClose var10 = this.queuedCloses.get(var9);
+           this.disconnect(var10.handler);
+  
+           try {
+***************
+*** 293,306 ****
+                    var3.out.compact();
+                 }
+              } catch (IOException var6) {
+-                ;
+              }
+  
+              if(var10.ticks-- <= 0) {
+                 try {
+                    var10.handler.close();
+                 } catch (Exception var5) {
+-                   ;
+                 }
+  
+                 this.queuedCloses.remove(var9--);
+--- 292,303 ----
+***************
+*** 309,315 ****
+              try {
+                 var10.handler.close();
+              } catch (Exception var4) {
+-                ;
+              }
+           }
+        }
+--- 306,311 ----
+***************
+*** 323,334 ****
+     public final void logFine(String var1) {
+        logger.fine(var1);
+     }
+  
+!    private void updateNetwork() {
+!       List var1 = this.consoleQueue;
+        synchronized(this.consoleQueue) {
+           while(this.consoleQueue.size() > 0) {
+!             this.processCommand((PlayerConnection)null, (String)this.consoleQueue.remove(0));
+           }
+        }
+  
+--- 319,333 ----
+     public final void logFine(String var1) {
+        logger.fine(var1);
+     }
++    
++    public final void logWarning(String var1) {
++       logger.warning(var1);
++    }
+  
+!    private void updateNetwork() {
+        synchronized(this.consoleQueue) {
+           while(this.consoleQueue.size() > 0) {
+!             this.processCommand((PlayerConnection)null, this.consoleQueue.remove(0));
+           }
+        }
+  
+***************
+*** 349,358 ****
+                    var4.queueClose(var2);
+                 } else {
+                    int var5 = 0;
+!                   Iterator var6 = var4.connections.iterator();
+  
+                    while(var6.hasNext()) {
+!                      if(((PlayerConnection)var6.next()).netHandler.ip.equals(var3.ip)) {
+                          ++var5;
+                       }
+                    }
+--- 348,357 ----
+                    var4.queueClose(var2);
+                 } else {
+                    int var5 = 0;
+!                   Iterator<PlayerConnection> var6 = var4.connections.iterator();
+  
+                    while(var6.hasNext()) {
+!                      if(var6.next().netHandler.ip.equals(var3.ip)) {
+                          ++var5;
+                       }
+                    }
+***************
+*** 385,391 ****
+           }
+  
+           for(int var17 = 0; var17 < var13.connected.size(); ++var17) {
+!             NetworkHandler var15 = (NetworkHandler)var13.connected.get(var17);
+  
+              try {
+                 NetworkHandler var20 = var15;
+--- 384,390 ----
+           }
+  
+           for(int var17 = 0; var17 < var13.connected.size(); ++var17) {
+!             NetworkHandler var15 = var13.connected.get(var17);
+  
+              try {
+                 NetworkHandler var20 = var15;
+***************
+*** 426,434 ****
+                    var20.out.compact();
+                 }
+              } catch (Exception var9) {
+-                MinecraftServer var10001 = var13.server;
+                 PlayerConnection var23;
+!                if((var23 = (PlayerConnection)var13.server.connectionMap.get(var15)) != null) {
+                    var23.errorKick(var9);
+                 }
+              }
+--- 425,432 ----
+                    var20.out.compact();
+                 }
+              } catch (Exception var9) {
+                 PlayerConnection var23;
+!                if((var23 = var13.server.connectionMap.get(var15)) != null) {
+                    var23.errorKick(var9);
+                 }
+              }
+***************
+*** 471,477 ****
+           this.deop(var3[1]);
+        } else if(var3[0].toLowerCase().equals("setspawn")) {
+           if(var1 != null) {
+!             this.level.setSpawnPos(var1.x / 32, var1.y / 32, var1.z / 32, (float)(var1.yaw * 320 / 256));
+           } else {
+              logger.info("Can\'t set spawn from console!");
+           }
+--- 469,475 ----
+           this.deop(var3[1]);
+        } else if(var3[0].toLowerCase().equals("setspawn")) {
+           if(var1 != null) {
+!             this.level.setSpawnPos(var1.x / 32, var1.y / 32, var1.z / 32, var1.yaw * 320 / 256);
+           } else {
+              logger.info("Can\'t set spawn from console!");
+           }
+***************
+*** 545,561 ****
+        return -1;
+     }
+  
+!    public final List getConnections() {
+        return this.connections;
+     }
+  
+     private void kick(String var1) {
+        boolean var2 = false;
+!       Iterator var3 = this.connections.iterator();
+  
+        while(var3.hasNext()) {
+           PlayerConnection var4;
+!          if((var4 = (PlayerConnection)var3.next()).name.equalsIgnoreCase(var1)) {
+              var2 = true;
+              var4.kick("You were kicked");
+           }
+--- 543,559 ----
+        return -1;
+     }
+  
+!    public final List<PlayerConnection> getConnections() {
+        return this.connections;
+     }
+  
+     private void kick(String var1) {
+        boolean var2 = false;
+!       Iterator<PlayerConnection> var3 = this.connections.iterator();
+  
+        while(var3.hasNext()) {
+           PlayerConnection var4;
+!          if((var4 = var3.next()).name.equalsIgnoreCase(var1)) {
+              var2 = true;
+              var4.kick("You were kicked");
+           }
+***************
+*** 570,580 ****
+     private void ban(String var1) {
+        this.banned.add(var1);
+        boolean var2 = false;
+!       Iterator var3 = this.connections.iterator();
+  
+        while(var3.hasNext()) {
+!          PlayerConnection var4;
+!          if((var4 = (PlayerConnection)var3.next()).name.equalsIgnoreCase(var1)) {
+              var2 = true;
+              var4.kick("You were banned");
+           }
+--- 568,578 ----
+     private void ban(String var1) {
+        this.banned.add(var1);
+        boolean var2 = false;
+!       Iterator<PlayerConnection> var3 = this.connections.iterator();
+  
+        while(var3.hasNext()) {
+!          PlayerConnection var4 = var3.next();
+!          if(var4.name.equalsIgnoreCase(var1)) {
+              var2 = true;
+              var4.kick("You were banned");
+           }
+***************
+*** 588,598 ****
+  
+     private void op(String var1) {
+        this.admins.add(var1);
+!       Iterator var3 = this.connections.iterator();
+  
+        while(var3.hasNext()) {
+!          PlayerConnection var2;
+!          if((var2 = (PlayerConnection)var3.next()).name.equalsIgnoreCase(var1)) {
+              var2.sendServerMessage("You\'re now op!");
+              var2.send(PacketType.UPDATE_PLAYER_TYPE, new Object[]{Integer.valueOf(100)});
+           }
+--- 586,596 ----
+  
+     private void op(String var1) {
+        this.admins.add(var1);
+!       Iterator<PlayerConnection> var3 = this.connections.iterator();
+  
+        while(var3.hasNext()) {
+!          PlayerConnection var2 = var3.next();
+!          if(var2.name.equalsIgnoreCase(var1)) {
+              var2.sendServerMessage("You\'re now op!");
+              var2.send(PacketType.UPDATE_PLAYER_TYPE, new Object[]{Integer.valueOf(100)});
+           }
+***************
+*** 602,614 ****
+  
+     private void deop(String var1) {
+        this.admins.remove(var1);
+!       Iterator var3 = this.connections.iterator();
+  
+        while(var3.hasNext()) {
+!          PlayerConnection var2;
+!          if((var2 = (PlayerConnection)var3.next()).name.equalsIgnoreCase(var1)) {
+              var2.placeBedrock = false;
+!             var2.sendServerMessage("You\'re no longer op!");
+              var2.send(PacketType.UPDATE_PLAYER_TYPE, new Object[]{Integer.valueOf(0)});
+           }
+        }
+--- 600,612 ----
+  
+     private void deop(String var1) {
+        this.admins.remove(var1);
+!       Iterator<PlayerConnection> var3 = this.connections.iterator();
+  
+        while(var3.hasNext()) {
+!          PlayerConnection var2 = var3.next();
+!          if(var2.name.equalsIgnoreCase(var1)) {
+              var2.placeBedrock = false;
+!             var2.sendServerMessage("You're no longer op!");
+              var2.send(PacketType.UPDATE_PLAYER_TYPE, new Object[]{Integer.valueOf(0)});
+           }
+        }
+***************
+*** 618,639 ****
+     private void ipban(String var1) {
+        boolean var2 = false;
+        String var3 = "";
+!       Iterator var4 = this.connections.iterator();
+  
+        while(var4.hasNext()) {
+!          PlayerConnection var5;
+!          NetworkHandler var6;
+!          if(!(var5 = (PlayerConnection)var4.next()).name.equalsIgnoreCase(var1)) {
+!             var6 = var5.netHandler;
+              if(!var5.netHandler.ip.equalsIgnoreCase(var1)) {
+-                var6 = var5.netHandler;
+                 if(!var5.netHandler.ip.equalsIgnoreCase("/" + var1)) {
+                    continue;
+                 }
+              }
+           }
+  
+-          var6 = var5.netHandler;
+           this.ipBanned.add(var5.netHandler.ip);
+           var5.kick("You were banned");
+           if(var3 == "") {
+--- 616,633 ----
+     private void ipban(String var1) {
+        boolean var2 = false;
+        String var3 = "";
+!       Iterator<PlayerConnection> var4 = this.connections.iterator();
+  
+        while(var4.hasNext()) {
+!          PlayerConnection var5 = var4.next();
+!          if(var5.name.equalsIgnoreCase(var1)) {
+              if(!var5.netHandler.ip.equalsIgnoreCase(var1)) {
+                 if(!var5.netHandler.ip.equalsIgnoreCase("/" + var1)) {
+                    continue;
+                 }
+              }
+           }
+  
+           this.ipBanned.add(var5.netHandler.ip);
+           var5.kick("You were banned");
+           if(var3 == "") {
+***************
+*** 651,664 ****
+     }
+  
+     public final PlayerConnection getConnection(String var1) {
+!       Iterator var3 = this.connections.iterator();
+! 
+        PlayerConnection var2;
+!       do {
+           if(!var3.hasNext()) {
+              return null;
+           }
+!       } while(!(var2 = (PlayerConnection)var3.next()).name.equalsIgnoreCase(var1));
+  
+        return var2;
+     }
+--- 645,658 ----
+     }
+  
+     public final PlayerConnection getConnection(String var1) {
+!       Iterator<PlayerConnection> var3 = this.connections.iterator();
+!       
+        PlayerConnection var2;
+!       while(!(var2 = var3.next()).name.equalsIgnoreCase(var1)) {
+           if(!var3.hasNext()) {
+              return null;
+           }
+!       }
+  
+        return var2;
+     }
+***************
+*** 685,694 ****
+           }
+  
+           try {
+-             new LevelIO(var1);
+              LevelIO.write(var1.level, new FileOutputStream("server_level.dat"));
+           } catch (Exception var3) {
+-             ;
+           }
+  
+           var1.level.creativeMode = true;
+--- 679,686 ----
+***************
+*** 701,719 ****
+        }
+     }
+  
+!    // $FF: synthetic method
+!    static List getConsoleQueue(MinecraftServer var0) {
+!       return var0.consoleQueue;
+     }
+  
+!    // $FF: synthetic method
+!    static String getUrl(MinecraftServer var0) {
+!       return var0.url;
+     }
+  
+!    // $FF: synthetic method
+!    static String setUrl(MinecraftServer var0, String var1) {
+!       return var0.url = var1;
+     }
+  
+     static {
+--- 693,708 ----
+        }
+     }
+  
+!    public List<String> getConsoleQueue() {
+!       return this.consoleQueue;
+     }
+  
+!    public String getUrl() {
+!       return this.url;
+     }
+  
+!    public String setUrl(String var1) {
+!       return this.url = var1;
+     }
+  
+     static {
+diff -crB src/com/mojang/minecraft/server/PlayerListFile.java src2/com/mojang/minecraft/server/PlayerListFile.java
+*** src/com/mojang/minecraft/server/PlayerListFile.java	2013-07-15 20:01:24.000000000 -0700
+--- src2/com/mojang/minecraft/server/PlayerListFile.java	2013-07-15 20:50:24.236433000 -0700
+***************
+*** 17,24 ****
+     private static Logger logger = MinecraftServer.logger;
+     private String name;
+     private File file;
+!    private Set players = new HashSet();
+! 
+  
+     public PlayerListFile(String var1, File var2) {
+        this.name = var1;
+--- 17,23 ----
+     private static Logger logger = MinecraftServer.logger;
+     private String name;
+     private File file;
+!    private Set<String> players = new HashSet<String>();
+  
+     public PlayerListFile(String var1, File var2) {
+        this.name = var1;
+***************
+*** 68,77 ****
+     private void save() {
+        try {
+           PrintWriter var1 = new PrintWriter(new FileWriter(this.file));
+!          Iterator var2 = this.players.iterator();
+  
+           while(var2.hasNext()) {
+!             String var3 = (String)var2.next();
+              var1.println(var3);
+           }
+  
+--- 67,76 ----
+     private void save() {
+        try {
+           PrintWriter var1 = new PrintWriter(new FileWriter(this.file));
+!          Iterator<String> var2 = this.players.iterator();
+  
+           while(var2.hasNext()) {
+!             String var3 = var2.next();
+              var1.println(var3);
+           }
+  
+diff -crB src/com/mojang/minecraft/SessionData.java src2/com/mojang/minecraft/SessionData.java
+*** src/com/mojang/minecraft/SessionData.java	2013-07-15 20:01:22.000000000 -0700
+--- src2/com/mojang/minecraft/SessionData.java	2013-07-15 20:14:03.504451000 -0700
+***************
+*** 6,16 ****
+  
+  public final class SessionData {
+  
+!    public static List allowedBlocks;
+  
+  
+     static {
+!       (allowedBlocks = new ArrayList()).add(Block.STONE);
+        allowedBlocks.add(Block.COBBLESTONE);
+        allowedBlocks.add(Block.BRICK);
+        allowedBlocks.add(Block.DIRT);
+--- 6,16 ----
+  
+  public final class SessionData {
+  
+!    public static List<Block> allowedBlocks = new ArrayList<Block>();
+  
+  
+     static {
+!       allowedBlocks.add(Block.STONE);
+        allowedBlocks.add(Block.COBBLESTONE);
+        allowedBlocks.add(Block.BRICK);
+        allowedBlocks.add(Block.DIRT);
+Only in src/com/mojang/minecraft: Vec3DCreator.java
+diff -crB src/com/mojang/util/MathHelper.java src2/com/mojang/util/MathHelper.java
+*** src/com/mojang/util/MathHelper.java	2013-07-15 20:01:20.000000000 -0700
+--- src2/com/mojang/util/MathHelper.java	2013-07-15 20:50:40.388433000 -0700
+***************
+*** 15,26 ****
+     }
+  
+     public static final float sqrt(float var0) {
+!       return (float)Math.sqrt((double)var0);
+     }
+  
+     static {
+        for(int var0 = 0; var0 < 65536; ++var0) {
+!          SIN_TABLE[var0] = (float)Math.sin((double)var0 * 3.141592653589793D * 2.0D / 65536.0D);
+        }
+  
+     }
+--- 13,24 ----
+     }
+  
+     public static final float sqrt(float var0) {
+!       return (float)Math.sqrt(var0);
+     }
+  
+     static {
+        for(int var0 = 0; var0 < 65536; ++var0) {
+!          SIN_TABLE[var0] = (float)Math.sin(var0 * Math.PI * 2.0D / 65536.0D);
+        }
+  
+     }

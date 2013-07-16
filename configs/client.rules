@@ -18,11 +18,11 @@ rule com.mojang.minecraft.b.a com.mojang.minecraft.render.TextureManager
 rule com.mojang.minecraft.b.b com.mojang.minecraft.render.ChunkVisibleDistanceComparator
 rule com.mojang.minecraft.b.c com.mojang.minecraft.render.ShapeRenderer
 rule com.mojang.minecraft.b.d com.mojang.minecraft.render.Renderer
-rule com.mojang.minecraft.b.e com.mojang.minecraft.render.FrustrumImpl
+rule com.mojang.minecraft.b.e com.mojang.minecraft.render.FrustumImpl
 rule com.mojang.minecraft.b.f com.mojang.minecraft.render.ChunkDistanceComparator
 rule com.mojang.minecraft.b.g com.mojang.minecraft.render.LevelRenderer
 rule com.mojang.minecraft.b.h com.mojang.minecraft.render.HeldBlock
-rule com.mojang.minecraft.b.i com.mojang.minecraft.render.Frustrum
+rule com.mojang.minecraft.b.i com.mojang.minecraft.render.Frustum
 rule com.mojang.minecraft.b.j com.mojang.minecraft.render.Chunk
 rule com.mojang.minecraft.b.a.a com.mojang.minecraft.render.texture.LavaTexture
 rule com.mojang.minecraft.b.a.b com.mojang.minecraft.render.texture.WaterTexture
@@ -124,8 +124,8 @@ rule com.mojang.minecraft.net.d com.mojang.minecraft.net.SkinDownloadThread
 rule com.mojang.minecraft.net.e com.mojang.minecraft.net.ServerConnectThread
 rule a.a com.mojang.util.MathHelper
 rule a.** com.mojang.util.@1
-rule com.mojang.a.a com.mojang.net.NetworkHandler
-rule com.mojang.a.** com.mojang.net.@1
+rule com.mojang.a.a com.mojang.minecraft.net.NetworkHandler
+rule com.mojang.a.** com.mojang.minecraft.net.@1
 rule de.jarnbjo.a.a.a de.jarnbjo.util.io.BitInputStream
 rule de.jarnbjo.a.a.b de.jarnbjo.util.io.HuffmanNode
 rule de.jarnbjo.a.a.** de.jarnbjo.util.io.@1
